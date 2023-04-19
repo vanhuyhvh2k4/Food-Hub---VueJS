@@ -1,0 +1,87 @@
+:root {
+    --font-family: SofiaPro;
+    --primary-color: #FE724C;
+    --secondary-color: #FFC529;
+    --typography-color: #1A1D26;
+    --gray-color: #9A9FAE;
+    --light-color: white;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 50%;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-size: 1.6rem;
+    font-family: var(--font-family);
+    font-weight: 500;
+    line-height: 2.2rem;
+    color: var(--typography-color);
+}
+
+#app {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+ul,li {
+    list-style: none;
+}
+
+input, button {
+    outline: none;
+}
+
+a {
+    text-decoration: none;
+    color: currentColor;
+}
+
+@font-face {
+    font-family: SofiaPro;
+    src: url('../fonts/SofiaProUltraLight.woff');
+    font-weight: 100;
+}
+@font-face {
+    font-family: SofiaPro;
+    src: url('../fonts/SofiaProExtraLight.woff');
+    font-weight: 200;
+}
+@font-face {
+    font-family: SofiaPro;
+    src: url('../fonts/SofiaProLight.woff');
+    font-weight: 300;
+}
+@font-face {
+    font-family: SofiaPro;
+    src: url('../fonts/SofiaProRegular.woff');
+    font-weight: 400;
+}
+@font-face {
+    font-family: SofiaPro;
+    src: url('../fonts/SofiaProMedium.woff');
+    font-weight: 500;
+}
+@font-face {
+    font-family: SofiaPro;
+    src: url('../fonts/SofiaProBold.woff');
+    font-weight: 600;
+}
+@font-face {
+    font-family: SofiaPro;
+    src: url('../fonts/SofiaProSemiBold.woff');
+    font-weight: 700;
+}
+@font-face {
+    font-family: SofiaPro;
+    src: url('../fonts/SofiaProBlack.woff');
+    font-weight: 800;
+}
