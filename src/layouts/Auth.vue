@@ -1,5 +1,10 @@
 <template>
     <div :class="$style.wrapper">
+        <header :class="$style.header">
+            <span></span>
+            <span></span>
+            <span></span>
+        </header>
         <slot></slot>
         <article :class="$style.navigation" v-if="route.meta.path === 'login'">
             <span>Don't have an account?</span>
@@ -58,6 +63,56 @@
     width: 100%;
     height: 100%;
     position: relative;
+}
+
+.header {
+    $radius-rounded: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: fit-content;
+
+    & > span:first-child {
+        position: absolute;
+        width: 165px;
+        height: 165px;
+        background-color: #FFECE7;
+        border-radius: $radius-rounded;
+        transform: translateY(-99px);
+        z-index: 1;
+    }
+
+    & > span:nth-child(2) {
+        position: absolute;
+        width: 96px;
+        height: 96px;
+        background-color: var(--primary-color);
+        border-radius: $radius-rounded;
+        transform: translate(-46px, -30px);
+    }
+
+    & > span:nth-child(2)::before {
+        content: "";
+        position: absolute;
+        width: 40%;
+        height: 40%;
+        background-color: var(--light-color);
+        top: 50%;
+        left: 50%;
+        border-radius: $radius-rounded;
+        transform: translate(-50%, -50%);
+    }
+
+    & > span:last-child {
+        position: absolute;
+        right: 0;
+        width: 181px;
+        height: 181px;
+        background-color: var(--primary-color);
+        border-radius: $radius-rounded;
+        transform: translate(104px, -109px);
+    }
 }
 
 .navigation {

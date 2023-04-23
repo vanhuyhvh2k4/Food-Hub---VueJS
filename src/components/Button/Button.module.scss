@@ -1,0 +1,30 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--light-color);
+    border: unset;
+    border: 1px solid transparent;
+    border-radius: 28px;
+    gap: 10px;
+    cursor: pointer;
+    box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.1);
+    padding: 6px 12px;
+
+    &.active {
+        background-color: var(--primary-color);
+        color: var(--light-color);
+    }
+
+    &.outline {
+        border-color: var(--primary-color);
+        color: var(--primary-color);
+    }
+}
+
+.wrapper > h3 {
+    font-size: 1.3rem;
+    line-height: 1.3rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+}

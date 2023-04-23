@@ -1,8 +1,28 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router';
+import Cookies from 'js-cookie';
+import routesConfig from '@/config/routes.js';
+
+const requiredAuth = (to, from ,next) => {
+  const accessToken = Cookies.get("accessToken");
+  if (!accessToken) next({ name: 'login', params: {}});
+  next();
+}
 
 const routes = [
   {
-    path: '/auth',
+    path: routesConfig.home,
+    name: 'home',
+    component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue'),
+    // beforeEnter: requiredAuth,
+  },
+  {
+    path: routesConfig.cart,
+    name: 'cart',
+    component: () => import(/* webpackChunkName: "cart" */ '../views/Cart.vue'),
+    // beforeEnter: requiredAuth,
+  },
+  {
+    path: routesConfig.auth,
     name: 'auth',
     component: () => import(/* webpackChunkName: "auth" */ '../views/Auth.vue'),
     meta: {
@@ -10,18 +30,18 @@ const routes = [
     }
   },
   {
-    path: '/login',
+    path: routesConfig.login,
     name: 'login',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Login.vue'),
+    component: () => import(/* webpackChunkName: "login" */ '../views/Login.vue'),
     meta: {
       layout: 'auth',
       path: 'login'
     }
   },
   {
-    path: '/signup',
+    path: routesConfig.signup,
     name: 'signup',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Register.vue'),
+    component: () => import(/* webpackChunkName: "signup" */ '../views/Register.vue'),
     meta: {
       layout: 'auth',
       path: 'signup'

@@ -1,0 +1,72 @@
+$radius: 12px;
+
+.wrapper {
+    display: flex;
+    padding: 12px 24px;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--light-color);
+}
+
+.icon {
+    width: 38px;
+    height: 38px;
+    box-shadow: 5px 5px 20px 1px rgba(0, 0, 0, 0.08);
+    border-radius: $radius;
+
+    & > div {
+        width: 100%;
+        height: 100%;
+        background-image: url('@/assets/images/menu.png');
+        background-repeat: no-repeat;
+        background-size: 12px 6px;
+        background-position: center;
+    }
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & > p {
+        $color: #8C9099;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+
+        & > .iconChevron {
+            font-size: 1.4rem;
+            color: $color;
+        }
+
+        & > h5 {
+            font-size: 1.4rem;
+            font-weight: 500;
+            line-height: 1.8rem;
+            color: $color;
+        }
+    }
+
+    & > h4 {
+        font-size: 1.5rem;
+        font-weight: 500;
+        color: var(--primary-color);
+        line-height: 1.9rem;
+    }
+}
+
+.avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: $radius;
+    overflow: hidden;
+
+    & > img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        -o-object-fit: cover;
+        flex-shrink: 0;
+    }
+}

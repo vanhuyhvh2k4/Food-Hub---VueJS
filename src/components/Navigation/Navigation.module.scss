@@ -1,0 +1,15 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px;
+
+    & section svg {
+        font-size: 2.4rem;
+        color: #D3D1D8;
+    }
+}
+
+.active > svg {
+    color: var(--primary-color);
+}

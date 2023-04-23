@@ -1,5 +1,5 @@
 <template>
-    <button :class="[$style.wrapper]">
+    <button :class="[$style.wrapper, primary ? $style.active : '', outline ? $style.outline : '']">
         <slot v-if="!onlyTitle"></slot>
         <h3 v-if="!onlyIcon">{{ name }}</h3>
     </button>
@@ -12,27 +12,12 @@
             name: String,
             onlyTitle: Boolean,
             onlyIcon: Boolean,
-            isActive: Boolean,
+            primary: Boolean,
+            outline: Boolean,
         }
     }
 </script>
 
 <style module lang="scss">
-    .wrapper {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: var(--light-color);
-        border: unset;
-        border-radius: 28px;
-        gap: 10px;
-        cursor: pointer;
-    }
-
-    .wrapper > h3 {
-        font-size: 1.3rem;
-        line-height: 1.3rem;
-        font-weight: 500;
-        letter-spacing: 1px;
-    }
+    @import './Button.module.scss'
 </style>

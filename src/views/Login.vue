@@ -1,70 +1,77 @@
 <template>
   <div :class="$style.wrapper">
     <h1 :class="$style.title">Login</h1>
-    <form :class="$style.form">
-      <Input title="E-mail" type="email" isRequired placeholder="Your email"/>
-      <Input title="Password" type="password" isRequired placeholder="Your password"/>
+    <form :class="$style.form" @submit.prevent="submitForm">
+      <Input title="E-mail" type="email" isRequired placeholder="Your email" autocomplete="email" @input-change="handleEmail"/>
+      <Input title="Password" type="password" isRequired placeholder="Your password" autocomplete="current-password" @input-change="handlePassword"/>
       <router-link :class="$style.link" to="/">Forgot password?</router-link>
       <Button :class="$style.button" name="Sign In"/>
     </form>
+    <b v-if="isError" :class="$style.notification">Wrong email or password</b>
   </div>
 </template>
 
 <script>
-  import Input from '@/components/Input/Input.vue';
-  import Button from '@/components/Button/Button.vue';
-  
-  export default {
-    components: {
-      Input,
-      Button
+import {useRouter} from 'vue-router'
+import Cookies from 'js-cookie';
+import axios from 'axios';
+
+import Input from '@/components/Input/Input.vue';
+import Button from '@/components/Button/Button.vue';
+import router from '@/router';
+import routesConfig from '@/config/routes.js';
+
+export default {
+  name: 'LoginForm',
+  components: {
+    Input,
+    Button
+  },
+  setup () {
+    const router = useRouter()
+    return {
+      router
     }
+  },
+  data() {
+    let email;
+    let password;
+    let isError = false;
+    return {
+      email,
+      password,
+      isError
+    }
+  },
+  methods: {
+    submitForm() {
+      axios.post('http://localhost:3000/v1/api/auth/login', {email: this.email, password: this.password})
+        .then((response) => { 
+          if (response.status === 200) {
+            Cookies.set('accessToken', response.data.accessToken);
+            sessionStorage.setItem('refreshToken', response.data.refreshToken);
+            router.push(routesConfig.home);
+          }
+        })
+        .catch((error) => {
+          if (error) {
+            console.log(error.message);
+            this.isError = true;
+          }
+        });
+    },
+    handleEmail (value) {
+      this.email = value;
+      this.isError = false;
+    },
+    handlePassword (value) {
+      this.password = value;
+      this.isError = false;
+    }
+  }
 }
 </script>
 
 <style lang="scss" module>
-  .wrapper {
-    position: absolute;
-    bottom: 28%;
-    width: 100%;
-    left: 0;
-    padding: 25px;
-  }
- 
-  .title {
-      font-size: 3.6rem;
-      font-weight: 600;
-      line-height: 4.4rem;
-      margin-bottom: 30px;
-  }
-
-  .form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .button {
-    height: 60px;
-    width: 248px;
-    background-color: var(--primary-color);
-    color: var(--light-color);
-    margin-top: 32px;
-    
-    & > h3 {
-      font-size: 1.5rem;
-      text-transform: uppercase;
-      font-weight: 600;
-      line-height: 1.5rem;
-    }
-  }
-
-  .link {
-    font-size: 1.4rem;
-    font-weight: 400;
-    line-height: 1.4rem;
-    color: var(--primary-color);
-    margin-top: 32px;
-    display: block;
-  }
+  @import "./scss/Login.module.scss"
 </style>

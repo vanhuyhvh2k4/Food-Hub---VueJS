@@ -5,6 +5,9 @@
     --typography-color: #1A1D26;
     --gray-color: #9A9FAE;
     --light-color: white;
+    --danger-color: rgb(255, 101, 101);
+    --header-height: 62px;
+    --content-margin-top: calc(var(--header-height) + 24px);
 }
 
 * {
