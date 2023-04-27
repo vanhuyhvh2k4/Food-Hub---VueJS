@@ -1,5 +1,5 @@
 <template>
-    <div :class="$style.wrapper">
+    <main :class="$style.wrapper">
       <h1 :class="$style.title">Sign Up</h1>
       <form :class="$style.form" @submit.prevent="handleSubmitForm">
         <Input title="Full Name" isRequired placeholder="Your name" autocomplete="off" @input-change="handleFullName"/>
@@ -8,7 +8,7 @@
         <Button :class="$style.button" name="Register"/>
       </form>
       <b :class="$style.notification">{{ notification }}</b>
-    </div>
+    </main>
   </template>
   
   <script>
@@ -19,6 +19,7 @@
     import routesConfig from '@/config/routes';
     
     export default {
+      name: 'Register',
       components: {
         Input,
         Button

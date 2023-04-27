@@ -7,7 +7,10 @@
     --light-color: white;
     --danger-color: rgb(255, 101, 101);
     --header-height: 62px;
+    --navigation-height: 74px;
     --content-margin-top: calc(var(--header-height) + 24px);
+    --content-margin-bottom: calc(var(--navigation-height) + 24px);
+    --global-padding: 24px;
 }
 
 * {
@@ -19,6 +22,8 @@
 html {
     font-size: 50%;
     scroll-behavior: smooth;
+    width: 100%;
+    height: 100%;
 }
 
 body {
@@ -27,11 +32,13 @@ body {
     font-weight: 500;
     line-height: 2.2rem;
     color: var(--typography-color);
+    width: 100%;
+    height: 100%;
 }
 
 #app {
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: fit-content;
     overflow: hidden;
 }
 
@@ -46,6 +53,12 @@ input, button {
 a {
     text-decoration: none;
     color: currentColor;
+}
+
+@font-face {
+    font-family: TTCommons;
+    src: url('../fonts/TTCommonsBold.otf');
+    font-weight: 600;
 }
 
 @font-face {

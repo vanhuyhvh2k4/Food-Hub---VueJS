@@ -1,5 +1,5 @@
 <template>
-  <div :class="$style.wrapper">
+  <main :class="$style.wrapper">
     <div :class="$style.overlay">
       <main :class="$style.content">
         <header :class="$style.header">
@@ -33,7 +33,7 @@
         </footer>
       </main>
     </div>
-  </div>
+  </main>
 </template>
 
 <script>
@@ -41,6 +41,7 @@
   import {facebook, google} from '@/assets/icons/index.js';
 
   export default {
+    name: 'Auth',
     components: {
       Button,
       facebook,

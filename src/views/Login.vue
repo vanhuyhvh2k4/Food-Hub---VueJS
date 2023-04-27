@@ -1,5 +1,5 @@
 <template>
-  <div :class="$style.wrapper">
+  <main :class="$style.wrapper">
     <h1 :class="$style.title">Login</h1>
     <form :class="$style.form" @submit.prevent="submitForm">
       <Input title="E-mail" type="email" isRequired placeholder="Your email" autocomplete="email" @input-change="handleEmail"/>
@@ -8,7 +8,7 @@
       <Button :class="$style.button" name="Sign In"/>
     </form>
     <b v-if="isError" :class="$style.notification">Wrong email or password</b>
-  </div>
+  </main>
 </template>
 
 <script>
@@ -22,7 +22,7 @@ import router from '@/router';
 import routesConfig from '@/config/routes.js';
 
 export default {
-  name: 'LoginForm',
+  name: 'Login',
   components: {
     Input,
     Button

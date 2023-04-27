@@ -59,7 +59,7 @@
 <style lang="scss" module>
 
 .wrapper {
-    padding: 25px;
+    padding: var(--global-padding);
     width: 100%;
     height: 100%;
     position: relative;

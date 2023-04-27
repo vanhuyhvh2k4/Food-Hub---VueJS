@@ -1,6 +1,6 @@
 <template>
     <div :class="$style.wrapper">
-        <div v-show="statusOfMenu" :class="$style.modal">
+        <div v-if="statusOfMenu" :key="statusOfMenu" :class="$style.modal">
             <Overlay @click-overlay="toggleMenuButton"/>
             <Menu :class="$style.menu"/>
         </div>
@@ -42,7 +42,7 @@
         position: relative;
         width: 100%;
         height: 100%;
-        padding: 0px 24px;
+        padding: 0px var(--global-padding);
     }
 
     .modal {
