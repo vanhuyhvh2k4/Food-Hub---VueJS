@@ -11,7 +11,7 @@
             <h4>4102 Pretty View Lane</h4>
         </section>
         <section :class="$style.avatar">
-            <img src="@/assets/images/Avatar.jpg" alt="avatar">
+            <img :src="avatar" alt="avatar">
         </section>
     </header>
 </template>
@@ -25,6 +25,12 @@
                 this.$emit('click-menu-button')
             }
         },
+        props: {
+            avatar: {
+                type: String,
+                default: 'https://images.unsplash.com/photo-1683524430079-d45876f50fed?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60'
+            }
+        }
     }
 </script>
 

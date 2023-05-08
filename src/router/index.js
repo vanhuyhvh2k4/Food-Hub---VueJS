@@ -13,7 +13,7 @@ const routes = [
     path: routesConfig.home,
     name: 'home',
     component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue'),
-    // beforeEnter: requiredAuth,
+    beforeEnter: requiredAuth,
   },
   {
     path: routesConfig.cart,

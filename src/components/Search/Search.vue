@@ -1,7 +1,7 @@
 <template>
     <div :class="$style.wrapper">
         <fa :class="$style.icon" icon="magnifying-glass"/>
-        <input :class="$style.input" type="text" :placeholder="placeholder" :required="required">
+        <input :class="$style.input" type="text" :placeholder="placeholder" :required="required" @input="handleInputChange" @focus="handleInputFocus" @blur="handleInputBlur">
     </div>
 </template>
 
@@ -15,7 +15,19 @@ export default {
             default: 'Enter placeholder of input'
         },
         required: Boolean,
-    }
+    },
+    methods: {
+        handleInputChange (e) {
+            this.$emit('change-input', e.target.value);
+        },
+
+        handleInputFocus () {
+            this.$emit('focus-input')
+        },
+        handleInputBlur () {
+            this.$emit('blur-input')
+        },
+    },
 }
 </script>
 
@@ -49,4 +61,4 @@ export default {
             color: #9AA0B4;
         }
     }
-</style>
+</style> 

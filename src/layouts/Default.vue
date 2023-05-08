@@ -2,15 +2,16 @@
     <div :class="$style.wrapper">
         <div v-if="statusOfMenu" :key="statusOfMenu" :class="$style.modal">
             <Overlay @click-overlay="toggleMenuButton"/>
-            <Menu :class="$style.menu"/>
+            <Menu :class="$style.menu" :avatar="currentUser ? currentUser.avatar : ''" :fullName="currentUser ? currentUser.fullName : ''" :email="currentUser ? currentUser.email : ''"/>
         </div>
-        <Header :class="$style.header" @click-menu-button="toggleMenuButton"/>
+        <Header :class="$style.header" @click-menu-button="toggleMenuButton" :avatar="currentUser ? currentUser.avatar : ''"/>
         <slot></slot>
         <Navigation :class="$style.navigation"/>
     </div>
 </template>
 
 <script>
+    import {mapState} from 'vuex';
     import Header from '@/components/Header/Header.vue';
     import Navigation from '@/components/Navigation/Navigation.vue';
     import Menu from '@/components/Menu/Menu.vue';
@@ -34,6 +35,11 @@
                 this.statusOfMenu = !this.statusOfMenu;
             }
         },
+        computed: {
+            ...mapState({
+                currentUser: state => state.currentUser
+            }),
+        },
     }
 </script>
 
@@ -43,6 +49,7 @@
         width: 100%;
         height: 100%;
         padding: 0px var(--global-padding);
+        overflow-y: overlay;
     }
 
     .modal {

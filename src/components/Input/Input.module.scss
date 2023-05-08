@@ -8,6 +8,12 @@
     & + & {
         margin-top: 20px;
     }
+
+    &.failed > input {
+        background-color: rgba(255, 192, 203, 0.5);
+        border-color: red;
+        animation: vibrate ease-in-out 0.2s;
+    }
 }
 
 .label {
@@ -28,4 +34,25 @@
 
 .input:focus {
     border-color: var(--primary-color);
+}
+
+@keyframes vibrate {
+    0% {
+        transform: translateX(-4px);
+    }
+    20% {
+        transform: translateX(4px);
+    }
+    40% {
+        transform: translateX(-4px);
+    }
+    60% {
+        transform: translateX(4px);
+    }
+    80% {
+        transform: translateX(-4px);
+    }
+    100% {
+        transform: translateX(0);
+    }
 }

@@ -2,11 +2,11 @@
     <div :class="$style.wrapper">
         <figure :class="$style.info">
             <div :class="$style.info_avatar">
-                <img src="@/assets/images/Avatar.jpg" alt="avatar">
+                <img :src="avatar" alt="avatar">
             </div>
             <article :class="$style.info_bio">
-                <h2>Farion Wick</h2>
-                <p>farionwick@gmail.com</p>
+                <h2>{{ fullName }}</h2>
+                <p>{{ email }}</p>
             </article>
         </figure>
         <ul :class="$style.menu_list">
@@ -42,6 +42,20 @@
         setup () {
             return {
                 menuData
+            }
+        },
+        props: {
+            fullName: {
+                type: String,
+                default: 'Ho Van Huy'
+            },
+            email: {
+                type: String,
+                default: 'vanhuy@gmail.com'
+            },
+            avatar: {
+                type: String,
+                default: 'https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y2FydG9vbnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60'
             }
         }
     }

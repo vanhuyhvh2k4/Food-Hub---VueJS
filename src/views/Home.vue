@@ -2,7 +2,24 @@
     <main :class="$style.wrapper">
         <h1>What would you like to order</h1>
         <section :class="$style.search">
-            <Search />
+            <div :class="$style.search_input">
+                <Search @change-input="handleInputChange" @focus-input="handleInputFocus"
+                    @blur-input="handleInputBlur" />
+                <Popper :class="$style.popper" v-if="isFocus && (searchResults.length || noResult)" v-bind:class="noResult ? $style.no_result: null">
+                    <ul :class="$style.menu_list">
+                        <li v-if="!noResult" v-for="(item) in searchResults" :key="item.id">
+                            <MenuItem :class="$style.menu_item" :title="item.name">
+                                <img :src="item.image" alt="food">
+                            </MenuItem>
+                        </li>
+                        <div v-if="noResult" :class="$style.no_result_message">
+                            <img src="@/assets/images/no-results.png" alt="no result">
+                            <h3>Sad no result</h3>
+                            <p>We cannot find the food you are searching for, maybe a little spelling mistake?</p>
+                        </div>
+                    </ul>
+                </Popper>
+            </div>
             <Button onlyIcon>
                 <SVGIcon icon="filter" />
             </Button>
@@ -33,13 +50,13 @@
             <h2>Popular Foods</h2>
             <ul :class="$style.foods_list">
                 <li>
-                    <FoodItem short-food/>
+                    <FoodItem short-food />
                 </li>
                 <li>
-                    <FoodItem short-food/>
+                    <FoodItem short-food />
                 </li>
                 <li>
-                    <FoodItem short-food/>
+                    <FoodItem short-food />
                 </li>
             </ul>
         </section>
@@ -47,82 +64,11 @@
 </template>
 
 <script>
-    import Button from '@/components/Button/Button.vue';
-    import FoodItem from '@/components/FoodItem/FoodItem.vue';
-    import FoodType from '@/components/FoodType/FoodType.vue';
-    import SVGIcon from '@/components/SVGIcon/SVGIcon.vue';
-    import Search from '@/components/Search/Search.vue';
-    import Star from '@/components/Star/Star.vue';
-    import foodTypes, {
-        foodItems
-    } from '@/data/foodTypes';
-    // import axios from 'axios';
-    // import Cookies from 'js-cookie';
-    // import jwt_decode from 'jwt-decode';
-
+    import homeComposable from '@/composables/home.js';
+    
     export default {
-        name: "Home",
-        setup() {
-            return {
-                foodTypes
-            }
-        },
-        components: {
-            Search,
-            Search,
-            Button,
-            SVGIcon,
-            SVGIcon,
-            FoodType,
-            Star,
-            FoodItem
-        },
-        methods: {
-            handleClickLike(id) {}
-        },
-        data() {
-            return {
-                like: false,
-                foodItems
-            }
-        }
-        // setup () {
-        //     return {
-        //     }
-        // },
-        // data () {
-        //     let res;
-        //     return {
-        //         res
-        //     }
-        // },
-        // mounted () {
-        //     const accessToken = Cookies.get('accessToken');
-        //     const refreshToken = sessionStorage.getItem('refreshToken');
-        //     const date = new Date();
-        //     const decodedToken = jwt_decode(accessToken);
-        //     if (decodedToken.exp < date.getTime() / 1000) {
-        //         axios.post('http://localhost:3000/v1/api/auth/refreshToken', {refreshToken})   
-        //             .then ((res) => {
-        //                 Cookies.set('accessToken', res.data.accessToken);
-        //                 sessionStorage.setItem('refreshToken', res.data.refreshToken);
-        //                     const newAccessToken = Cookies.get('accessToken');
-        //                     axios.get('http://localhost:3000/v1/api/auth/home', {
-        //                        headers: {'token': `Bearer ${newAccessToken}`}
-        //                     })
-        //                     .then (res => console.log(res)) 
-        //             })
-        //             .catch(err => console.log(err))
-        //         console.log('call api refresh token');
-        //     } else {
-        //         axios.get('http://localhost:3000/v1/api/auth/home', {
-        //             headers: {'token': `Bearer ${Cookies.get('accessToken')}`}
-        //         })
-        //             .then (res => console.log(res)) 
-        //         console.log('call api home');
-        //     }
-        // }
-        ,
+        name: 'Home',
+        mixins: [homeComposable]
     }
 </script>
 
