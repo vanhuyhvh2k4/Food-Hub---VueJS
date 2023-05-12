@@ -7,7 +7,7 @@
       <Input title="Password" type="password" isRequired placeholder="Your password" autocomplete="current-password"
         @input-change="handlePassword" />
       <router-link :class="$style.link" to="/">Forgot password?</router-link>
-      <Button :class="$style.button" name="Sign In" />
+      <Button type="submit" :class="$style.button" name="Sign In" />
     </form>
     <b v-if="isError" :class="$style.notification">Wrong email or password</b>
   </main>

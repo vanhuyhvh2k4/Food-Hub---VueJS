@@ -27,7 +27,7 @@
         <section :class="$style.food_types">
             <ul>
                 <li v-for="(item) in foodTypes" :key="item.id">
-                    <FoodType :name="item.name" :imageUrl="item.imageUrl" :active="item.active ? true : false" />
+                    <FoodType :id="item.id" :name="item.name" :imageUrl="item.imageUrl" :active="item.id === this.id ? true : false" @click-item="handleClickFoodType"/>
                 </li>
             </ul>
         </section>
@@ -40,9 +40,9 @@
                 </article>
             </figure>
             <ul :class="$style.restaurants_list">
-                <li v-for="(item, index) in foodItems" :key="index">
-                    <FoodItem @click-like="handleClickLike" :isLike="item.isLike" :id="index" :title="item.shopName"
-                        :is-tick="item.isTick" :num-of-ratings="item.numOfRating" :star="item.star" />
+                <li v-for="(item, index) in shops" :key="index">
+                    <FoodItem @click-like="handleClickLike" :isLike="item.liked === 0 ? false : true" :id="index" :title="item.name" :image="item.image" :time="item.timeShipping" :shipping="item.shipFee === 0 ? 'Free delivery' : '$' + item.shipFee"
+                        :is-tick="item.isTick === 0 ? false : true" num-of-ratings="2k" star="4.5" />
                 </li>
             </ul>
         </section>

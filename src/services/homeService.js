@@ -5,6 +5,6 @@ export const search = async (value) => {
         const res = await request.post('home/search', value);
         return res.data;
     } catch (error) {
-        return error.response.data
+        return error.response.data;
     }
 }

@@ -4,6 +4,7 @@ const routesConfig = {
     auth: '/auth',
     login: '/login',
     signup: '/signup',
+    shop: '/:shopName'
 }
 
 export default routesConfig;

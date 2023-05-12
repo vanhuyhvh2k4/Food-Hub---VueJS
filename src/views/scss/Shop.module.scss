@@ -1,0 +1,149 @@
+.wrapper {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.header {
+    width: 100%;
+    height: 35%;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    align-items: center;
+}
+
+.image {
+    width: 100%;
+    height: 70%;
+    position: relative;
+    
+    & > img {
+        width: 100%;
+        height: 100%;
+        flex-shrink: 0;
+        object-fit: cover;
+    }
+}
+
+.small_image {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    width: 104px;
+    height: 104px;
+    padding: 12px;
+    background-color: var(--light-color);
+    border-radius: 50%;
+    
+    & > img {
+        width: 100%;
+        height: 100%;
+        flex-shrink: 0;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+
+    & > .check {
+        position: absolute;
+        bottom: 12px;
+        right: 12px;
+        color: #029094;
+        background: var(--light-color);
+        padding: 4px;
+        border-radius: 50%;
+    }
+}
+
+.text {
+    text-align: center;
+
+    & > h1 {
+        font-size: 2rem;
+        line-height: 2rem;  
+        font-weight: 600;
+    }
+
+    & > small, & > p {
+        font-size: 1.3rem;
+        line-height: 1.3rem;
+        font-weight: 400;
+    }
+    
+    & > small {
+        color: #9796A1;
+    }
+
+    & > p {
+        color: #53D776;
+        margin-top: 6px;
+    }
+}
+
+.sort {
+    display: flex;
+    margin-top: 40px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px var(--global-padding);
+
+    & > section:first-child {
+
+        & > label {
+            font-size: 1.4rem;
+            line-height: 1.4rem;
+            font-weight: 400;
+        }
+        
+        & > select {
+            background-color: var(--light-color);
+            outline: none;
+            border: unset;
+            color: var(--primary-color);
+            font-size: 1.4rem;
+            line-height: 1.4rem;
+            font-weight: 400;
+        }
+    }
+}
+
+.food_list {
+    padding: 0px var(--global-padding);
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    gap: 20px;  
+}
+
+.food_list .food_item {
+    width: 100%;
+    height: 247px;
+    margin-top: 12px;
+
+    & > section:first-child {
+        height: 165px;
+    }
+
+    & > section:last-child {
+
+        & h1, & h2 {
+            max-width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            font-size: 1.9rem;
+            line-height: 1.9rem;
+        }
+
+        & h2 {
+            margin-top: 8px;
+            font-size: 1.5rem;
+            line-height: 1.5rem;
+            font-weight: 400;
+            color: #5B5B5E;
+        }
+    }
+}

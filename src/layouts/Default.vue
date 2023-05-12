@@ -4,14 +4,15 @@
             <Overlay @click-overlay="toggleMenuButton"/>
             <Menu :class="$style.menu" :avatar="currentUser ? currentUser.avatar : ''" :fullName="currentUser ? currentUser.fullName : ''" :email="currentUser ? currentUser.email : ''"/>
         </div>
-        <Header :class="$style.header" @click-menu-button="toggleMenuButton" :avatar="currentUser ? currentUser.avatar : ''"/>
+        <Header :headerTransparent="$route.meta.onlyBtn" :onlyBtn="$route && $route.meta.onlyBtn" :class="$style.header" @click-menu-button="toggleMenuButton" :avatar="currentUser ? currentUser.avatar : ''"/>
         <slot></slot>
-        <Navigation :class="$style.navigation"/>
+        <Navigation v-if="$route && !$route.meta.noNavigation" :class="$style.navigation"/>
     </div>
 </template>
 
 <script>
     import {mapState} from 'vuex';
+    import {useRoute} from 'vue-router'
     import Header from '@/components/Header/Header.vue';
     import Navigation from '@/components/Navigation/Navigation.vue';
     import Menu from '@/components/Menu/Menu.vue';
@@ -24,6 +25,10 @@
             Navigation,
             Menu,
             Overlay,
+        },
+        setup() {
+            const route = useRoute();
+            return route;
         },
         data() {
             return {

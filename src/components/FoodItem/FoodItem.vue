@@ -1,7 +1,7 @@
 <template>
     <div :class="[$style.wrapper, shortFood ? $style.wrapper_short_food : null]">
         <section :class="[$style.header, shortFood ? $style.header_short_food : null]">
-            <img src="@/assets/images/food1.png" alt="food">
+            <img :src="image" alt="food">
             <Star :rate="star" :number="numOfRatings" :class-name="$style.star" :price="shortFood"/>
             <div :class="$style.like" @click="hanldeClickLike">
                 <fa icon="heart"/>
@@ -29,7 +29,7 @@
             <article v-if="shortFood" :class="$style.desc">
                 <h2>Baked salmon fish</h2>
             </article>
-            <article v-if="shortFood" :class="$style.place">
+            <article v-if="shortFood && !noPlace" :class="$style.place">
                 <span>Da Nang</span>
                 <div>
                     <SVGIcon icon="clock" width="1.2rem" height="1.4rem"/>
@@ -52,6 +52,14 @@
             shortFood: {
                 type: Boolean,
                 default: false
+            },
+            noPlace: {
+                type: Boolean,
+                default: false
+            },
+            image: {
+                type: String,
+                default: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8Zm9vZHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60'
             },
             isLike: Boolean,
             id: Number,

@@ -1,5 +1,5 @@
 <template>
-    <div :class="$style.wrapper" v-bind:class="active ? $style.active : null">
+    <div :class="$style.wrapper" v-bind:class="active ? $style.active : null" @click="handleClick">
         <img :class="$style.img" :src="imageUrl" alt="food type" />
         <h2 :class="$style.name">{{ name }}</h2>
     </div>
@@ -9,10 +9,16 @@
 export default {
     name: "FoodType",
     props: {
+        id: Number,
         name: String,
         imageUrl: String,
         active: Boolean,
-    }
+    },
+    methods: {
+        handleClick () {
+            this.$emit('click-item', this.id, this.name);
+        }
+    },
 }
 </script>
 

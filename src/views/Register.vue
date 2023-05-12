@@ -7,7 +7,7 @@
         @input-change="handleEmail" :isFailed="notification === 'Email already exists'" />
       <Input title="Password" type="password" isRequired placeholder="Your password" autocomplete="off"
         @input-change="handlePassword" />
-      <Button :class="$style.button" name="Register" />
+      <Button type="submit" :class="$style.button" name="Register" />
     </form>
     <b :class="$style.notification">{{ notification }}</b>
   </main>

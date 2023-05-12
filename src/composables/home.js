@@ -1,4 +1,5 @@
 
+    import axiosJWT from '@/utils/refreshToken';
     import Cookies from 'js-cookie';
     import debounce from 'lodash/debounce';
     import * as homeService from '@/services/homeService.js';
@@ -28,6 +29,20 @@
         },
         methods: {
             handleClickLike(id) {},
+            handleClickFoodType (id, name) {
+                axiosJWT.get('http://localhost:3000/v1/api/home/getShop', {
+                    headers: {
+                        token: `Bearer ${this.accessToken}`
+                    },
+                    params: {
+                        foodType: name
+                    }
+                })
+                .then(response => {
+                    this.shops = response.data.data.shopList;
+                })
+                .catch(err => console.log(err))
+            },
             handleInputChange: debounce(function (value) {
                 this.noResult = false;
                 if (!value.trim()) {
@@ -43,12 +58,11 @@
                             if (response.data.length > 0) {
                                 this.searchResults = response.data;
                             }
-                        }
-                        if (response.code === 'home/search.notFound') {
-                            this.noResult = true;
-                        } else {
-                            console.log(response.message);
-                        }
+                        } else if (response.code === 'home/search.notFound') {
+                                    this.noResult = true;
+                            } else {
+                                console.log(response);
+                            }
                     }
 
                     fetchApi();
@@ -63,6 +77,7 @@
         },
         data() {
             return {
+                id: 1,
                 like: false,
                 foodItems,
                 foodTypes,
@@ -70,9 +85,26 @@
                 searchResults: [],
                 noResult: false,
                 accessToken: Cookies.get('accessToken'),
+                shops: [],
+                foods: [],
             }
         },
         mounted() {
-            this.$store.dispatch('getUser', this.accessToken)
-        }
+            this.$store.dispatch('getUser', this.accessToken);
+
+            axiosJWT.get('http://localhost:3000/v1/api/home/getShop', {
+                headers: {
+                    token: `Bearer ${this.accessToken}`
+                },
+                params: {
+                    foodType: foodTypes[0].name
+                }
+            })
+            .then(response => {
+                this.shops = response.data.data.shopList;
+            })
+            .catch(error => {
+                console.log(error);
+            })
+        },
     }

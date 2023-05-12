@@ -4,8 +4,11 @@ import routesConfig from '@/config/routes.js';
 
 const requiredAuth = (to, from ,next) => {
   const accessToken = Cookies.get("accessToken");
-  if (!accessToken) next({ name: 'login', params: {}});
-  next();
+  if (!accessToken) {
+    next({ name: 'login', params: {}})
+  } else {
+    next();
+  }
 }
 
 const routes = [
@@ -13,13 +16,22 @@ const routes = [
     path: routesConfig.home,
     name: 'home',
     component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue'),
-    beforeEnter: requiredAuth,
+    beforeEnter: requiredAuth
   },
   {
     path: routesConfig.cart,
     name: 'cart',
     component: () => import(/* webpackChunkName: "cart" */ '../views/Cart.vue'),
     // beforeEnter: requiredAuth,
+  },
+  {
+    path: routesConfig.shop,
+    name: 'shop',
+    component: () => import(/* webpackChunkName: "shop" */ '../views/Shop.vue'),
+    meta: {
+      noNavigation: true,
+      onlyBtn: true,
+    }
   },
   {
     path: routesConfig.auth,
