@@ -16,7 +16,7 @@
                 </MenuItem>
             </li>
         </ul>
-        <Button name="Logout" primary :class="$style.button">
+        <Button @click-btn="handleClickLogout" name="Logout" primary :class="$style.button">
             <div :class="$style.wrapper_icon">
                 <fa icon="power-off"/>
             </div>
@@ -57,7 +57,15 @@
                 type: String,
                 default: 'https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y2FydG9vbnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60'
             }
-        }
+        },
+        methods: {
+            handleClickLogout () {
+                this.$router.push({
+                    name: 'logout',
+                    params: ''
+                })
+            }
+        },
     }
 </script>
 

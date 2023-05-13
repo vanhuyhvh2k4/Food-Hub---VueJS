@@ -32,21 +32,4 @@ const foodTypes = [
     },
 ];
 
-    export const foodItems = [
-        {
-            shopName: 'McDonal',
-            star: '3.0',
-            numOfRating: '15',
-            isTick: true,
-            isLike: true,
-        },
-        {
-            shopName: 'KFC',
-            star: '4.0',
-            numOfRating: '55',
-            isTick: true,
-            isLike: false,
-        },
-    ]
-
 export default foodTypes;

@@ -11,9 +11,7 @@
     import Search from '@/components/Search/Search.vue';
     import Star from '@/components/Star/Star.vue';
     import MenuItem from '@/components/MenuItem/MenuItem.vue';
-    import foodTypes, {
-        foodItems
-    } from '@/data/foodTypes';
+    import foodTypes from '@/data/foodTypes';
 
     export default {
         components: {
@@ -27,9 +25,13 @@
             Popper,
             MenuItem
         },
-        methods: {
+        methods: { 
+            handleClickItem (name) {
+                this.$router.push(`/@${name.replaceAll(' ', '-')}`)
+            },
             handleClickLike(id) {},
             handleClickFoodType (id, name) {
+                this.id = id;
                 axiosJWT.get('http://localhost:3000/v1/api/home/getShop', {
                     headers: {
                         token: `Bearer ${this.accessToken}`
@@ -40,6 +42,19 @@
                 })
                 .then(response => {
                     this.shops = response.data.data.shopList;
+                })
+                .catch(err => console.log(err))
+
+                axiosJWT.get('http://localhost:3000/v1/api/home/getFood', {
+                    headers: {
+                        token: `Bearer ${this.accessToken}`
+                    },
+                    params: {
+                        foodType: name
+                    }
+                })
+                .then(response => {
+                    this.foods = response.data.data.foodList;
                 })
                 .catch(err => console.log(err))
             },
@@ -79,7 +94,6 @@
             return {
                 id: 1,
                 like: false,
-                foodItems,
                 foodTypes,
                 isFocus: false,
                 searchResults: [],
@@ -102,6 +116,21 @@
             })
             .then(response => {
                 this.shops = response.data.data.shopList;
+            })
+            .catch(error => {
+                console.log(error);
+            })
+
+            axiosJWT.get('http://localhost:3000/v1/api/home/getFood', {
+                headers: {
+                    token: `Bearer ${this.accessToken}`
+                },
+                params: {
+                    foodType: foodTypes[0].name
+                }
+            })
+            .then(response => {
+                this.foods = response.data.data.foodList;
             })
             .catch(error => {
                 console.log(error);

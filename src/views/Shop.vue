@@ -2,14 +2,14 @@
     <main :class="$style.wrapper">
         <header :class="$style.header">
             <div :class="$style.image">
-                <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8Zm9vZHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" alt=""/>
+                <img :src="shopInfo ? shopInfo.background : ''" alt=""/>
                 <div :class="$style.small_image">
-                    <img src="https://images.unsplash.com/photo-1493770348161-369560ae357d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fGZvb2R8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60" alt=""/>
+                    <img :src="shopInfo ? shopInfo.image : ''" alt=""/>
                     <fa :class="$style.check" icon="circle-check"/>
                 </div>
             </div>
             <article :class="$style.text">
-                <h1>Shop thu ha</h1>
+                <h1>{{ shopInfo ? shopInfo.name : '' }}</h1>
                 <small>4012 Pretty View Lanenda</small>
                 <p>Order delicious</p>
             </article>
@@ -29,27 +29,71 @@
             </section>
         </div>
         <div :class="$style.food_list">
-            <li>
-                <FoodItem :class="$style.food_item" shortFood isLike noPlace/>
+            <li v-for="item in foodList" :key="item.id">
+                <FoodItem :class="$style.food_item" :title="item.name" :desc="item.description" :num-of-ratings="item.price" :is-like="item.liked === 0 ? false : true" :image="item.image" shortFood noPlace/>
             </li>
         </div>
     </main>
 </template>
 
 <script>
+    import jsCookie from 'js-cookie';
     import Button from '@/components/Button/Button.vue';
     import FoodItem from '@/components/FoodItem/FoodItem.vue';
     import Overlay from '@/components/Overlay/Overlay.vue';
     import SVGIcon from '@/components/SVGIcon/SVGIcon.vue';
+    import axiosJWT from '@/utils/refreshToken';
+import axios from 'axios';
 
     export default {
         name: "Shop",
         components: {
-    Overlay,
-    Button,
-    SVGIcon,
-    FoodItem
-}
+            Overlay,
+            Button,
+            SVGIcon,
+            FoodItem
+        },
+        methods: {
+            getInfo () {
+                axios.get('http://localhost:3000/v1/api/shop/getInfo', {
+                    params: {
+                        shopName: this.formatPath
+                    }
+                })
+                .then((response) => this.shopInfo = response.data.data)
+                .catch(err => console.log(err))
+            },
+
+            getFood () {
+                axiosJWT.get('http://localhost:3000/v1/api/shop/getFood', {
+                    headers: {
+                        token: `Bearer ${jsCookie.get('accessToken')}`
+                    },
+                    params: {
+                        shopName: this.formatPath
+                    }
+                })    
+                .then(response => this.foodList = response.data.data.foodList)
+                .catch(err => console.log(err))
+            }
+        },
+        mounted() {
+            this.getInfo();
+
+            this.getFood();
+
+        },
+        data() {
+            const originPath = window.location.pathname;
+
+            const formatPath = originPath.replace('/@', '').split('-').join(' ');
+
+            return {
+                formatPath,
+                foodList: [],
+                shopInfo: null,
+            }
+        },
     }
 </script>
 

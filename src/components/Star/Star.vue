@@ -27,8 +27,8 @@ export default {
             default: '5.0',
         },
         number: {
-            type: String,
-            default: '25'
+            type: Number,
+            default: 25
         }
     }
 }

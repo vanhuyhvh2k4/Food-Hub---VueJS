@@ -28,9 +28,11 @@ const routes = [
     path: routesConfig.shop,
     name: 'shop',
     component: () => import(/* webpackChunkName: "shop" */ '../views/Shop.vue'),
+    beforeEnter: requiredAuth,
     meta: {
       noNavigation: true,
       onlyBtn: true,
+      backHome: true
     }
   },
   {
@@ -58,6 +60,15 @@ const routes = [
       layout: 'auth',
       path: 'signup'
     }
+  },
+  {
+    path: routesConfig.logout,
+    name: 'logout',
+    component: () => import(/* webpackChunkName: "logout" */ '../views/Logout.vue'),
+    meta: {
+      layout: 'empty',
+    },
+    beforeEnter: requiredAuth
   },
 ]
 

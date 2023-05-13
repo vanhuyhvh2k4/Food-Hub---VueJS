@@ -1,8 +1,8 @@
 <template>
-    <div :class="[$style.wrapper, shortFood ? $style.wrapper_short_food : null]">
+    <div :class="[$style.wrapper, shortFood ? $style.wrapper_short_food : null]" @click="handleClick">
         <section :class="[$style.header, shortFood ? $style.header_short_food : null]">
             <img :src="image" alt="food">
-            <Star :rate="star" :number="numOfRatings" :class-name="$style.star" :price="shortFood"/>
+            <Star :rate="star" :number="numOfRatings" :class-name="$style.star" :price="!!shortFood"/>
             <div :class="$style.like" @click="hanldeClickLike">
                 <fa icon="heart"/>
                 <span v-if="isLike" :key="isLike"></span>
@@ -27,13 +27,13 @@
                 <Button v-for="(item) in limitTags" :key="item.id" :class="$style.tag_item " muted onlyTitle :name="item.name"/>
             </div>
             <article v-if="shortFood" :class="$style.desc">
-                <h2>Baked salmon fish</h2>
+                <h2>{{ desc }}</h2>
             </article>
             <article v-if="shortFood && !noPlace" :class="$style.place">
-                <span>Da Nang</span>
+                <span>{{ place }}</span>
                 <div>
                     <SVGIcon icon="clock" width="1.2rem" height="1.4rem"/>
-                    <h3>15 mins</h3>
+                    <h3>{{ time }}</h3>
                 </div>
             </article>
         </section>
@@ -61,6 +61,10 @@
                 type: String,
                 default: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8Zm9vZHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60'
             },
+            desc: {
+                type: String,
+                default: 'Baked salmon fish'
+            },
             isLike: Boolean,
             id: Number,
             star: {
@@ -68,8 +72,8 @@
                 default: '4.5'
             },
             numOfRatings: {
-                type: String,
-                default: '25'
+                type: Number,
+                default: 25
             },
             title: {
                 type: String,
@@ -83,9 +87,13 @@
                 type: String,
                 default: "Free delivery",
             },
+            place: {
+                type: String,
+                default: 'Da Nang'
+            },
             time: {
                 type: String,
-                default: "10 - 15 mins"
+                default: "15 mins"
             },
             tags: {
                 type: Array,
@@ -112,6 +120,10 @@
             }
         },
         methods: {
+            handleClick () {
+                this.$emit('click-item', this.title)
+            },
+
             hanldeClickLike () {
                 this.$emit('click-like', this.id);
             }

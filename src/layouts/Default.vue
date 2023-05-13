@@ -1,6 +1,6 @@
 <template>
     <div :class="$style.wrapper">
-        <div v-if="statusOfMenu" :key="statusOfMenu" :class="$style.modal">
+        <div v-if="statusOfMenu && !$route.meta.backHome" :key="statusOfMenu" :class="$style.modal">
             <Overlay @click-overlay="toggleMenuButton"/>
             <Menu :class="$style.menu" :avatar="currentUser ? currentUser.avatar : ''" :fullName="currentUser ? currentUser.fullName : ''" :email="currentUser ? currentUser.email : ''"/>
         </div>
@@ -37,7 +37,14 @@
         },
         methods: {
             toggleMenuButton () {
-                this.statusOfMenu = !this.statusOfMenu;
+                if (this.$route.meta.backHome) {
+                    this.$router.push({
+                        name: 'home',
+                        params: {}
+                    })
+                } else {
+                    this.statusOfMenu = !this.statusOfMenu;
+                }
             }
         },
         computed: {

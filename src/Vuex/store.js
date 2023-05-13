@@ -1,12 +1,9 @@
-// store.js
-import {createStore} from 'vuex';
+import { createStore } from 'vuex'
 import axiosJWT from '@/utils/refreshToken'
 
 const store = createStore({
-  state () {
-    return {
-      currentUser: null
-    }
+  state: {
+    currentUser: null
   },
   mutations: {
     setCurrentUser(state, currentUser) {
@@ -24,10 +21,26 @@ const store = createStore({
         const currentUser = response.data.data.currentUser
         commit('setCurrentUser', currentUser)
       } catch (error) {
-          console.log(error);
-        }
+        console.log(error)
+      }
     }
-  }  
+  },
+  plugins: [
+    (store) => {
+      // Load state from local storage on app start
+      const currentUser = localStorage.getItem('currentUser')
+      if (currentUser) {
+        store.commit('setCurrentUser', JSON.parse(currentUser))
+      }
+
+      // Save state to local storage on state change
+      store.subscribe((mutation, state) => {
+        if (mutation.type === 'setCurrentUser') {
+          localStorage.setItem('currentUser', JSON.stringify(state.currentUser))
+        }
+      })
+    }
+  ]
 })
 
-export default store;
+export default store
