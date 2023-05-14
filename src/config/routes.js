@@ -6,6 +6,8 @@ const routesConfig = {
     signup: '/signup',
     shop: '/:shopName',
     logout: '/logout',
+    detail: '/:shopName/:foodName',
+    favorite: '/favorite',
 }
 
 export default routesConfig;

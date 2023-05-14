@@ -29,6 +29,9 @@
             handleClickItem (name) {
                 this.$router.push(`/@${name.replaceAll(' ', '-')}`)
             },
+            handleClickFoodItem (foodName, shopName) {
+                this.$router.push(`/@${shopName.replaceAll(' ', '-')}/${foodName.replaceAll(' ', '-')}`)
+            },
             handleClickLike(id) {},
             handleClickFoodType (id, name) {
                 this.id = id;

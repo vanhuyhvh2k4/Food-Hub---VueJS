@@ -5,7 +5,7 @@ import routesConfig from '@/config/routes.js';
 const requiredAuth = (to, from ,next) => {
   const accessToken = Cookies.get("accessToken");
   if (!accessToken) {
-    next({ name: 'login', params: {}})
+    next({ name: 'auth', params: {}})
   } else {
     next();
   }
@@ -32,8 +32,27 @@ const routes = [
     meta: {
       noNavigation: true,
       onlyBtn: true,
-      backHome: true
+      backHome: true,
+      noFixed: true
     }
+  },
+  {
+    path: routesConfig.detail,
+    name: 'detail',
+    component: () => import(/* webpackChunkName: "detail" */ '../views/Detail.vue'),
+    beforeEnter: requiredAuth,
+    meta: {
+      noNavigation: true,
+      onlyBtn: true,
+      backHome: true,
+      noFixed: true
+    }
+  },
+  {
+    path: routesConfig.favorite,
+    name: 'favorite',
+    component: () => import(/* webpackChunkName: "favorite" */ '../views/Favorite.vue'),
+    beforeEnter: requiredAuth,
   },
   {
     path: routesConfig.auth,

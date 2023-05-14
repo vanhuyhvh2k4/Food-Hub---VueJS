@@ -1,18 +1,22 @@
 <template>
     <div :class="$style.wrapper">
-        <section>
-            <fa icon="compass" />
-        </section>
+        <router-link to="/">
+            <section :class="$route.path === '/' ? $style.active : ''">
+                <fa icon="compass" />
+            </section>
+        </router-link>
         <section>
             <fa icon="location-dot" />
         </section>
         <section>
             <fa icon="bag-shopping" />
         </section>
-        <section>
-            <fa icon="heart" />
-        </section>
-        <section>
+        <router-link to="/favorite">
+            <section :class="$route.path === '/favorite' ? $style.active : ''">
+                <fa icon="heart" />
+            </section>
+        </router-link>
+            <section>
             <fa icon="bell" />
         </section>
     </div>
@@ -21,7 +25,7 @@
 <script>
     export default {
         name: 'Navigation',
-        components: {}
+        components: {},
     }
 </script>
 

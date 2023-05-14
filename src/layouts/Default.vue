@@ -4,7 +4,7 @@
             <Overlay @click-overlay="toggleMenuButton"/>
             <Menu :class="$style.menu" :avatar="currentUser ? currentUser.avatar : ''" :fullName="currentUser ? currentUser.fullName : ''" :email="currentUser ? currentUser.email : ''"/>
         </div>
-        <Header :headerTransparent="$route.meta.onlyBtn" :onlyBtn="$route && $route.meta.onlyBtn" :class="$style.header" @click-menu-button="toggleMenuButton" :avatar="currentUser ? currentUser.avatar : ''"/>
+        <Header :headerTransparent="$route.meta.onlyBtn" :onlyBtn="$route && $route.meta.onlyBtn" :class="[$style.header, $route.meta.noFixed ? $style.no_fixed : '']" @click-menu-button="toggleMenuButton" :avatar="currentUser ? currentUser.avatar : ''"/>
         <slot></slot>
         <Navigation v-if="$route && !$route.meta.noNavigation" :class="$style.navigation"/>
     </div>
@@ -38,10 +38,7 @@
         methods: {
             toggleMenuButton () {
                 if (this.$route.meta.backHome) {
-                    this.$router.push({
-                        name: 'home',
-                        params: {}
-                    })
+                    window.history.back();
                 } else {
                     this.statusOfMenu = !this.statusOfMenu;
                 }
@@ -86,6 +83,10 @@
         left: 0;
         right: 0;
         z-index: 10;
+
+        &.no_fixed {
+            position: absolute;
+        }
     }
 
     .navigation {

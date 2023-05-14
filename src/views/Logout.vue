@@ -13,13 +13,15 @@
                 sessionStorage.removeItem('refreshToken');
                 localStorage.removeItem('currentUser');
                 this.$router.push({
-                    name: 'login',
+                    name: 'auth',
                     params: ''
                 })
             }
         },
         mounted() {
-            this.logout();
+            setTimeout(() => {
+                this.logout();
+            }, 1000);
         },
     }
 </script> 

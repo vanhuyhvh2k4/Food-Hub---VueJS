@@ -53,6 +53,8 @@
                 type: Boolean,
                 default: false
             },
+            id: Number,
+            shopName: String,
             noPlace: {
                 type: Boolean,
                 default: false
@@ -66,7 +68,6 @@
                 default: 'Baked salmon fish'
             },
             isLike: Boolean,
-            id: Number,
             star: {
                 type: String,
                 default: '4.5'
@@ -121,7 +122,7 @@
         },
         methods: {
             handleClick () {
-                this.$emit('click-item', this.title)
+                this.$emit('click-item', this.title, this.shopName)
             },
 
             hanldeClickLike () {

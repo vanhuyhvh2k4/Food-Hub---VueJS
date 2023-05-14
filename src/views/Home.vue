@@ -50,7 +50,7 @@
             <h2>Popular Foods</h2>
             <ul :class="$style.foods_list">
                 <li v-for="item in foods" :key="item.id">
-                    <FoodItem short-food :title="item.name" :image="item.image" :desc="item.description" :numOfRatings="item.price" :place="item.place" :isLike="item.liked === 0 ? false : true"/>
+                    <FoodItem @click-item="handleClickFoodItem" short-food :shopName="item.shopName" :title="item.name" :image="item.image" :desc="item.description" :numOfRatings="item.price" :place="item.place" :isLike="item.liked === 0 ? false : true"/>
                 </li>
             </ul>
         </section>
