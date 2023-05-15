@@ -36,9 +36,6 @@
             handleClickFoodType (id, name) {
                 this.id = id;
                 axiosJWT.get('http://localhost:3000/v1/api/home/getShop', {
-                    headers: {
-                        token: `Bearer ${this.accessToken}`
-                    },
                     params: {
                         foodType: name
                     }
@@ -49,9 +46,6 @@
                 .catch(err => console.log(err))
 
                 axiosJWT.get('http://localhost:3000/v1/api/home/getFood', {
-                    headers: {
-                        token: `Bearer ${this.accessToken}`
-                    },
                     params: {
                         foodType: name
                     }
@@ -110,9 +104,6 @@
             this.$store.dispatch('getUser', this.accessToken);
 
             axiosJWT.get('http://localhost:3000/v1/api/home/getShop', {
-                headers: {
-                    token: `Bearer ${this.accessToken}`
-                },
                 params: {
                     foodType: foodTypes[0].name
                 }
@@ -125,9 +116,6 @@
             })
 
             axiosJWT.get('http://localhost:3000/v1/api/home/getFood', {
-                headers: {
-                    token: `Bearer ${this.accessToken}`
-                },
                 params: {
                     foodType: foodTypes[0].name
                 }

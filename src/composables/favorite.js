@@ -16,20 +16,12 @@ export default {
             this.click = 'right';
         },
         getFavoriteFood () {
-            axiosJWT.get('http://localhost:3000/v1/api/favorite/getFavoriteFood', {
-                headers: {
-                    token: 'Bearer ' + Cookies.get('accessToken')
-                }
-            })
+            axiosJWT.get('http://localhost:3000/v1/api/favorite/getFavoriteFood')
             .then(response => this.foods = response.data.data.foodList)
             .catch(err => console.error(err))
         },
         getFavoriteShop () {
-            axiosJWT.get('http://localhost:3000/v1/api/favorite/getFavoriteShop', {
-                headers: {
-                    token: 'Bearer ' + Cookies.get('accessToken')
-                }
-            })
+            axiosJWT.get('http://localhost:3000/v1/api/favorite/getFavoriteShop')
             .then(response => this.shops = response.data.data.shopList)
             .catch(err => console.error(err))
         },

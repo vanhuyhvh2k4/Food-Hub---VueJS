@@ -13,6 +13,18 @@ const requiredAuth = (to, from ,next) => {
 
 const routes = [
   {
+    path: routesConfig.createShop,
+    name: 'createShop',
+    component: () => import(/* webpackChunkName: "createShop" */ '../views/CreateShop.vue'),
+    beforeEnter: requiredAuth,
+    meta: {
+      // noNavigation: true,
+      buttonAndTitle: true,
+      backHome: true,
+      noFixed: true
+    }
+  },
+  {
     path: routesConfig.home,
     name: 'home',
     component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue'),

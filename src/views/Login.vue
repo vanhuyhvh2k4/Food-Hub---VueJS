@@ -3,9 +3,9 @@
     <h1 :class="$style.title">Login</h1>
     <form :class="$style.form" @submit.prevent="submitForm">
       <Input title="E-mail" type="email" isRequired placeholder="Your email" autocomplete="email"
-        @input-change="handleEmail" />
+        @input-enter="handleEmail" />
       <Input title="Password" type="password" isRequired placeholder="Your password" autocomplete="current-password"
-        @input-change="handlePassword" />
+        @input-enter="handlePassword" />
       <router-link :class="$style.link" to="/">Forgot password?</router-link>
       <Button type="submit" :class="$style.button" name="Sign In" />
     </form>

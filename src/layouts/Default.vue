@@ -4,7 +4,7 @@
             <Overlay @click-overlay="toggleMenuButton"/>
             <Menu :class="$style.menu" :avatar="currentUser ? currentUser.avatar : ''" :fullName="currentUser ? currentUser.fullName : ''" :email="currentUser ? currentUser.email : ''"/>
         </div>
-        <Header :headerTransparent="$route.meta.onlyBtn" :onlyBtn="$route && $route.meta.onlyBtn" :class="[$style.header, $route.meta.noFixed ? $style.no_fixed : '']" @click-menu-button="toggleMenuButton" :avatar="currentUser ? currentUser.avatar : ''"/>
+        <Header :headerTransparent="$route.meta.onlyBtn" :onlyBtn="$route && $route.meta.onlyBtn" :buttonAndTitle="$route && $route.meta.buttonAndTitle" :class="[$style.header, $route.meta.noFixed ? $style.no_fixed : '']" @click-menu-button="toggleMenuButton" :avatar="currentUser ? currentUser.avatar : ''"/>
         <slot></slot>
         <Navigation v-if="$route && !$route.meta.noNavigation" :class="$style.navigation"/>
     </div>

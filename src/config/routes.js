@@ -8,6 +8,7 @@ const routesConfig = {
     logout: '/logout',
     detail: '/:shopName/:foodName',
     favorite: '/favorite',
+    createShop: '/shop/create',
 }
 
 export default routesConfig;

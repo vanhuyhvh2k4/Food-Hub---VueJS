@@ -37,6 +37,18 @@ $radius: 12px;
     }
 }
 
+.title {
+    flex: 1;
+    margin-left: calc(2 * var(--global-padding) + 38px);
+
+    & > h3 {
+        font-size: 1.8rem;
+        line-height: 1.8rem;
+        font-weight: 400;
+        text-align: start;
+    }
+}
+
 .text {
     display: flex;
     flex-direction: column;

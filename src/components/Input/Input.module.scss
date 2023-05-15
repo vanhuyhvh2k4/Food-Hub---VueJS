@@ -30,6 +30,10 @@
     font-size: 1.7rem;
     line-height: 1.7rem;
     border: 1px solid #ccc;
+
+    &::placeholder {
+        color: #9796A1;
+    }
 }
 
 .input:focus {
@@ -54,5 +58,19 @@
     }
     100% {
         transform: translateX(0);
+    }
+}
+
+.small {
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 1.6rem;
+
+    &.success {
+        color: green;
+    }
+
+    &.failed {
+        color: red;
     }
 }

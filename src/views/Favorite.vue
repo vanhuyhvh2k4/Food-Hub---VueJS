@@ -9,7 +9,7 @@
                     shortFood noPlace />
             </li>
         </div>
-        <div v-if="click === 'right'" :key="click" :class="$style.restaurant_list">
+        <div v-if="click === 'right' && shops.length" :key="click" :class="$style.restaurant_list">
             <li v-for="item in shops" :key="item.id">
                 <FoodItem @click-item="handleClickShop" :class="[$style.food_item, $style.restaurant_item]" :title="item.name" :image="item.image" :isTick="item.isTick === 1 ? true : false" isLike :shipping="item.shipFee === 0 ? 'Free delivery' : '$' + item.shipFee" :time="item.timeShipping"/>
             </li>
@@ -19,10 +19,10 @@
             <small>Let buy something ^-^</small>
         </div>
 
-        <!-- <div v-if="click === 'right' && !foods.length" :class="$style.not_found">
+        <div v-if="click === 'right' && !foods.length" :class="$style.not_found">
             <h3>You do not like any shops</h3>
             <small>Let discover a shop ^-^</small>
-        </div> -->
+        </div>
     </main>
 </template>
 
