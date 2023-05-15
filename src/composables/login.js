@@ -28,7 +28,8 @@ export default {
     return {
       email,
       password,
-      isError
+      isError,
+      routesConfig
     }
   },
   methods: {

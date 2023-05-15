@@ -93,6 +93,24 @@ const routes = [
     }
   },
   {
+    path: routesConfig.forgot,
+    name: 'forgot',
+    component: () => import(/* webpackChunkName: "forgot" */ '../views/ForgotPassword.vue'),
+    meta: {
+      layout: 'auth',
+      path: 'signup'
+    }
+  },
+  {
+    path: routesConfig.resetPassword,
+    name: 'resetPassword',
+    component: () => import(/* webpackChunkName: "resetPassword" */ '../views/ResetPassword.vue'),
+    meta: {
+      layout: 'auth',
+      path: 'signup'
+    }
+  },
+  {
     path: routesConfig.logout,
     name: 'logout',
     component: () => import(/* webpackChunkName: "logout" */ '../views/Logout.vue'),

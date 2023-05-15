@@ -6,7 +6,7 @@
         @input-enter="handleEmail" />
       <Input title="Password" type="password" isRequired placeholder="Your password" autocomplete="current-password"
         @input-enter="handlePassword" />
-      <router-link :class="$style.link" to="/">Forgot password?</router-link>
+      <router-link :class="$style.link" :to="routesConfig.forgot">Forgot password?</router-link>
       <Button type="submit" :class="$style.button" name="Sign In" />
     </form>
     <b v-if="isError" :class="$style.notification">Wrong email or password</b>

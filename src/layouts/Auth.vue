@@ -8,11 +8,11 @@
         <slot></slot>
         <article :class="$style.navigation" v-if="route.meta.path === 'login'">
             <span>Don't have an account?</span>
-            <RouterLink to="/signup">Sign Up</RouterLink>
+            <RouterLink :to="routesConfig.signup">Sign Up</RouterLink>
         </article>
         <article :class="$style.navigation" v-if="route.meta.path === 'signup'">
             <span>Already have an account?</span>
-            <RouterLink to="/login">Sign In</RouterLink>
+            <RouterLink :to="routesConfig.login">Sign In</RouterLink>
         </article>
         <footer :class="$style.footer">
             <section :class="$style.line">
@@ -40,6 +40,7 @@
     } from 'vue-router';
     import Button from '@/components/Button/Button.vue';
     import {facebook, google} from '@/assets/icons/index.js';
+    import routesConfig from '@/config/routes';
 
     export default {
         setup() {
@@ -52,7 +53,12 @@
             Button,
             facebook,
             google
-        }
+        },
+        data() {
+            return {
+                routesConfig
+            }
+        },
     }
 </script>
 
