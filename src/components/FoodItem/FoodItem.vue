@@ -125,9 +125,10 @@
                 this.$emit('click-item', this.title, this.shopName)
             },
 
-            hanldeClickLike () {
-                this.$emit('click-like', this.id);
-            }
+            hanldeClickLike (e) {
+                e.stopPropagation();
+                this.$emit('click-like', this.id, this.isLike);
+            },
         },
     }
 </script>

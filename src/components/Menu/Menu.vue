@@ -11,9 +11,11 @@
         </figure>
         <ul :class="$style.menu_list">
             <li v-for="(item) in menuData" :key="item.id">
-                <MenuItem :class="$style.menu_item" :title="item.title">
-                    <SVGIconVue :icon="item.icon"/>
-                </MenuItem>
+                <router-link :to="item.path ? item.path : ''">
+                    <MenuItem :class="$style.menu_item" :title="item.title">
+                        <SVGIconVue :icon="item.icon"/>
+                    </MenuItem>
+                </router-link>
             </li>
         </ul>
         <Button @click-btn="handleClickLogout" name="Logout" primary :class="$style.button">
@@ -60,6 +62,7 @@
         },
         methods: {
             handleClickLogout () {
+                localStorage.removeItem('currentUser');
                 this.$router.push({
                     name: 'logout',
                     params: ''

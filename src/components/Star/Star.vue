@@ -75,7 +75,7 @@ export default {
             font-size: 0.9rem;
             line-height: 0.9rem;
             font-weight: 400;
-            color: #9796A1;
+            color: var(--text-muted);
         }
 
         & > svg {

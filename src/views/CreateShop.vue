@@ -1,7 +1,7 @@
 <template>
     <main :class="$style.wrapper">
         <form enctype="multipart/form-data" @submit.prevent="upload">
-            <Input :isSuccess="isValid" :isFailed="isConfict" :text="isValid ? `The name is valid` : isConfict ? `The name is already in use. Please try another name` : ``" @input-enter="handleInputName" title="Shop Name" placeholder="Name of shop" isRequired v-model="name"/>
+            <Input :isSuccess="isValid" :isFailed="isConfict" :text="message ? message : ''" @input-enter="handleInputName" title="Shop Name" placeholder="Name of shop" isRequired :value="name"/>
             <Input @input-enter="handleInputAddress" title="Adress" placeholder="Adress of shop" isRequired v-model="address"/>
             <Input @input-enter="handleInputFee" title="Ship Fee" placeholder="Ship fee of shop" isRequired v-model="shipFee"/>
             <Input @input-enter="handleInputTime" title="Time Shipping" placeholder="Time remaining" isRequired v-model="timeShipping"/>
@@ -38,23 +38,26 @@ export default {
             this.name = value.trim();
             this.isValid = false;
             this.isConfict = false;
+            this.message = '';
             if (this.name.trim()) {
 
                 axiosJWT.post('http://localhost:3000/v1/api/shop/checkShopName', {
-                    shopName: this.name.trim()
+                    shopName: this.name
                 })
                 .then(res => {
                     if (res.data.code === 'shop/checkName.success') {
                         this.isValid = true;
+                        this.message = 'The name is valid'
                     }
                 })
                 .catch(err => {
                     if (err.response.data.code === 'shop/checkName.conflict') {
                         this.isConfict = true;
+                        this.message = 'The name has already been taken'
                     }
                 })
             }
-        }, 400),
+        }, 400),    
         handleInputAddress (value) {
             this.address = value.trim();
         },
@@ -89,7 +92,8 @@ export default {
             avatar: null,
             background: null,
             isConfict: false,
-            isValid: false
+            isValid: false,
+            message: null,
         }
     },
 }

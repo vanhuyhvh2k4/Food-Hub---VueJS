@@ -14,7 +14,7 @@
             </p>
             <h4>4102 Pretty View Lane</h4>
         </section>
-        <section v-if="!onlyBtn && !buttonAndTitle" :class="$style.avatar">
+        <section @click="handleClickImage" v-if="!onlyBtn && !buttonAndTitle" :class="$style.avatar">
             <img :src="avatar" alt="avatar">
         </section>
     </header>
@@ -27,6 +27,9 @@
         methods: {
             handleMenuButton () {
                 this.$emit('click-menu-button')
+            },
+            handleClickImage () {
+                this.$emit('click-image')
             }
         },
         props: {

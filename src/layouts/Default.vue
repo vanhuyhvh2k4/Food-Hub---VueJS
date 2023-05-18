@@ -4,7 +4,7 @@
             <Overlay @click-overlay="toggleMenuButton"/>
             <Menu :class="$style.menu" :avatar="currentUser ? currentUser.avatar : ''" :fullName="currentUser ? currentUser.fullName : ''" :email="currentUser ? currentUser.email : ''"/>
         </div>
-        <Header :headerTransparent="$route.meta.onlyBtn" :onlyBtn="$route && $route.meta.onlyBtn" :buttonAndTitle="$route && $route.meta.buttonAndTitle" :class="[$style.header, $route.meta.noFixed ? $style.no_fixed : '']" @click-menu-button="toggleMenuButton" :avatar="currentUser ? currentUser.avatar : ''"/>
+        <Header :headerTransparent="$route.meta.onlyBtn || $route.meta.headerTransparent" :onlyBtn="$route && $route.meta.onlyBtn" :buttonAndTitle="$route && $route.meta.buttonAndTitle" :class="[$style.header, $route.meta.noFixed ? $style.no_fixed : '']" @click-menu-button="toggleMenuButton" @click-image="handleClickImage" :avatar="currentUser ? currentUser.avatar : ''" :title="$route.meta.titleOfHeader ? $route.meta.titleOfHeader : ''"/>
         <slot></slot>
         <Navigation v-if="$route && !$route.meta.noNavigation" :class="$style.navigation"/>
     </div>
@@ -38,16 +38,20 @@
         methods: {
             toggleMenuButton () {
                 if (this.$route.meta.backHome) {
-                    window.history.back();
+                    this.statusOfMenu = false;
+                    this.$router.back();
                 } else {
                     this.statusOfMenu = !this.statusOfMenu;
                 }
-            }
+            },
+            handleClickImage () {
+                this.$router.push({name: 'profile', params: {}})
+            },
         },
         computed: {
-            ...mapState({
-                currentUser: state => state.currentUser
-            }),
+            currentUser() {
+                return this.$store.state.currentUser;
+            }
         },
     }
 </script>

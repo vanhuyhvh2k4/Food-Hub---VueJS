@@ -12,6 +12,7 @@
     import Star from '@/components/Star/Star.vue';
     import MenuItem from '@/components/MenuItem/MenuItem.vue';
     import foodTypes from '@/data/foodTypes';
+import store from '@/Vuex/store';
 
     export default {
         components: {
@@ -32,7 +33,21 @@
             handleClickFoodItem (foodName, shopName) {
                 this.$router.push(`/@${shopName.replaceAll(' ', '-')}/${foodName.replaceAll(' ', '-')}`)
             },
-            handleClickLike(id) {},
+            async handleClickLike(id, isLike) {
+                await axiosJWT.patch(`http://localhost:3000/v1/api/shop/changeLike/${id}`, {
+                    statusLike: isLike
+                })
+
+                axiosJWT.get('http://localhost:3000/v1/api/home/getShop', {
+                    params: {
+                        foodType: foodTypes[this.id - 1].name
+                    }
+                })
+                .then(response => {
+                    this.shops = response.data.data.shopList;
+                })
+                .catch(err => console.log(err))
+            },
             handleClickFoodType (id, name) {
                 this.id = id;
                 axiosJWT.get('http://localhost:3000/v1/api/home/getShop', {
@@ -86,6 +101,39 @@
             handleInputBlur() {
                 this.isFocus = false;
             },
+            getUser () {
+                axiosJWT.get('http://localhost:3000/v1/api/home/getUser')
+                .then(res => {
+                    store.commit('setCurrentUser', res.data.data.currentUser);
+                })
+                .catch(err => console.log(err))
+            },
+            getShop () {
+                axiosJWT.get('http://localhost:3000/v1/api/home/getShop', {
+                    params: {
+                        foodType: foodTypes[0].name
+                    }
+                })
+                .then(response => {
+                    this.shops = response.data.data.shopList;
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+            },
+            getFood () {
+                axiosJWT.get('http://localhost:3000/v1/api/home/getFood', {
+                    params: {
+                        foodType: foodTypes[0].name
+                    }
+                })
+                .then(response => {
+                    this.foods = response.data.data.foodList;
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+            }
         },
         data() {
             return {
@@ -101,30 +149,8 @@
             }
         },
         mounted() {
-            this.$store.dispatch('getUser', this.accessToken);
-
-            axiosJWT.get('http://localhost:3000/v1/api/home/getShop', {
-                params: {
-                    foodType: foodTypes[0].name
-                }
-            })
-            .then(response => {
-                this.shops = response.data.data.shopList;
-            })
-            .catch(error => {
-                console.log(error);
-            })
-
-            axiosJWT.get('http://localhost:3000/v1/api/home/getFood', {
-                params: {
-                    foodType: foodTypes[0].name
-                }
-            })
-            .then(response => {
-                this.foods = response.data.data.foodList;
-            })
-            .catch(error => {
-                console.log(error);
-            })
+            this.getUser();
+            this.getFood();
+            this.getShop();
         },
     }

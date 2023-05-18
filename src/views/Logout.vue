@@ -1,9 +1,14 @@
 <template>
-    <h1>Logout page</h1>
+    <main :class="$style.wrapper">
+        <div>
+            <img :src="logo" alt="">
+        </div>
+    </main>
 </template>
 
 <script>
     import Cookies from 'js-cookie';
+    import logo from '@/assets/images/logo.png';
 
     export default {
         name: "Logout",
@@ -18,6 +23,11 @@
                 })
             }
         },
+        data() {
+            return {
+                logo
+            }
+        },
         mounted() {
             setTimeout(() => {
                 this.logout();
@@ -25,3 +35,13 @@
         },
     }
 </script> 
+
+<style lang="scss" module>
+    .wrapper {
+        width: 100%;
+        height: 100%;
+        background-color: var(--primary-color);
+        display: grid;
+        place-items: center;
+    }
+</style>

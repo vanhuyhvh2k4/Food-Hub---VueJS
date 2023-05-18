@@ -1,7 +1,7 @@
 <template>
     <div :class="$style.wrapper" v-bind:class="isFailed ? $style.failed : null">
       <label :class="$style.label" :for="title">{{ title }}</label>
-      <input :class="$style.input" :id="title" :type="type" :placeholder="placeholder" :required="isRequired" :autocomplete="autocomplete" :spellcheck="spellcheck ? true : false" @input="handleInput" :minlength="minLength">
+      <input :class="$style.input" :id="title" :disabled="isDisabled" :value="value" :type="type" :placeholder="placeholder" :required="isRequired" :autocomplete="autocomplete" :spellcheck="spellcheck ? true : false" @input="handleInput" :minlength="minLength">
       <small :class="[$style.small, isSuccess && $style.success, isFailed && $style.failed]" v-if="text">{{ text }}</small>
     </div>
 </template>
@@ -27,6 +27,10 @@
                 default: false
             },
             isSuccess: {
+                type: Boolean,
+                default: false
+            },
+            isDisabled: {
                 type: Boolean,
                 default: false
             }

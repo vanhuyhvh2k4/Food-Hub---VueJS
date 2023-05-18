@@ -21,7 +21,8 @@ const routes = [
       // noNavigation: true,
       buttonAndTitle: true,
       backHome: true,
-      noFixed: true
+      noFixed: true,
+      titleOfHeader: 'Create Shop'
     }
   },
   {
@@ -29,6 +30,19 @@ const routes = [
     name: 'home',
     component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue'),
     beforeEnter: requiredAuth
+  },
+  {
+    path: routesConfig.profile,
+    name: 'profile',
+    component: () => import(/* webpackChunkName: "profile" */ '../views/Profile.vue'),
+    beforeEnter: requiredAuth,
+    meta: {
+      noNavigation: true,
+      buttonAndTitle: true,
+      noFixed: true,
+      backHome: true,
+      titleOfHeader: 'My Profile'
+    }
   },
   {
     path: routesConfig.cart,

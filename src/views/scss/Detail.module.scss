@@ -1,5 +1,5 @@
-
 $color: #323643;
+
 .wrapper {
     position: absolute;
     width: 100%;
@@ -13,7 +13,7 @@ $color: #323643;
     width: 100%;
     height: 30%;
 
-    & > img {
+    &>img {
         width: 100%;
         height: 100%;
         flex-shrink: 0;
@@ -25,7 +25,7 @@ $color: #323643;
     padding: 0px var(--global-padding);
     margin-top: 22px;
 
-    & > h1 {
+    &>h1 {
         font-size: 2.8rem;
         line-height: 3.2rem;
         font-weight: 600;
@@ -42,31 +42,31 @@ $color: #323643;
     align-items: center;
     gap: 12px;
 
-    & > div > span {
+    &>div>span {
         font-size: 1.4rem;
         line-height: 1.4rem;
     }
 
-    & > div:first-child {
+    &>div:first-child {
         display: flex;
         align-items: end;
         gap: 4px;
 
-        & > svg {
+        &>svg {
             color: #FFC529;
         }
 
-        & > span {
+        &>span {
             font-weight: 600;
         }
     }
 
-    & > div:nth-child(2) > span{
+    &>div:nth-child(2)>span {
         font-weight: 400;
-        color: #9796A1;
+        color: var(--text-muted);
     }
 
-    & > div:last-child > span {
+    &>div:last-child>span {
         color: var(--primary-color);
         font-weight: 400;
         text-decoration: underline;
@@ -78,8 +78,8 @@ $color: #323643;
     display: flex;
     justify-content: space-between;
     margin-top: 16px;
-    
-    & > div:first-child > h2 {
+
+    &>div:first-child>h2 {
         font-size: 3.1rem;
         line-height: 3.1rem;
         font-weight: 600;
@@ -92,7 +92,8 @@ $color: #323643;
         height: 30px;
         width: 100px;
 
-        & > span:first-child, & > span:last-child {
+        &>span:first-child,
+        &>span:last-child {
             width: 30px;
             height: 100%;
             border-radius: 50%;
@@ -102,12 +103,12 @@ $color: #323643;
             color: var(--primary-color);
         }
 
-        & > span:last-child {
+        &>span:last-child {
             background-color: var(--primary-color);
             color: var(--light-color);
         }
 
-        & > span:nth-child(2) {
+        &>span:nth-child(2) {
             flex: 1;
             text-align: center;
             font-weight: 600;
@@ -119,7 +120,7 @@ $color: #323643;
     padding: 0px var(--global-padding);
     margin-top: 22px;
     line-height: 2.4rem;
-    font-weight: 300;   
+    font-weight: 300;
     color: #858992;
 }
 
@@ -127,14 +128,14 @@ $color: #323643;
     padding: 0px var(--global-padding);
     margin-top: 22px;
 
-    & > h2 {
+    &>h2 {
         font-size: 1.8rem;
         line-height: 1.8rem;
         font-weight: 600;
         color: $color;
     }
 
-    & > ul {
+    &>ul {
         display: flex;
         flex-direction: column;
         align-items: start;
@@ -149,12 +150,13 @@ $color: #323643;
     width: 100%;
     padding: 5px 0;
 
-    & > div:first-child {
+    &>div:first-child {
         display: flex;
         align-items: center;
         gap: 12px;
         width: 70%;
-        & > img {
+
+        &>img {
             width: 40px;
             height: 40px;
             flex-shrink: 0;
@@ -162,23 +164,23 @@ $color: #323643;
             border-radius: 50%;
         }
 
-        & > h3 {
+        &>h3 {
             font-size: 1.6rem;
             line-height: 1.6rem;
             font-weight: 400;
         }
     }
 
-    & > div:nth-child(2) {
+    &>div:nth-child(2) {
         width: 20%;
     }
 
-    & > div:last-child {
+    &>div:last-child {
         flex: 1;
         display: grid;
         place-items: center;
 
-        & > input {
+        &>input {
             width: 20px;
             height: 20px;
         }
@@ -191,14 +193,14 @@ $color: #323643;
     display: flex;
     justify-content: center;
 
-    & > button {
+    &>button {
         height: 53px;
 
-         & > h3 {
+        &>h3 {
             font-size: 1.5rem;
             line-height: 1.5rem;
             font-weight: 400;
-         }
+        }
     }
 }
 
@@ -210,7 +212,7 @@ $color: #323643;
     display: grid;
     place-items: center;
 
-    & > svg {
+    &>svg {
         color: var(--primary-color);
         font-size: 2rem;
     }

@@ -22,7 +22,9 @@ export default {
         },
         getFavoriteShop () {
             axiosJWT.get('http://localhost:3000/v1/api/favorite/getFavoriteShop')
-            .then(response => this.shops = response.data.data.shopList)
+            .then(response => {
+                this.shops = response.data.data.shopList
+            })
             .catch(err => console.error(err))
         },
         handleClickFood (foodName, shopName) {
@@ -30,6 +32,13 @@ export default {
         },
         handleClickShop (shopName) {
             this.$router.push(`/@${shopName.replaceAll(" ", "-")}`)
+        },
+        async handleClickLike (id, isLike) {
+            await axiosJWT.patch(`http://localhost:3000/v1/api/shop/changeLike/${id}`, {
+                statusLike: isLike
+            })
+
+            this.getFavoriteShop();
         }
     },
     data() {

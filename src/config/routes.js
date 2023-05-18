@@ -11,6 +11,7 @@ const routesConfig = {
     detail: '/:shopName/:foodName',
     favorite: '/favorite',
     createShop: '/shop/create',
+    profile: '/profile'
 }
 
 export default routesConfig;

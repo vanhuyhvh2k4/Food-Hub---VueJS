@@ -7,7 +7,8 @@ const menuData = [
     {
         id: 2,
         title: 'My Profile',
-        icon: 'profile'
+        icon: 'profile',
+        path: '/profile'
     },
     {
         id: 3,

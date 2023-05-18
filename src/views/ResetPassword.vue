@@ -12,65 +12,11 @@
 </template>
 
 <script>
-import Button from '@/components/Button/Button.vue';
-import Input from '@/components/Input/Input.vue';
-import axios from 'axios';
+import resetPasswordComposable from '@/composables/resetPassword.js';
 
 export default {
     name: "ResetPassword",
-    components: { Input, Button },
-    data() {
-        const originalPath = window.location.pathname;
-        const fullPath = window.location.href
-        const email = originalPath.split('/')[3];
-        const token = fullPath.split('?')[1].replace('token=', '');
-        return {
-            isSuccess: false,
-            isFailed: false,
-            newPassword: null,
-            confirmPassword: null,
-            email,
-            token,
-        }
-    },
-    methods: {
-        handleInputNewPassword (value) {
-            this.isFailed = false;
-            this.newPassword = value;
-        },
-        handleInputConfirmPassword (value) {
-            this.isFailed = false;
-            this.confirmPassword = value;
-        },
-        handleSubmitForm () {
-            if (this.newPassword !== this.confirmPassword) {
-                this.isFailed = true;
-            } else if (!this.newPassword.trim() && !this.confirmPassword.trim()) {
-                this.isFailed = true;
-                } else {
-                    axios.patch(`http://localhost:3000/v1/api/password/reset/${this.email}?token=${this.token}`, {
-                            password: this.newPassword
-                    })
-                    .then(res => {
-                        if (res.data.code === 'password/reset.success') {
-                            this.isSuccess = true;
-                            setTimeout(() => {
-                                this.$router.push({name: 'login', params: {}})
-                            }, 1000);
-                        } else {
-                            this.$router.push({name: 'forgot', params: {}})
-                        }
-                    })
-                    .catch(err => {
-                        console.log(err.response.message)
-                        this.$router.push({name: 'forgot', params: {}})
-                    })
-                }
-        }
-    },
-    mounted() {
-        console.log(this.token);
-    },
+    mixins: [resetPasswordComposable]
 }
 </script>
 
