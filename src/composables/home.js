@@ -12,6 +12,7 @@
     import Star from '@/components/Star/Star.vue';
     import MenuItem from '@/components/MenuItem/MenuItem.vue';
     import foodTypes from '@/data/foodTypes';
+    import defaultAvatar from '@/assets/images/default_avatar.jpg';
 import store from '@/Vuex/store';
 
     export default {
@@ -33,42 +34,32 @@ import store from '@/Vuex/store';
             handleClickFoodItem (foodName, shopName) {
                 this.$router.push(`/@${shopName.replaceAll(' ', '-')}/${foodName.replaceAll(' ', '-')}`)
             },
-            async handleClickLike(id, isLike) {
-                await axiosJWT.patch(`http://localhost:3000/v1/api/shop/changeLike/${id}`, {
-                    statusLike: isLike
-                })
-
-                axiosJWT.get('http://localhost:3000/v1/api/home/getShop', {
-                    params: {
-                        foodType: foodTypes[this.id - 1].name
-                    }
-                })
-                .then(response => {
-                    this.shops = response.data.data.shopList;
-                })
-                .catch(err => console.log(err))
+            async handleClickLikeShop(id, isLike) {
+                try {
+                    await axiosJWT.patch(`http://localhost:3000/v1/api/shop/changeLike/${id}`, {
+                        statusLike: isLike
+                    })
+                    this.getShop(foodTypes[this.id - 1].name);
+                } catch (error) {
+                    console.log(error);
+                }
+            },
+            async handleClickLikeFood (id, isLike) {
+                try {
+                    await axiosJWT.patch(`http://localhost:3000/v1/api/food/changeLike/${id}`, {
+                        statusLike: isLike
+                    })                   
+                    this.getFood(foodTypes[this.id - 1].name);
+                } catch (error) {
+                    console.log(error);
+                }
             },
             handleClickFoodType (id, name) {
                 this.id = id;
-                axiosJWT.get('http://localhost:3000/v1/api/home/getShop', {
-                    params: {
-                        foodType: name
-                    }
-                })
-                .then(response => {
-                    this.shops = response.data.data.shopList;
-                })
-                .catch(err => console.log(err))
 
-                axiosJWT.get('http://localhost:3000/v1/api/home/getFood', {
-                    params: {
-                        foodType: name
-                    }
-                })
-                .then(response => {
-                    this.foods = response.data.data.foodList;
-                })
-                .catch(err => console.log(err))
+                this.getShop(name)
+
+                this.getFood(name);
             },
             handleInputChange: debounce(function (value) {
                 this.noResult = false;
@@ -94,24 +85,27 @@ import store from '@/Vuex/store';
 
                     fetchApi();
                 }
-            }, 800),
+            }, 400),
             handleInputFocus() {
                 this.isFocus = true;
             },
             handleInputBlur() {
-                this.isFocus = false;
+                // this.isFocus = false;
             },
             getUser () {
                 axiosJWT.get('http://localhost:3000/v1/api/home/getUser')
                 .then(res => {
+                    if (res.data.data.currentUser.avatar === null) {
+                        res.data.data.currentUser.avatar = this.defaultAvatar;
+                    }
                     store.commit('setCurrentUser', res.data.data.currentUser);
                 })
                 .catch(err => console.log(err))
             },
-            getShop () {
+            getShop (name) {
                 axiosJWT.get('http://localhost:3000/v1/api/home/getShop', {
                     params: {
-                        foodType: foodTypes[0].name
+                        foodType: name
                     }
                 })
                 .then(response => {
@@ -121,10 +115,10 @@ import store from '@/Vuex/store';
                     console.log(error);
                 })
             },
-            getFood () {
+            getFood (name) {
                 axiosJWT.get('http://localhost:3000/v1/api/home/getFood', {
                     params: {
-                        foodType: foodTypes[0].name
+                        foodType: name
                     }
                 })
                 .then(response => {
@@ -133,6 +127,12 @@ import store from '@/Vuex/store';
                 .catch(error => {
                     console.log(error);
                 })
+            },
+            handleClickSearchResult (value) {
+                this.$router.push(`/search?q=${value.replaceAll(' ', '-')}`)
+            },
+            handleInputEnter (value) {
+                this.$router.push(`/search?q=${value.trim().replaceAll(' ', '-')}`)
             }
         },
         data() {
@@ -146,11 +146,12 @@ import store from '@/Vuex/store';
                 accessToken: Cookies.get('accessToken'),
                 shops: [],
                 foods: [],
+                defaultAvatar: defaultAvatar
             }
         },
         mounted() {
             this.getUser();
-            this.getFood();
-            this.getShop();
+            this.getFood(foodTypes[0].name);
+            this.getShop(foodTypes[0].name);
         },
     }

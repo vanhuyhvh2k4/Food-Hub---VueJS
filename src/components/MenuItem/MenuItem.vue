@@ -1,5 +1,5 @@
 <template>
-    <div :class="$style.wrapper">
+    <div @click="handleClickItem" :class="$style.wrapper">
         <slot v-if="!iconRight"></slot>
         <h3 :class="$style.title">{{ title }}</h3>
         <slot v-if="iconRight"></slot>
@@ -14,8 +14,13 @@ export default {
         title: {
             type: String,
             default: "title of menu"
+        },
+    },
+    methods: {
+        handleClickItem () {
+            this.$emit("click-item", this.title)
         }
-    }
+    },
 }
 </script>
 

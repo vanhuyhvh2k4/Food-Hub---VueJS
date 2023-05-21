@@ -6,10 +6,11 @@
       <Input title="E-mail" type="email" isRequired placeholder="Your email" autocomplete="off"
         @input-enter="handleEmail" :isFailed="notification === 'Email already exists'" />
       <Input title="Password" type="password" isRequired placeholder="Your password" autocomplete="off"
-        @input-enter="handlePassword" />
+        @input-enter="handlePassword" :minLength="6"/>
       <Button type="submit" :class="$style.button" name="Register" />
     </form>
     <b :class="$style.notification">{{ notification }}</b>
+    <Loader v-if="isLoading" :key="isLoading"/>
   </main>
 </template>
 

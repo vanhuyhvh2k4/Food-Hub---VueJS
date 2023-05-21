@@ -11,7 +11,6 @@
 </template>
 
 <script>
-    import {mapState} from 'vuex';
     import {useRoute} from 'vue-router'
     import Header from '@/components/Header/Header.vue';
     import Navigation from '@/components/Navigation/Navigation.vue';

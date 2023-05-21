@@ -14,7 +14,7 @@
         <form @submit.prevent="handleFormSubmit">
             <Input @input-enter="handleInputFullName" :value="currentUser ? currentUser.fullName : ''" title="Full Name" isRequired placeholder="Enter your name" autocomplete="off"/>
             <Input title="Email" :value="currentUser ? currentUser.email : ''" isDisabled/>
-            <Input @input-enter="handleInputPhone" :value="currentUser ? currentUser.phone : '2'" title="Phone Number" isRequired placeholder="Enter your phone number" autocomplete="off"/>
+            <Input @input-enter="handleInputPhone" :value="currentUser ? currentUser.phone : ''" title="Phone Number" isRequired placeholder="Enter your phone number" autocomplete="off"/>
             <Input @input-enter="handleInputAddress" :value="currentUser ? currentUser.address : ''" title="Address" isRequired placeholder="Enter your address" autocomplete="off"/>
             <Button :class="$style.button" onlyTitle name="Submit" primary type="submit"/>
         </form>

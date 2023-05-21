@@ -7,7 +7,7 @@
     --text-muted: #9796A1;
     --light-color: white;
     --danger-color: rgb(255, 101, 101);
-    --header-height: 62px;
+    --header-height: 86px;
     --navigation-height: 74px;
     --content-margin-top: calc(var(--header-height) + 24px);
     --content-margin-bottom: calc(var(--navigation-height) + 24px);

@@ -7,19 +7,19 @@
 
 <script>
 export default {
-    name: 'DoubleButton',
-    props: {
-        click: {
-            type: String,
-            default: ''
-        },
+    data() {
+        return {
+            click: 'left',
+        }
     },
     methods: {
         handleClickLeft () {
+            this.click = 'left';
             this.$emit('click-left');
         },
         handleClickRight () {
             this.$emit('click-right');
+            this.click = 'right';
         }
     },
 }

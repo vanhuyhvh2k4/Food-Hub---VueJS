@@ -10,16 +10,17 @@
       <Button type="submit" :class="$style.button" name="Sign In" />
     </form>
     <b v-if="isError" :class="$style.notification">Wrong email or password</b>
+    <Loader v-if="isLoading" :key="isLoading"/>
   </main>
 </template>
 
 <script>
-  import loginCompsable from '@/composables/login.js';
+import loginCompsable from '@/composables/login.js';
 
   export default {
     name: "Login",
     mixins: [loginCompsable],
-  }
+}
 </script>
 
 <style lang="scss" module>

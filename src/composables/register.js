@@ -4,12 +4,14 @@ import {
 import * as authService from '@/services/authService.js';
 import Input from '@/components/Input/Input.vue';
 import Button from '@/components/Button/Button.vue';
+import Loader from '@/components/Loader/Loader.vue';
 import routesConfig from '@/config/routes';
 
 export default {
     components: {
         Input,
-        Button
+        Button,
+        Loader
     },
     data() {
         let fullName = "";
@@ -23,6 +25,7 @@ export default {
             password,
             notification,
             router,
+            isLoading: false
         }
     },
     methods: {
@@ -39,6 +42,7 @@ export default {
             this.notification = "";
         },
         handleSubmitForm() {
+            this.isLoading = true;
             const fetchApi = async () => {
                 const response = await authService.signupUser({
                     fullName: this.fullName,
@@ -47,14 +51,17 @@ export default {
                 })
 
                 if (response.code === 'auth/register.success') {
+                    this.isLoading = false;
                     this.notification = response.message;
                     setTimeout(() => {
                         this.router.push(routesConfig.login)
                     }, 1000)
                 }
                 if (response.code === 'auth/checkEmail.conflict') {
+                    this.isLoading = false;
                     this.notification = response.message;
                 } else {
+                    this.isLoading = false;
                     console.log(response.message);
                 }
             }

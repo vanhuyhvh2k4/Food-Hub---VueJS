@@ -26,10 +26,29 @@ const routes = [
     }
   },
   {
+    path: routesConfig.shopManager,
+    name: 'shopManager',
+    component: () => import(/* webpackChunkName: "shopManager" */ '../views/ShopManager.vue'),
+    beforeEnter: requiredAuth
+  },
+  {
     path: routesConfig.home,
     name: 'home',
     component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue'),
     beforeEnter: requiredAuth
+  },
+  {
+    path: routesConfig.newFood,
+    name: 'newFood',
+    component: () => import(/* webpackChunkName: "profile" */ '../views/NewFood.vue'),
+    beforeEnter: requiredAuth,
+    meta: {
+      noNavigation: true,
+      buttonAndTitle: true,
+      noFixed: true,
+      backHome: true,
+      titleOfHeader: 'New Food'
+    }
   },
   {
     path: routesConfig.profile,
@@ -42,6 +61,19 @@ const routes = [
       noFixed: true,
       backHome: true,
       titleOfHeader: 'My Profile'
+    }
+  },
+  {
+    path: routesConfig.searchResult,
+    name: 'searchResult',
+    component: () => import(/* webpackChunkName: "searchResult" */ '../views/SearchResult.vue'),
+    beforeEnter: requiredAuth,
+    meta: {
+      noNavigation: true,
+      buttonAndTitle: true,
+      noFixed: true,
+      backHome: true,
+      titleOfHeader: 'Search Results'
     }
   },
   {

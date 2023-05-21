@@ -16,8 +16,8 @@
                 <fa icon="heart" />
             </section>
         </router-link>
-        <router-link :to="routesConfig.createShop">
-            <section :class="$route.path === routesConfig.createShop ? $style.active : ''">
+        <router-link :to="routesConfig.shopManager">
+            <section :class="$route.path === routesConfig.shopManager ? $style.active : ''">
                 <fa icon="store" />
             </section>
         </router-link>
