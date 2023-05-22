@@ -1,10 +1,10 @@
 <template>
     <main :class="$style.wrapper">
-        <form @submit.prevent="handleSubmitForm" >
+        <form @submit.prevent="handleSubmitForm" :class="$style.form">
             <Input @input-enter="handleInputName" title="Name" isRequired :value="name" v-model="name"/>
             <div :class="$style.form_group">
                 <label for="">Category</label>
-                <select required @change="handleSelect">
+                <select :class="$style.select" required @change="handleSelect">
                         <option selected disabled>--Choose food category--</option>
                         <option v-for="(item) in foodTypes" :key="item.id" :value="item.id">{{item.id + '-' + item.name }}</option>
                 </select>
@@ -14,8 +14,8 @@
                 <input @change="handleInputFile" type="file" required/>
             </div>
             <div :class="$style.form_group">
-                <label for="">Description</label>
-                <textarea @input="handleInputDesc" required minlength=""></textarea>
+                <label :class="$style.label" for="">Description</label>
+                <textarea :class="$style.textarea" @input="handleInputDesc" required minlength=""></textarea>
             </div>
             <Input @input-enter="handleInputPrice" title="Price" isRequired/>
             <Button :class="$style.button" primary name="Submit" type="submit"/>
@@ -94,7 +94,7 @@ export default {
         margin-bottom: var(--content-margin-bottom);
     }
 
-    form {
+    .form {
         display: flex;
         flex-direction: column;
         align-items: start;
@@ -109,13 +109,13 @@ export default {
         width: 100%;
     }   
 
-    label {
+    .label {
         font-weight: 400;
         line-height: 1.6rem;
         color: var(--text-muted);
     }
 
-    textarea {
+    .textarea {
         width: 100%;
         height: 200px;
         border-radius: 8px;
@@ -124,7 +124,7 @@ export default {
         padding: 24px;
     }
 
-    select {
+    .select {
         width: 100%;
         border: 1px solid #ccc;
         padding: 16px;

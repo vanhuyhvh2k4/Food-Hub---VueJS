@@ -1,21 +1,24 @@
 <template>
     <header :class="$style.wrapper" v-bind:class="headerTransparent && $style.header_transparent">
         <section :class="$style.icon" @click="handleMenuButton">
-            <div v-if="!onlyBtn && !buttonAndTitle" :id="$style.menu"></div>
-            <div v-if="onlyBtn || buttonAndTitle" :id="$style.cancel"></div>
+            <div v-if="!onlyBtn && !buttonAndTitle && !buttonAndCart" :id="$style.menu"></div>
+            <div v-if="onlyBtn || buttonAndTitle || buttonAndCart" :id="$style.cancel"></div>
         </section>
         <section v-if="buttonAndTitle" :class="$style.title">
             <h3>{{ title }}</h3>
         </section>
-        <section v-if="!onlyBtn && !buttonAndTitle" :class="$style.text">
+        <section v-if="!onlyBtn && !buttonAndTitle && !buttonAndCart" :class="$style.text">
             <p>
                 <h5>Deliver to</h5>
                 <fa icon="chevron-down" :class="$style.iconChevron"/>
             </p>
             <h4>4102 Pretty View Lane</h4>
         </section>
-        <section @click="handleClickImage" v-if="!onlyBtn && !buttonAndTitle" :class="$style.avatar">
+        <section @click="handleClickImage" v-if="!onlyBtn && !buttonAndTitle && !buttonAndCart" :class="$style.avatar">
             <img :src="avatar" alt="avatar">
+        </section>
+        <section @click="handleClickCart" v-if="buttonAndCart" :class="$style.cart" :data-number-of-cart="numberOfCart">
+            <fa icon="cart-shopping"/>
         </section>
     </header>
 </template>
@@ -30,6 +33,9 @@
             },
             handleClickImage () {
                 this.$emit('click-image')
+            },
+            handleClickCart () {
+                this.$emit('click-cart')
             }
         },
         props: {
@@ -45,6 +51,10 @@
                 type: Boolean,
                 default: false
             },
+            buttonAndCart: {
+                type: Boolean,
+                default: false
+            },
             headerTransparent: {
                 type: Boolean,
                 default: false
@@ -52,6 +62,10 @@
             title: {
                 type: String,
                 default: 'Favorite food'
+            },
+            numberOfCart: {
+                type: Number,
+                default: 2
             }
         }
     }

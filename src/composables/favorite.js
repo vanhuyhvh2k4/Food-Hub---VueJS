@@ -1,7 +1,8 @@
 import DoubleButton from '@/components/DoubleButton/DoubleButton.vue';
 import FoodItem from '@/components/FoodItem/FoodItem.vue';
 import axiosJWT from '@/utils/refreshToken';
-import Cookies from 'js-cookie';
+import food from '@/assets/images/new-food.png';
+import restaurant from '@/assets/images/restaurant.png';
 
 export default {
     components: {
@@ -59,6 +60,8 @@ export default {
             click: 'left',
             foods: [],
             shops: [],
+            food,
+            restaurant
         }
     },
     mounted() {

@@ -4,7 +4,7 @@
             <Overlay @click-overlay="toggleMenuButton"/>
             <Menu :class="$style.menu" :avatar="currentUser ? currentUser.avatar : ''" :fullName="currentUser ? currentUser.fullName : ''" :email="currentUser ? currentUser.email : ''"/>
         </div>
-        <Header :headerTransparent="$route.meta.onlyBtn || $route.meta.headerTransparent" :onlyBtn="$route && $route.meta.onlyBtn" :buttonAndTitle="$route && $route.meta.buttonAndTitle" :class="[$style.header, $route.meta.noFixed ? $style.no_fixed : '']" @click-menu-button="toggleMenuButton" @click-image="handleClickImage" :avatar="currentUser ? currentUser.avatar : ''" :title="$route.meta.titleOfHeader ? $route.meta.titleOfHeader : ''"/>
+        <Header :headerTransparent="$route.meta.onlyBtn || $route.meta.headerTransparent" :onlyBtn="$route && $route.meta.onlyBtn" :buttonAndTitle="$route && $route.meta.buttonAndTitle" :buttonAndCart="$route && $route.meta.buttonAndCart" :class="[$style.header, $route.meta.noFixed ? $style.no_fixed : '']" @click-menu-button="toggleMenuButton" @click-image="handleClickImage" @click-cart="handleClickCart" :avatar="currentUser ? currentUser.avatar : ''" :title="$route.meta.titleOfHeader ? $route.meta.titleOfHeader : ''" :numberOfCart="numberOfCart ? numberOfCart : 0"/>
         <slot></slot>
         <Navigation v-if="$route && !$route.meta.noNavigation" :class="$style.navigation"/>
     </div>
@@ -46,10 +46,16 @@
             handleClickImage () {
                 this.$router.push({name: 'profile', params: {}})
             },
+            handleClickCart () {
+                this.$router.push({name: 'cart', params: {}})
+            }
         },
         computed: {
             currentUser() {
                 return this.$store.state.currentUser;
+            },
+            numberOfCart() {
+                return this.$store.state.numberOfCart;
             }
         },
     }

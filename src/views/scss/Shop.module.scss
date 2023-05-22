@@ -58,7 +58,9 @@
 }
 
 .text {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     &>h1 {
         font-size: 2rem;
@@ -92,6 +94,7 @@
     padding: 0px var(--global-padding);
 
     &>section:first-child {
+        display: flex;
 
         &>label {
             font-size: 1.4rem;

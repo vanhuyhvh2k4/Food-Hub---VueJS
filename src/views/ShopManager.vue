@@ -6,6 +6,7 @@
             </div>
         </div>
         <div :class="$style.no_shop" v-if="!isHasShop">
+            <img style="width: 100px; height: 100px; object-fit: contain;" :src="restaurant" alt="">
             <h3>Create a shop</h3>
             <Button outline @click-btn="handleClickButtonCreateShop" name="Create now"/>
         </div>
@@ -14,6 +15,7 @@
 
 <script>
 import Button from '@/components/Button/Button.vue';
+import restaurant from '@/assets/images/restaurant.png'
 import ItemManager from '@/components/ItemManager/ItemManager.vue';
 import axiosJWT from '@/utils/refreshToken';
 import listManager from '@/data/listManager.js';
@@ -23,7 +25,8 @@ export default {
     data() {
         return {
             isHasShop: false,
-            listManager
+            listManager,
+            restaurant
         };
     },
     methods: {

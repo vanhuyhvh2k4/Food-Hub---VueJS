@@ -8,9 +8,11 @@
         <section>
             <fa icon="location-dot" />
         </section>
-        <section>
-            <fa icon="bag-shopping" />
-        </section>
+       <router-link :to="routesConfig.cart">
+            <section :class="$route.path === routesConfig.cart ? $style.active : ''">
+                <fa icon="bag-shopping" />
+            </section>
+       </router-link>
         <router-link :to="routesConfig.favorite">
             <section :class="$route.path === routesConfig.favorite ? $style.active : ''">
                 <fa icon="heart" />

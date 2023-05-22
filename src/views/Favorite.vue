@@ -15,11 +15,13 @@
             </li>
         </div>
         <div v-if="click === 'left' && !foods.length" :class="$style.not_found">
+            <img :src="food" alt="">
             <h3>You do not like any food</h3>
             <small>Let buy something ^-^</small>
         </div>
 
         <div v-if="click === 'right' && !shops.length" :class="$style.not_found">
+            <img :src="restaurant" alt="">
             <h3>You do not like any shops</h3>
             <small>Let discover a shop ^-^</small>
         </div>

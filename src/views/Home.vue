@@ -4,7 +4,7 @@
         <section :class="$style.search">
             <div :class="$style.search_input">
                 <Search @enter-input="handleInputEnter" @change-input="handleInputChange" @focus-input="handleInputFocus"
-                    @blur-input="handleInputBlur" autofocus/>
+                    @blur-input="handleInputBlur" autofocus placeholder="Search for food name"/>
                 <Popper :class="$style.popper" v-if="isFocus && (searchResults.length || noResult)" v-bind:class="noResult ? $style.no_result: null">
                     <ul :class="$style.menu_list">
                         <li v-if="!noResult" v-for="(item) in searchResults" :key="item.id">

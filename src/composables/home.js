@@ -13,7 +13,7 @@
     import MenuItem from '@/components/MenuItem/MenuItem.vue';
     import foodTypes from '@/data/foodTypes';
     import defaultAvatar from '@/assets/images/default_avatar.jpg';
-import store from '@/Vuex/store';
+    import store from '@/Vuex/store';
 
     export default {
         components: {

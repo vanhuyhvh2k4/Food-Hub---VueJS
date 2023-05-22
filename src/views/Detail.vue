@@ -1,5 +1,5 @@
 <template>
-    <main :class="$style.wrapper">
+    <main :class="$style.wrapper" v-bind:class="addCart === true ? $style.active : ''">
         <section :class="$style.image">
             <img :src="food ? food.image : ''" alt=""/>
         </section>
@@ -12,7 +12,7 @@
                 <span>4.5</span>
             </div>
             <div>
-                <span>30 +</span>
+                <span>30 + Sold</span>
             </div>
             <div>
                 <span>See review</span>
@@ -23,17 +23,35 @@
                 <h2>${{ food ? food.price : '' }}</h2>
             </div>
             <div :class="$style.quantity">
-                <span>
+                <span @click="handleClickMinus">
                     <fa icon="minus"/>
                 </span>
-                <span>02</span>
-                <span>
+                <span>{{ number < 10 ? '0' + number : number }}</span>
+                <span @click="handleClickPlus">
                     <fa icon="plus"/>
                 </span>
             </div>
         </section>
         <section :class="$style.desc">
             <p>{{ food ? food.description : '' }}</p>
+        </section>
+        <section :class="$style.shop">
+            <div :class="$style.shop_left">
+                <div>
+                    <img :src="food ? food.shopImage : ''" alt="">
+                </div>
+                <article>
+                    <p>
+                        <h2>{{ food ? food.shopName : '' }}</h2>
+                        <fa v-if="food ? food.isTick : ''" icon="circle-check"/>
+                    </p>
+                    <p>{{ food ? food.place : '' }}</p>
+                    <p>{{ food ? food.num : '' }} items</p>
+                </article>
+            </div>
+            <div>
+                <Button @click-btn="handleClickShop" outline name="See shop" :class="$style.button"/>
+            </div>
         </section>
         <section :class="$style.add_on">
             <h2>Choice to Add On</h2>
@@ -77,7 +95,7 @@
             </ul>
         </section>
         <section :class="$style.btn">
-            <Button primary name="ADD TO CART">
+            <Button @click-btn="handleClickCart" primary name="ADD TO CART">
                 <div :class="$style.icon">
                     <fa icon="bag-shopping"/>
                 </div>

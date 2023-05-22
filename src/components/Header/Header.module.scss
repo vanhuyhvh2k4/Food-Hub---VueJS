@@ -96,3 +96,35 @@ $radius: 12px;
         flex-shrink: 0;
     }
 }
+
+.cart {
+    width: 38px;
+    height: 38px;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    background-color: rgba($color: #000000, $alpha: 0.3);
+    position: relative;
+
+    & > svg {
+        color: var(--light-color);
+        font-size: 2rem;
+    }
+
+    &::after {
+        content: attr(data-number-of-cart);
+        position: absolute;
+        width: 18px;
+        height: 18px;
+        top: -10%;
+        left: -10%;
+        background-color: var(--primary-color);
+        border-radius: 50%;
+        color: var(--light-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.4rem;
+    }
+    
+}

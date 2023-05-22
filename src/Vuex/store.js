@@ -1,13 +1,16 @@
 import { createStore } from 'vuex'
-import axiosJWT from '@/utils/refreshToken'
 
 const store = createStore({
   state: {
-    currentUser: null
+    currentUser: null,
+    numberOfCart: null,
   },
   mutations: {
     setCurrentUser(state, currentUser) {
       state.currentUser = currentUser
+    },
+    setNumberOfCart(state, numberOfCart) {
+      state.numberOfCart = numberOfCart
     }
   },
 //   actions: {

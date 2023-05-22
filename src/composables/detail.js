@@ -1,5 +1,7 @@
 import * as detailService from '@/services/detailService.js';
 import Button from '@/components/Button/Button.vue';
+import axiosJWT from '@/utils/refreshToken';
+import store from '@/Vuex/store.js';
 
 export default {
     components: {
@@ -14,7 +16,12 @@ export default {
         return {
             shopName,
             foodName,
-            food: null
+            food: null,
+            number: 1,
+            addCart: {
+                type: Boolean,
+                default: false
+            }
         }
     },
     methods: {
@@ -30,9 +37,49 @@ export default {
             } else {
                 console.log(response);
             }
+        },
+        handleClickMinus () {
+            if (this.number > 1) {
+                this.number--;
+            }
+        },
+        handleClickPlus () {
+            this.number++;
+        },
+        handleClickShop () {
+            this.$router.push(`/@${this.shopName.replaceAll(' ', '-')}`)
+        },
+        async handleClickCart () {
+            try {
+                this.addCart = true;
+                await axiosJWT.post('http://localhost:3000/v1/api/checkout/cart', {
+                    foodId: this.food.id,
+                    quantity: this.number
+                })
+                setTimeout(() => {
+                    this.addCart = false;
+                }, 600);
+
+                this.getNumberOfCart();
+            } catch (error) {
+                console.log(error);
+            }
+        },
+        async getNumberOfCart () {
+            try {
+                const response = await axiosJWT.get('http://localhost:3000/v1/api/checkout/getNumber');
+
+                if (response.data.data.code === 'checkout/getNumber.success') {
+                    store.commit('setNumberOfCart', response.data.data.num);
+                }
+            } catch (error) {
+                console.log(error);
+            }
+
         }
     },
     mounted() {
-        this.getFood()
+        this.getFood();
+        this.getNumberOfCart();
     },
 }

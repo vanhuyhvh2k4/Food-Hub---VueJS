@@ -18,7 +18,6 @@ const routes = [
     component: () => import(/* webpackChunkName: "createShop" */ '../views/CreateShop.vue'),
     beforeEnter: requiredAuth,
     meta: {
-      // noNavigation: true,
       buttonAndTitle: true,
       backHome: true,
       noFixed: true,
@@ -80,7 +79,20 @@ const routes = [
     path: routesConfig.cart,
     name: 'cart',
     component: () => import(/* webpackChunkName: "cart" */ '../views/Cart.vue'),
-    // beforeEnter: requiredAuth,
+    beforeEnter: requiredAuth,
+  },
+  {
+    path: routesConfig.checkout,
+    name: 'checkout',
+    component: () => import(/* webpackChunkName: "checkout" */ '../views/Checkout.vue'),
+    beforeEnter: requiredAuth,
+    meta: {
+      noNavigation: true,
+      buttonAndTitle: true,
+      backHome: true,
+      noFixed: true,
+      titleOfHeader: 'Check Out'
+    }
   },
   {
     path: routesConfig.shop,
@@ -101,9 +113,10 @@ const routes = [
     beforeEnter: requiredAuth,
     meta: {
       noNavigation: true,
-      onlyBtn: true,
+      buttonAndCart: true,
       backHome: true,
-      noFixed: true
+      noFixed: true,
+      headerTransparent: true
     }
   },
   {
