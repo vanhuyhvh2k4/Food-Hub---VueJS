@@ -1,14 +1,17 @@
+import routesConfig from "@/config/routes";
+
 const menuData = [
     {
         id: 1,
         title: 'My Orders',
         icon: 'document',
+        path: routesConfig.myOrders
     },
     {
         id: 2,
         title: 'My Profile',
         icon: 'profile',
-        path: '/profile'
+        path: routesConfig.profile
     },
     {
         id: 3,

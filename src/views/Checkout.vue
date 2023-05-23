@@ -40,7 +40,7 @@
             </li>
             <li>
                 <article>
-                    <h3>Total must pay</h3>
+                    <h3>Total must pay <small style="color: var(--text-muted); font-weight: 400;">(food + ship)</small></h3>
                 </article>
                 <article>
                     <h3>${{ billInfo.total }}</h3>
@@ -48,7 +48,7 @@
                 </article>
             </li>
         </ul>
-        <Button primary name="Check Out" :class="$style.button"/>
+        <Button @click-btn="handleClickCheckout" primary name="Check Out" :class="$style.button"/>
     </main>
 </template>
 
@@ -79,6 +79,16 @@ export default {
                 this.billInfo = response.data.data.bill;
             })
             .catch(error => console.log(error))
+        },
+        handleClickCheckout () {
+            axiosJWT.post('http://localhost:3000/v1/api/checkout/order', {
+                cartId: this.billInfo.id,
+                foodId: this.billInfo.foodId,
+                quantity: this.billInfo.quantity,
+                
+            })
+            .then(response => console.log(response))
+            .catch(err => console.log(err))
         }
     },
     mounted() {

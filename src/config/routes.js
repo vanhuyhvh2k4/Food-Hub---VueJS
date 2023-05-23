@@ -15,7 +15,8 @@ const routesConfig = {
     profile: '/profile',
     newFood: '/shop/new-food',
     searchResult: '/search',
-    checkout: '/checkout'
+    checkout: '/checkout',
+    myOrders: '/my-orders',
 }
 
 export default routesConfig;

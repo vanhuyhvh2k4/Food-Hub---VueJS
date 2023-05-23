@@ -73,7 +73,9 @@ export default {
             }
         },
         handleInputEnter (value) {
-            this.getFood(value.replaceAll(' ', '-').trim())
+            this.urlFormat = value.replaceAll(' ', '-').trim();
+
+            this.getFood(this.urlFormat);
         }
     },
     mounted() {

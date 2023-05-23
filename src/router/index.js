@@ -50,6 +50,19 @@ const routes = [
     }
   },
   {
+    path: routesConfig.myOrders,
+    name: 'myOrders',
+    component: () => import(/* webpackChunkName: "myOrders" */ '../views/MyOrders.vue'),
+    beforeEnter: requiredAuth,
+    meta: {
+      noNavigation: true,
+      buttonAndTitle: true,
+      noFixed: true,
+      backHome: true,
+      titleOfHeader: 'My Orders'
+    }
+  },
+  {
     path: routesConfig.profile,
     name: 'profile',
     component: () => import(/* webpackChunkName: "profile" */ '../views/Profile.vue'),

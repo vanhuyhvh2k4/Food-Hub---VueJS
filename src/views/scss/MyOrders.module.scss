@@ -1,0 +1,10 @@
+.wrapper {
+    margin-top: var(--content-margin-top);
+}
+
+.list {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
