@@ -58,11 +58,11 @@
 </template>
 
 <script>
-    import homeComposable from '@/composables/home.js';
+    import home from '@/composables/home.js';
     
     export default {
         name: 'Home',
-        mixins: [homeComposable]
+        mixins: [home]
     }
 </script>
 

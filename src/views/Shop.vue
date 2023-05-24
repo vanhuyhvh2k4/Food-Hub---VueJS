@@ -37,11 +37,11 @@
 </template>
 
 <script>
-    import shopComposable from '@/composables/shop.js';
+    import shop from '@/composables/shop.js';
 
     export default {
         name: "Shop",
-        mixins: [shopComposable]
+        mixins: [shop]
     }
 </script>
 

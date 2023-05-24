@@ -15,11 +15,11 @@
 </template>
 
 <script>
-import loginCompsable from '@/composables/login.js';
+import login from '@/composables/login.js';
 
   export default {
     name: "Login",
-    mixins: [loginCompsable],
+    mixins: [login],
 }
 </script>
 

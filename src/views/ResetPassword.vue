@@ -12,11 +12,11 @@
 </template>
 
 <script>
-import resetPasswordComposable from '@/composables/resetPassword.js';
+import resetPassword from '@/composables/resetPassword.js';
 
 export default {
     name: "ResetPassword",
-    mixins: [resetPasswordComposable]
+    mixins: [resetPassword]
 }
 </script>
 

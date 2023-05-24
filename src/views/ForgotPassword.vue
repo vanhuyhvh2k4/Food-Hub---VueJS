@@ -18,11 +18,11 @@
 </template>
 
 <script>
-import forgotPasswordComposable from '@/composables/forgotPassword.js';
+import forgotPassword from '@/composables/forgotPassword.js';
 
 export default {
     name: "ForgotPassword",
-    mixins: [forgotPasswordComposable]
+    mixins: [forgotPassword]
 }
 </script>
 

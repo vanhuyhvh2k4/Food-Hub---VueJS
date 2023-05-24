@@ -105,11 +105,11 @@
 </template>
 
 <script>
-import detailComposable from '@/composables/detail.js';
+import detail from '@/composables/detail.js';
 
 export default {
     name: "Detail",
-    mixins: [detailComposable],
+    mixins: [detail],
 }
 </script>
 

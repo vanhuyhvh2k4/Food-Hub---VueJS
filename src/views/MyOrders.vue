@@ -10,11 +10,11 @@
 </template>
 
 <script>
-import myOrderComposable from '@/composables/myOrder.js';
+import myOrder from '@/composables/myOrder.js';
 
 export default {
     name: "MyOrders",
-    mixins: [myOrderComposable],
+    mixins: [myOrder],
 }
 </script>
 

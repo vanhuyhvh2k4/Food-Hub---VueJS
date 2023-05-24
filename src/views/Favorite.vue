@@ -29,10 +29,10 @@
 </template>
 
 <script>
-    import favoriteComposable from '@/composables/favorite.js';
+    import favorite from '@/composables/favorite.js';
     export default {
         name: "Favorite",
-        mixins: [favoriteComposable]
+        mixins: [favorite]
     }
 </script>
 

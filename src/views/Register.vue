@@ -15,11 +15,11 @@
 </template>
 
 <script>
-  import registerComposable from '@/composables/register.js';
+  import register from '@/composables/register.js';
 
   export default {
     name: 'Register',
-    mixins: [registerComposable]
+    mixins: [register]
   }
 </script>
 <style lang="scss" module>

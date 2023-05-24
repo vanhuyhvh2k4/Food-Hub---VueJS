@@ -22,11 +22,11 @@
 </template>
 
 <script>
-import profileComposable from '@/composables/profile.js';
+import profile from '@/composables/profile.js';
 
 export default {
     name: "Profile",
-    mixins: [profileComposable],
+    mixins: [profile],
 }
 </script>
 

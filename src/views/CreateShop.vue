@@ -20,11 +20,11 @@
 </template>
 
 <script>
-import createShopComposable from '@/composables/createShop.js';
+import createShop from '@/composables/createShop.js';
 
 export default {
     name: "CreateShop",
-    mixins: [createShopComposable],
+    mixins: [createShop],
 }
 </script>
 
