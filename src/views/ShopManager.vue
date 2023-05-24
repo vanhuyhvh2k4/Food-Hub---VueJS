@@ -14,10 +14,16 @@
 </template>
 
 <script>
+import Button from '@/components/Button/Button.vue';
+import ItemManager from '@/components/ItemManager/ItemManager.vue';
 import shopManager from '@/composables/shopManager';
 
 export default {
     name: "ShopManager",
+    components: {
+        Button,
+        ItemManager
+    },
     mixins: [shopManager]
 }
 </script>

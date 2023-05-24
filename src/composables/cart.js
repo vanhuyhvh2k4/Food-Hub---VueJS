@@ -1,11 +1,8 @@
-import CartItem from '@/components/CartItem/CartItem.vue';
+
 import axiosJWT from '@/utils/refreshToken';
 import cart from '@/assets/images/cart.png';
 
 export default {
-    components: {
-        CartItem
-    },
     data() {
         return {
             listCart: [],

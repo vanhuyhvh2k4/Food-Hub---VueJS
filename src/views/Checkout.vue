@@ -49,15 +49,24 @@
             </li>
         </ul>
         <Button @click-btn="handleClickCheckout" primary name="Check Out" :class="$style.button"/>
+        <Loader v-if="isLoading"/>
     </main>
 </template>
 
 <script>
+import Loader from '@/components/Loader/Loader.vue';
+import Button from '@/components/Button/Button.vue';
+import CartItem from '@/components/CartItem/CartItem.vue';
 import checkout from '@/composables/checkout'; 
 
 export default {
     name: "Checkout",
-    mixins: [checkout]
+    components: {
+        CartItem,
+        Button,
+        Loader,
+    },
+    mixins: [checkout],
 }
 </script>
 

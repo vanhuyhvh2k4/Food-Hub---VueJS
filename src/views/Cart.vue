@@ -12,7 +12,9 @@
         </header>
         <div v-if="!cartEmpty">
             <li v-for="item in listCart" :key="item.id">
-                <CartItem @click-info="handleClickInfo" @click-close="handleClickClose" @click-checkout="handleClickCheckout" :id="item.id" :shopName="item.shopName" :image="item.image" :name="item.name" :quantity="item.quantity" :price="item.price"/>
+                <CartItem @click-info="handleClickInfo" @click-close="handleClickClose"
+                    @click-checkout="handleClickCheckout" :id="item.id" :shopName="item.shopName" :image="item.image"
+                    :name="item.name" :quantity="item.quantity" :price="item.price" />
             </li>
         </div>
         <div :class="$style.cart_empty" v-if="cartEmpty">
@@ -24,12 +26,16 @@
 </template>
 
 <script>
-import cart from '@/composables/cart'; 
+    import CartItem from '@/components/CartItem/CartItem.vue';
+    import cart from '@/composables/cart';
 
-export default {
-    name: "Cart",
-    mixins: [cart],
-}
+    export default {
+        name: "Cart",
+        components: {
+            CartItem
+        },
+        mixins: [cart],
+    }
 </script>
 
 <style lang="scss" module>

@@ -1,6 +1,5 @@
-import Button from '@/components/Button/Button.vue';
+
 import restaurant from '@/assets/images/restaurant.png'
-import ItemManager from '@/components/ItemManager/ItemManager.vue';
 import axiosJWT from '@/utils/refreshToken';
 import listManager from '@/data/listManager.js';
 
@@ -36,8 +35,4 @@ export default {
     mounted() {
         this.checkHasShop();
     },
-    components: {
-        Button,
-        ItemManager
-    }
 }

@@ -6,19 +6,27 @@
       <Input title="E-mail" type="email" isRequired placeholder="Your email" autocomplete="off"
         @input-enter="handleEmail" :isFailed="notification === 'Email already exists'" />
       <Input title="Password" type="password" isRequired placeholder="Your password" autocomplete="off"
-        @input-enter="handlePassword" :minLength="6"/>
+        @input-enter="handlePassword" :minLength="6" />
       <Button type="submit" :class="$style.button" name="Register" />
     </form>
     <b :class="$style.notification">{{ notification }}</b>
-    <Loader v-if="isLoading" :key="isLoading"/>
+    <Loader v-if="isLoading" :key="isLoading" />
   </main>
 </template>
 
 <script>
+  import Input from '@/components/Input/Input.vue';
+  import Button from '@/components/Button/Button.vue';
+  import Loader from '@/components/Loader/Loader.vue';
   import register from '@/composables/register.js';
 
   export default {
     name: 'Register',
+    components: {
+      Input,
+      Button,
+      Loader
+    },
     mixins: [register]
   }
 </script>

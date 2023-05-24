@@ -1,13 +1,7 @@
-import Button from '@/components/Button/Button.vue';
-import Input from '@/components/Input/Input.vue';
+
 import * as forgotPasswordService from '@/services/forgotPasswordService.js';
-import axios from 'axios';
 
 export default {
-    components: {
-        Input,
-        Button
-    },
     methods: {
         handleInputEmail(value) {
             this.isFailed = false;

@@ -2,8 +2,9 @@
     <main :class="$style.wrapper">
         <h1 v-if="!isSuccess">Forgot page</h1>
         <form v-if="!isSuccess" @submit.prevent="handleSubmitForm">
-            <Input @input-enter="handleInputEmail" title="Email" placeholder="Enter your email" isRequired type="email" :text="isFailed ? `The email is invalid. Try again !` : ``" :isFailed="isFailed"/>
-            <Button primary onlyTitle name="Send email" type="submit" :class="$style.button"/>
+            <Input @input-enter="handleInputEmail" title="Email" placeholder="Enter your email" isRequired type="email"
+                :text="isFailed ? `The email is invalid. Try again !` : ``" :isFailed="isFailed" />
+            <Button primary onlyTitle name="Send email" type="submit" :class="$style.button" />
         </form>
         <div :class="$style.message" v-if="isSuccess">
             <h4>We sent email to:</h4>
@@ -18,12 +19,18 @@
 </template>
 
 <script>
-import forgotPassword from '@/composables/forgotPassword.js';
+    import Button from '@/components/Button/Button.vue';
+    import Input from '@/components/Input/Input.vue';
+    import forgotPassword from '@/composables/forgotPassword.js';
 
-export default {
-    name: "ForgotPassword",
-    mixins: [forgotPassword]
-}
+    export default {
+        name: "ForgotPassword",
+        components: {
+            Input,
+            Button
+        },
+        mixins: [forgotPassword]
+    }
 </script>
 
 <style lang="scss" module>

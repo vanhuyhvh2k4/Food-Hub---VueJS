@@ -1,12 +1,8 @@
 import * as detailService from '@/services/detailService.js';
-import Button from '@/components/Button/Button.vue';
 import axiosJWT from '@/utils/refreshToken';
 import store from '@/Vuex/store.js';
 
 export default {
-    components: {
-        Button
-    },
     data() {
         const originPath = window.location.pathname;
         const formatPath = originPath.replace('/', '').replace('@', '').replaceAll('-', ' ').split('/')

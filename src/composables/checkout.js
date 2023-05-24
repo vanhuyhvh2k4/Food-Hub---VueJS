@@ -1,18 +1,14 @@
-import Button from '@/components/Button/Button.vue';
-import CartItem from '@/components/CartItem/CartItem.vue';
+
 import axiosJWT from '@/utils/refreshToken';
 
 export default {
-    components: {
-        CartItem,
-        Button
-    },
     data() {
         const originalUrl = window.location.href;
         const formatUrl = originalUrl.split('?')[1].replace('ci=', '').trim();
         return {
             formatUrl,
             billInfo: {},
+            isLoading: false,
         }
     },
     methods: {
@@ -28,13 +24,22 @@ export default {
                 .catch(error => console.log(error))
         },
         handleClickCheckout() {
+            this.isLoading = true;
             axiosJWT.post('http://localhost:3000/v1/api/checkout/order', {
                     cartId: this.billInfo.id,
                     foodId: this.billInfo.foodId,
                     quantity: this.billInfo.quantity,
 
                 })
-                .then(response => console.log(response))
+                .then(response => {
+                    if (response.data.data.code === 'checkout/order.success') {
+                        this.isLoading = false;
+                        this.$router.push({
+                            name: 'myOrders',
+                            params: {}
+                        })
+                    }
+                })
                 .catch(err => console.log(err))
         }
     },

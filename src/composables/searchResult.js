@@ -1,16 +1,7 @@
-import DoubleButton from '@/components/DoubleButton/DoubleButton.vue';
-import FoodItem from '@/components/FoodItem/FoodItem.vue';
-import Loader from '@/components/Loader/Loader.vue';
-import Search from '@/components/Search/Search.vue';
+
 import axiosJWT from '@/utils/refreshToken';
 
 export default {
-    components: {
-        FoodItem,
-        Search,
-        DoubleButton,
-        Loader
-    },
     data() {
         const originalUrl = window.location.href;
         const urlFormat = originalUrl.split('?')[1].replace('q=', '').replaceAll('-', ' ').trim();

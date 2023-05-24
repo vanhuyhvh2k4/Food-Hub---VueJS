@@ -1,14 +1,14 @@
 <template>
     <main :class="$style.wrapper" v-bind:class="addCart === true ? $style.active : ''">
         <section :class="$style.image">
-            <img :src="food ? food.image : ''" alt=""/>
+            <img :src="food ? food.image : ''" alt="" />
         </section>
         <section :class="$style.title">
             <h1>{{ food ? food.name : '' }}</h1>
         </section>
         <section :class="$style.rating">
             <div>
-                <fa icon="star"/>
+                <fa icon="star" />
                 <span>4.5</span>
             </div>
             <div>
@@ -24,11 +24,11 @@
             </div>
             <div :class="$style.quantity">
                 <span @click="handleClickMinus">
-                    <fa icon="minus"/>
+                    <fa icon="minus" />
                 </span>
                 <span>{{ number < 10 ? '0' + number : number }}</span>
                 <span @click="handleClickPlus">
-                    <fa icon="plus"/>
+                    <fa icon="plus" />
                 </span>
             </div>
         </section>
@@ -43,14 +43,14 @@
                 <article>
                     <p>
                         <h2>{{ food ? food.shopName : '' }}</h2>
-                        <fa v-if="food ? food.isTick : ''" icon="circle-check"/>
+                        <fa v-if="food ? food.isTick : ''" icon="circle-check" />
                     </p>
                     <p>{{ food ? food.place : '' }}</p>
                     <p>{{ food ? food.num : '' }} items</p>
                 </article>
             </div>
             <div>
-                <Button @click-btn="handleClickShop" outline name="See shop" :class="$style.button"/>
+                <Button @click-btn="handleClickShop" outline name="See shop" :class="$style.button" />
             </div>
         </section>
         <section :class="$style.add_on">
@@ -58,7 +58,8 @@
             <ul>
                 <li :class="$style.add_on__item">
                     <div>
-                        <img src="https://images.unsplash.com/photo-1683659635689-3df761eddb70?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" alt="">
+                        <img src="https://images.unsplash.com/photo-1683659635689-3df761eddb70?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60"
+                            alt="">
                         <h3>Pizza Vegetable</h3>
                     </div>
                     <div>
@@ -70,7 +71,8 @@
                 </li>
                 <li :class="$style.add_on__item">
                     <div>
-                        <img src="https://images.unsplash.com/photo-1683659635689-3df761eddb70?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" alt="">
+                        <img src="https://images.unsplash.com/photo-1683659635689-3df761eddb70?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60"
+                            alt="">
                         <h3>Pizza Vegetable</h3>
                     </div>
                     <div>
@@ -82,7 +84,8 @@
                 </li>
                 <li :class="$style.add_on__item">
                     <div>
-                        <img src="https://images.unsplash.com/photo-1683659635689-3df761eddb70?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" alt="">
+                        <img src="https://images.unsplash.com/photo-1683659635689-3df761eddb70?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60"
+                            alt="">
                         <h3>Pizza Vegetable</h3>
                     </div>
                     <div>
@@ -97,7 +100,7 @@
         <section :class="$style.btn">
             <Button @click-btn="handleClickCart" primary name="ADD TO CART">
                 <div :class="$style.icon">
-                    <fa icon="bag-shopping"/>
+                    <fa icon="bag-shopping" />
                 </div>
             </Button>
         </section>
@@ -105,12 +108,16 @@
 </template>
 
 <script>
-import detail from '@/composables/detail.js';
+    import Button from '@/components/Button/Button.vue';
+    import detail from '@/composables/detail.js';
 
-export default {
-    name: "Detail",
-    mixins: [detail],
-}
+    export default {
+        name: "Detail",
+        components: {
+            Button
+        },
+        mixins: [detail],
+    }
 </script>
 
 <style lang="scss" module>

@@ -1,16 +1,8 @@
 
 import debounce from 'lodash/debounce';
-import Button from '@/components/Button/Button.vue';
-import Input from '@/components/Input/Input.vue';
 import axiosJWT from '@/utils/refreshToken';
-import Loader from '@/components/Loader/Loader.vue';
 
 export default {
-    components: {
-        Input,
-        Button,
-        Loader
-    },
     methods: {
         handleInputAvatar(e) {
             this.avatar = e.target.files[0]

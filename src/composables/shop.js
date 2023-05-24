@@ -1,18 +1,8 @@
-import jsCookie from 'js-cookie';
+
 import * as shopService from '@/services/shopService.js';
-import Button from '@/components/Button/Button.vue';
-import FoodItem from '@/components/FoodItem/FoodItem.vue';
-import Overlay from '@/components/Overlay/Overlay.vue';
-import SVGIcon from '@/components/SVGIcon/SVGIcon.vue';
 import axiosJWT from '@/utils/refreshToken';
 
 export default {
-    components: {
-        Overlay,
-        Button,
-        SVGIcon,
-        FoodItem
-    },
     methods: {
         async getInfo() {
             const response = await shopService.getInfo({

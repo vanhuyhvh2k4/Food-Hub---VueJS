@@ -1,9 +1,7 @@
-import DoubleButton from '@/components/DoubleButton/DoubleButton.vue';
-import OrderItem from '@/components/OrderItem/OrderItem.vue';
+
 import axiosJWT from '@/utils/refreshToken';
 
 export default {
-    components: { OrderItem, DoubleButton },
     data() {
         return {
             listOrder: [],

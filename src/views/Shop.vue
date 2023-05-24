@@ -2,10 +2,11 @@
     <main :class="$style.wrapper">
         <header :class="$style.header">
             <div :class="$style.image">
-                <img :src="shopInfo ? shopInfo.background : ''" alt=""/>
+                <img :src="shopInfo ? shopInfo.background : ''" alt="" />
                 <div :class="$style.small_image">
-                    <img :src="shopInfo ? shopInfo.image : ''" alt=""/>
-                    <fa v-if="shopInfo && shopInfo.isTick === 0 ? false : true" :class="$style.check" icon="circle-check"/>
+                    <img :src="shopInfo ? shopInfo.image : ''" alt="" />
+                    <fa v-if="shopInfo && shopInfo.isTick === 0 ? false : true" :class="$style.check"
+                        icon="circle-check" />
                 </div>
             </div>
             <article :class="$style.text">
@@ -24,23 +25,35 @@
             </section>
             <section>
                 <Button onlyIcon>
-                    <SVGIcon icon="filter"/>
+                    <SVGIcon icon="filter" />
                 </Button>
             </section>
         </div>
         <div :class="$style.food_list">
             <li v-for="item in foodList" :key="item.id">
-                <FoodItem @click-item="handleClickFoodItem" :class="$style.food_item" :title="item.name" :desc="item.description" :num-of-ratings="item.price" :is-like="item.liked === 0 ? false : true" :image="item.image" shortFood noPlace/>
+                <FoodItem @click-item="handleClickFoodItem" :class="$style.food_item" :title="item.name"
+                    :desc="item.description" :num-of-ratings="item.price" :is-like="item.liked === 0 ? false : true"
+                    :image="item.image" shortFood noPlace />
             </li>
         </div>
     </main>
 </template>
 
 <script>
+    import Button from '@/components/Button/Button.vue';
+    import FoodItem from '@/components/FoodItem/FoodItem.vue';
+    import Overlay from '@/components/Overlay/Overlay.vue';
+    import SVGIcon from '@/components/SVGIcon/SVGIcon.vue';
     import shop from '@/composables/shop.js';
 
     export default {
         name: "Shop",
+        components: {
+            Overlay,
+            Button,
+            SVGIcon,
+            FoodItem
+        },
         mixins: [shop]
     }
 </script>

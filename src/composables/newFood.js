@@ -1,15 +1,8 @@
-import Button from '@/components/Button/Button.vue';
-import Input from '@/components/Input/Input.vue';
-import Loader from '@/components/Loader/Loader.vue';
+
 import foodTypes from '@/data/foodTypes';
 import axiosJWT from '@/utils/refreshToken';
 
 export default {
-    components: {
-        Input,
-        Button,
-        Loader
-    },
     data() {
         return {
             foodTypes,

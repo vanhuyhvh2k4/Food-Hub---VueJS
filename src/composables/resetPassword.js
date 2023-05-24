@@ -1,14 +1,7 @@
 
-import Button from '@/components/Button/Button.vue';
 import * as resetPasswordService from '@/services/resetPasswordService.js';
-import Input from '@/components/Input/Input.vue';
-import axios from 'axios';
 
 export default {
-    components: {
-        Input,
-        Button
-    },
     data() {
         const originalPath = window.location.pathname;
         const fullPath = window.location.href

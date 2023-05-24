@@ -1,15 +1,7 @@
-import {
-    mapState
-} from 'vuex';
-import Button from '@/components/Button/Button.vue';
-import Input from '@/components/Input/Input.vue';
+
 import axiosJWT from '@/utils/refreshToken';
 
 export default {
-    components: {
-        Input,
-        Button
-    },
     data() {
         const currentUserLocal = JSON.parse(localStorage.getItem('currentUser'));
         return {

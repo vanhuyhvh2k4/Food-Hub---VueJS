@@ -3,20 +3,10 @@ import {
 } from 'vue-router'
 import Cookies from 'js-cookie';
 import * as authService from '@/services/authService';
-
-import Input from '@/components/Input/Input.vue';
-import Button from '@/components/Button/Button.vue';
-import Loader from '@/components/Loader/Loader.vue';
 import router from '@/router';
 import routesConfig from '@/config/routes.js';
 
 export default {
-  name: 'Login',
-  components: {
-    Input,
-    Button,
-    Loader    
-  },
   setup() {
     const router = useRouter()
     return {

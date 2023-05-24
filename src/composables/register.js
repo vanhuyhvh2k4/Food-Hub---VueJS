@@ -2,17 +2,9 @@ import {
     useRouter
 } from 'vue-router'
 import * as authService from '@/services/authService.js';
-import Input from '@/components/Input/Input.vue';
-import Button from '@/components/Button/Button.vue';
-import Loader from '@/components/Loader/Loader.vue';
 import routesConfig from '@/config/routes';
 
 export default {
-    components: {
-        Input,
-        Button,
-        Loader
-    },
     data() {
         let fullName = "";
         let email = "";
