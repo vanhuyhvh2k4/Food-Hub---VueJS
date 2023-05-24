@@ -17,7 +17,7 @@ export default {
             this.click = 'right';
         },
         getFavoriteFood () {
-            axiosJWT.get('http://localhost:3000/v1/api/favorite/getFavoriteFood')
+            axiosJWT.get('http://localhost:3000/v1/api/food/favorite')
             .then(response => this.foods = response.data.data.foodList)
             .catch(err => {
                 this.foods = [];
@@ -25,7 +25,7 @@ export default {
             })
         },
         getFavoriteShop () {
-            axiosJWT.get('http://localhost:3000/v1/api/favorite/getFavoriteShop')
+            axiosJWT.get('http://localhost:3000/v1/api/shop/favorite')
             .then(response => {
                 this.shops = response.data.data.shopList
             })
@@ -41,14 +41,14 @@ export default {
             this.$router.push(`/@${shopName.replaceAll(" ", "-")}`)
         },
         async handleClickLikeShop (id, isLike) {
-            await axiosJWT.patch(`http://localhost:3000/v1/api/shop/changeLike/${id}`, {
+            await axiosJWT.patch(`http://localhost:3000/v1/api/shop/like/${id}`, {
                 statusLike: isLike
             })
 
             this.getFavoriteShop();
         },
         async handleClickLikeFood(id, isLike) {
-            await axiosJWT.patch(`http://localhost:3000/v1/api/food/changeLike/${id}`, {
+            await axiosJWT.patch(`http://localhost:3000/v1/api/food/like/${id}`, {
                 statusLike: isLike
             })
 

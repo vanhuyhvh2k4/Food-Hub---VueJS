@@ -41,7 +41,7 @@ export default {
     },
     methods: {
         getAllCart () {
-            axiosJWT.get('http://localhost:3000/v1/api/checkout/getCart')
+            axiosJWT.get('http://localhost:3000/v1/api/checkout/cart')
             .then(response => {
                 if (response.data.data.code === 'checkout/getCart.success') {
                     this.listCart = response.data.data.listCart;
@@ -57,7 +57,7 @@ export default {
         },
         async handleClickClose (cartId) {
             try {
-                await axiosJWT.delete(`http://localhost:3000/v1/api/checkout/deleteCart/${cartId}`)
+                await axiosJWT.delete(`http://localhost:3000/v1/api/checkout/cart/${cartId}`)
                 this.getAllCart();
                 this.getNumberOfCart();
             } catch (error) {
@@ -68,7 +68,7 @@ export default {
             this.$router.push(`/checkout?ci=${cartId}`)
         },
         getNumberOfCart () {
-            axiosJWT.get('http://localhost:3000/v1/api/checkout/getNumber')
+            axiosJWT.get('http://localhost:3000/v1/api/checkout/number')
             .then(response => {
                     this.numberOfCart = response.data.data.num;
             })

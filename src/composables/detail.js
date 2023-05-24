@@ -67,7 +67,7 @@ export default {
         },
         async getNumberOfCart () {
             try {
-                const response = await axiosJWT.get('http://localhost:3000/v1/api/checkout/getNumber');
+                const response = await axiosJWT.get('http://localhost:3000/v1/api/checkout/number');
 
                 if (response.data.data.code === 'checkout/getNumber.success') {
                     store.commit('setNumberOfCart', response.data.data.num);

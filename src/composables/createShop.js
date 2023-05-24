@@ -60,7 +60,7 @@ export default {
                 formData.append('address', this.address);
                 formData.append('shipFee', this.shipFee);
                 formData.append('timeShipping', this.timeShipping);
-                axiosJWT.post('http://localhost:3000/v1/api/shop/create', formData)
+                axiosJWT.post('http://localhost:3000/v1/api/shop/shop', formData)
                     .then(response => {
                         this.isLoading = false;
                         console.log(response.data)

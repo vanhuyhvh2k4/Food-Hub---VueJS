@@ -16,7 +16,7 @@ axiosJWT.interceptors.request.use(async (config) => {
   // accessToken is exp
   if (decodedToken.exp < date.getTime() / 1000) {
     try {
-      const response = await axios.post('http://localhost:3000/v1/api/auth/refreshToken', {
+      const response = await axios.post('http://localhost:3000/v1/api/auth/token', {
         refreshToken
       });
       Cookies.set('accessToken', response.data.data.accessToken);

@@ -42,7 +42,7 @@ export default {
     methods: {
         getFood (keyword) {
             this.isLoading = true;
-            axiosJWT.get('http://localhost:3000/v1/api/food/search/result', {
+            axiosJWT.get('http://localhost:3000/v1/api/search/result', {
                 params: {
                     keyword: keyword
                 }

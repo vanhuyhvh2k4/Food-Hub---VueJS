@@ -27,7 +27,7 @@ export default {
                 if (e.target.files[0]) {
                     formData.append('avatar', e.target.files[0]);
                     image.setAttribute("src", URL.createObjectURL(e.target.files[0]));
-                    await axiosJWT.patch(`http://localhost:3000/v1/api/auth/changeAvatar/${this.currentUserLocal.id}`, formData)
+                    await axiosJWT.patch(`http://localhost:3000/v1/api/auth/profile/${this.currentUserLocal.id}`, formData)
                     console.log('change avatar success');
                 }
             } catch (error) {
@@ -44,7 +44,7 @@ export default {
                 this.address = value;
         },
         handleFormSubmit() {
-            axiosJWT.put(`http://localhost:3000/v1/api/auth/changeProfile/${this.currentUserLocal.id}`, {
+            axiosJWT.put(`http://localhost:3000/v1/api/auth/profile/${this.currentUserLocal.id}`, {
                     fullName: this.fullName,
                     phone: this.phone,
                     address: this.address

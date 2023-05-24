@@ -1,5 +1,5 @@
 <template>
-    <button :type="type" v-bind:class="onlyIcon ? $style.only_icon : ''" :class="[$style.wrapper, primary ? $style.active : '', outline ? $style.outline : '', muted ? $style.muted : '']" :title="title" @click="hanleClick">
+    <button :type="type" v-bind:class="onlyIcon ? $style.only_icon : ''" :class="[$style.wrapper, primary ? $style.active : '', outline ? $style.outline : '', muted ? $style.muted : '']" :title="title" @click="hanleClick" :disabled="isDisabled">
         <slot v-if="!onlyTitle"></slot>
         <h3 v-if="!onlyIcon">{{ name }}</h3>
     </button>
@@ -20,6 +20,7 @@
             outline: Boolean,
             muted: Boolean,
             title: String,
+            isDisabled: Boolean,
         },
         methods: {
             hanleClick () {

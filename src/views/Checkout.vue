@@ -70,7 +70,7 @@ export default {
     },
     methods: {
         getBill () {
-            axiosJWT.get('http://localhost:3000/v1/api/checkout/getBill', {
+            axiosJWT.get('http://localhost:3000/v1/api/checkout/bill', {
                 params: {
                     cartId: this.formatUrl
                 }

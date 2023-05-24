@@ -73,7 +73,7 @@ export default {
                 formData.append('description', this.desc);
                 formData.append('price', this.price);
     
-                const response = await axiosJWT.post('http://localhost:3000/v1/api/food/newFood', formData)
+                const response = await axiosJWT.post('http://localhost:3000/v1/api/food/food', formData)
 
                 if (response.data.code === 'food/newFood.success') {
                     this.isLoading = false;

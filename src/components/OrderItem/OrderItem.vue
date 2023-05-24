@@ -2,30 +2,30 @@
     <div :class="$style.wrapper">
         <section :class="$style.group">
             <div>
-                <img src="https://plus.unsplash.com/premium_photo-1684746338578-4a8f89c62a91?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHx8&auto=format&fit=crop&w=500&q=60" alt="">
+                <img :src="image" alt="">
                 <article>
-                    <small>3 Items</small>
-                    <h3>Tomato Pizza Tomato Pizza</h3>
+                    <small>{{ quantity }} Items</small>
+                    <h3>{{ foodName }}</h3>
                 </article>
             </div>
-            <h3>$17.10</h3>
+            <h3>${{ price }}</h3>
         </section>
         <section :class="$style.group">
             <article>
                 <span>Shop</span>
                 <p>
-                    <h3>Shop Van Huy</h3>
-                    <fa icon="circle-check"/>
+                    <h3>{{ shopName }}</h3>
+                    <fa v-if="isTick" icon="circle-check"/>
                 </p>
             </article>
             <article>
                 <span>Now</span>
-                <h3>Food on the way</h3>
+                <h3>{{ status }}</h3>
             </article>
         </section>
         <section :class="$style.group">
-            <Button name="Cancel"/>
-            <Button name="Detail order" primary/>
+            <Button :isDisabled="isDisabled" @click="handleCancelClick" name="Cancel"/>
+            <Button @click="handleDetailClick" name="Detail order" primary/>
         </section>
     </div>
 </template>
@@ -35,7 +35,50 @@ import Button from '../Button/Button.vue';
 
 export default {
     name: "OrderItem",
-    components: { Button }
+    components: { Button },
+    props: {
+        id: Number,
+        quantity: {
+            type: Number,
+            default: ''
+        },
+        price: {
+            type: Number,
+            default: ''
+        },
+        shopName: {
+            type: String,
+            default: ''
+        },
+        status: {
+            type: String,
+            default: ''
+        },
+        foodName: {
+            type: String,
+            default: ''
+        },
+        image: {
+            type: String,
+            default: ''
+        },
+        isTick: {
+            type: Boolean,
+            default: false
+        },
+        isDisabled: {
+            type: Boolean,
+            default: false
+        }
+    },
+    methods: {
+        handleCancelClick () {
+            this.$emit('click-cancel', this.id);
+        },
+        handleDetailClick () {
+            this.$emit('click-detail', this.id);
+        },
+    },
 }
 </script>
 

@@ -36,7 +36,7 @@
             },
             async handleClickLikeShop(id, isLike) {
                 try {
-                    await axiosJWT.patch(`http://localhost:3000/v1/api/shop/changeLike/${id}`, {
+                    await axiosJWT.patch(`http://localhost:3000/v1/api/shop/like/${id}`, {
                         statusLike: isLike
                     })
                     this.getShop(foodTypes[this.id - 1].name);
@@ -46,7 +46,7 @@
             },
             async handleClickLikeFood (id, isLike) {
                 try {
-                    await axiosJWT.patch(`http://localhost:3000/v1/api/food/changeLike/${id}`, {
+                    await axiosJWT.patch(`http://localhost:3000/v1/api/food/like/${id}`, {
                         statusLike: isLike
                     })                   
                     this.getFood(foodTypes[this.id - 1].name);
@@ -69,7 +69,9 @@
                 } else {
                     const fetchApi = async () => {
                         const response = await homeService.search({
-                            foodName: value.trim()
+                            params: {
+                                foodName: value.trim()
+                            }
                         });
 
                         if (response.code === 'home/search.success') {
@@ -93,7 +95,7 @@
                 // this.isFocus = false;
             },
             getUser () {
-                axiosJWT.get('http://localhost:3000/v1/api/home/getUser')
+                axiosJWT.get('http://localhost:3000/v1/api/home/user')
                 .then(res => {
                     if (res.data.data.currentUser.avatar === null) {
                         res.data.data.currentUser.avatar = this.defaultAvatar;
@@ -103,7 +105,7 @@
                 .catch(err => console.log(err))
             },
             getShop (name) {
-                axiosJWT.get('http://localhost:3000/v1/api/home/getShop', {
+                axiosJWT.get('http://localhost:3000/v1/api/home/shop', {
                     params: {
                         foodType: name
                     }
@@ -116,7 +118,7 @@
                 })
             },
             getFood (name) {
-                axiosJWT.get('http://localhost:3000/v1/api/home/getFood', {
+                axiosJWT.get('http://localhost:3000/v1/api/home/food', {
                     params: {
                         foodType: name
                     }

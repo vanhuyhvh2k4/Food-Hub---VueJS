@@ -28,7 +28,7 @@ export default {
         },
 
         getFood() {
-            axiosJWT.get('http://localhost:3000/v1/api/shop/getFood', {
+            axiosJWT.get('http://localhost:3000/v1/api/shop/food', {
                     params: {
                         shopName: this.formatPath
                     }

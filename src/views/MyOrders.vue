@@ -2,20 +2,19 @@
     <main :class="$style.wrapper">
         <DoubleButton :titles="['Upcomming', 'History']"/>
         <ul :class="$style.list">
-            <li>
-                <OrderItem/>
+            <li v-for="item in listOrder" :key="item.id">
+                <OrderItem @click-cancel="handleClickCancel" :isDisabled="item.status !== 'waiting confirm'" :id="item.id" :image="item.image" :quantity="item ? parseInt(item.quantity) : ''" :price="item ? parseFloat(item.price) : ''" :shopName="item.shopName" :foodName="item.name" :status="item.status" :isTick="item.isTick === 0 ? false : true"/>
             </li>
         </ul>
     </main>
 </template>
 
 <script>
-import DoubleButton from '@/components/DoubleButton/DoubleButton.vue';
-import OrderItem from '@/components/OrderItem/OrderItem.vue';
+import myOrderComposable from '@/composables/myOrder.js';
 
 export default {
     name: "MyOrders",
-    components: { OrderItem, DoubleButton }
+    mixins: [myOrderComposable],
 }
 </script>
 
