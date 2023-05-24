@@ -17,30 +17,26 @@
                     :shipping="item.shipFee === 0 ? 'Free delivery' : '$' + item.shipFee" :time="item.timeShipping" />
             </li>
         </div>
-        <div v-if="click === 'left' && !foods.length" :class="$style.not_found">
-            <img :src="food" alt="">
-            <h3>You do not like any food</h3>
-            <small>Let buy something ^-^</small>
-        </div>
 
-        <div v-if="click === 'right' && !shops.length" :class="$style.not_found">
-            <img :src="restaurant" alt="">
-            <h3>You do not like any shops</h3>
-            <small>Let discover a shop ^-^</small>
-        </div>
+        <NotFound v-if="click === 'left' && !foods.length" :image="food" title="You do not like any food"
+            small="Let buy something ^-^" />
+        <NotFound v-if="click === 'right' && !shops.length" :image="restaurant" title="You do not like any shops"
+            small="Let discover a shop ^-^" />
     </main>
 </template>
 
 <script>
     import DoubleButton from '@/components/DoubleButton/DoubleButton.vue';
     import FoodItem from '@/components/FoodItem/FoodItem.vue';
+    import NotFound from '@/components/NotFound/NotFound.vue';
     import favorite from '@/composables/favorite.js';
 
     export default {
         name: "Favorite",
         components: {
             DoubleButton,
-            FoodItem
+            FoodItem,
+            NotFound
         },
         mixins: [favorite]
     }

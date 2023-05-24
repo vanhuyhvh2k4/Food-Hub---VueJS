@@ -7,7 +7,6 @@ export default {
         return {
             listCart: [],
             numberOfCart: null,
-            cartEmpty: false,
             cart
         }
     },
@@ -20,7 +19,7 @@ export default {
                     }
                 })
                 .catch(err => {
-                    this.cartEmpty = true;
+                    this.listCart = [];
                     console.log(err)
                 })
         },

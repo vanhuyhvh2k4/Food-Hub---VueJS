@@ -1,5 +1,6 @@
 
 import axiosJWT from '@/utils/refreshToken';
+import error404 from '@/assets/images/error-404.png'
 
 export default {
     data() {
@@ -10,7 +11,7 @@ export default {
             listFood: [],
             isLoading: false,
             length: null,
-            noResult: false,
+            error404
         }
     },
     methods: {
@@ -28,7 +29,6 @@ export default {
                 })
                 .catch(err => {
                     this.isLoading = false;
-                    this.noResult = true;
                     console.log(err)
                 })
         },

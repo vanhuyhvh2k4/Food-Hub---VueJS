@@ -38,7 +38,10 @@
             toggleMenuButton () {
                 if (this.$route.meta.backHome) {
                     this.statusOfMenu = false;
-                    this.$router.back();
+                    this.$router.push({
+                        name: 'home',
+                        params: {}
+                    });
                 } else {
                     this.statusOfMenu = !this.statusOfMenu;
                 }

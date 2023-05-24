@@ -73,7 +73,7 @@ export default {
     },
     methods: {
         handleCancelClick () {
-            this.$emit('click-cancel', this.id);
+            this.$emit('click-cancel', this.id, this.status);
         },
         handleDetailClick () {
             this.$emit('click-detail', this.id);

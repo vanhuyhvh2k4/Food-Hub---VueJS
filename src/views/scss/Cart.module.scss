@@ -22,27 +22,3 @@ header {
 li + li {
     margin-top: 12px;
 }
-
-.cart_empty {
-    text-align: center;
-    height: 60vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-
-    & > img {
-        width: 100px;
-        height: 100px;
-    }
-
-    & > h2 {
-        color: var(--primary-color);
-        font-weight: 400;
-    }
-
-     & > small {
-        color: var(--text-muted);
-     }
-}
