@@ -14,7 +14,7 @@
                 <FoodItem @click-like="handleClickLikeShop" @click-item="handleClickShop"
                     :class="[$style.food_item, $style.restaurant_item]" :id="item.id" :title="item.name"
                     :image="item.image" :isTick="item.isTick === 1 ? true : false" isLike
-                    :shipping="item.shipFee === 0 ? 'Free delivery' : '$' + item.shipFee" :time="item.timeShipping" />
+                    :shipping="item.shipFee === 0 ? 'Free delivery' : '$' + item.shipFee"/>
             </li>
         </div>
 

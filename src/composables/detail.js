@@ -17,7 +17,8 @@ export default {
             addCart: {
                 type: Boolean,
                 default: false
-            }
+            },
+            originPath
         }
     },
     methods: {
@@ -72,6 +73,9 @@ export default {
                 console.log(error);
             }
 
+        },
+        handleClickReview (foodId) {
+            this.$router.push(`${this.originPath}/review?foodid=${foodId}`)
         }
     },
     mounted() {

@@ -32,8 +32,8 @@
             <article v-if="shortFood && !noPlace" :class="$style.place">
                 <span>{{ place }}</span>
                 <div>
-                    <SVGIcon icon="clock" width="1.2rem" height="1.4rem"/>
-                    <h3>{{ time }}</h3>
+                    <h3>{{ time >= 1000  ? parseFloat(time/1000).toFixed(1) + 'k' : parseInt(time) }}</h3>
+                    <h3>Sold</h3>
                 </div>
             </article>
         </section>
@@ -93,8 +93,8 @@
                 default: 'Da Nang'
             },
             time: {
-                type: String,
-                default: "15 mins"
+                type: Number,
+                default: 0
             },
             tags: {
                 type: Array,

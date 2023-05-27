@@ -6,7 +6,9 @@ export default {
     data() {
         return {
             listOrder: [],
+            listHistory: [],
             nowOrder,
+            click: 'left'
         }
     },
     methods: {
@@ -20,6 +22,24 @@ export default {
                 console.log(err);
             })
         },
+        getListHistory () {
+            axiosJWT.get('http://localhost:3000/v1/api/checkout/order/history')
+            .then(response => {
+                this.listHistory = response.data.data.list;
+            })
+            .catch(err => {
+                this.listHistory = [];
+                console.log(err);
+            })
+        },
+        handleClickDetail (orderId) {
+            this.$router.push({
+                name: 'orderDetail',
+                params: {
+                    orderId
+                }
+            })
+        },
         handleClickCancel (orderId, status) {
             if (status === 'waiting confirm') {
                 axiosJWT.delete(`http://localhost:3000/v1/api/checkout/order/${orderId}`)
@@ -30,6 +50,13 @@ export default {
                 })
                 .catch(err => console.log(err))
             }
+        },
+        handleClickLeft () {
+            this.click = 'left';
+        },
+        handleClickRight () {
+            this.click = 'right';
+            this.getListHistory();
         }
     },
     mounted() {

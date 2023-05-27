@@ -1,0 +1,108 @@
+.wrapper {
+    margin-top: var(--content-margin-top);
+}
+
+.list {
+
+    & > li {
+        margin-bottom: 24px;
+    }
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    & > header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        & > section:first-child {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            & > div {
+                position: relative;
+                width: 48px;
+                height: 48px;
+                border-radius: 50%;
+                
+                & > img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    overflow: hidden;
+                    border-radius: 50%;
+                }
+
+                &::after {
+                    content: attr(data-rating);
+                    position: absolute;
+                    bottom: 0;
+                    right: 0;
+                    width: 18px;
+                    height: 18px;
+                    background-color: var(--secondary-color);
+                    color: var(--light-color);
+                    display: flex;
+                    align-items: center;
+                    justify-self: center;
+                    border-radius: 8px;
+                    font-size: 1.3rem;
+                    padding: 2px;
+                }
+            }
+
+            & > article {
+                text-align: start;
+
+                & > div {
+
+                    display: flex;
+                    gap: 6px;
+
+                    & h3 {
+                        font-size: 1.6rem;
+                        font-weight: 400;
+                        text-transform: capitalize;
+                    }
+
+                    & > article {
+                        display: flex;
+                        align-items: center;
+                        gap: 6px;
+
+                        & > h3 {
+                            color: var(--primary-color);
+                        }
+
+                        & > svg {
+                            font-size: 1.4rem;
+                            color: #029094;
+                        }
+                    }
+                }
+
+                & > h4 {
+                    font-size: 1.4rem;
+                    line-height: 1.4rem;
+                    color: var(--text-muted);
+                    font-weight: 400;
+                }
+            }
+        }
+
+        & > section:last-child {
+            color: var(--text-muted);
+        }
+    }
+
+    & > p {
+        text-align: start;
+        font-weight: 400;
+        color: #7F7D92;
+    }
+}

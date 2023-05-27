@@ -14,7 +14,7 @@
             <div>
                 <span>30 + Sold</span>
             </div>
-            <div>
+            <div @click="handleClickReview(food.id)">
                 <span>See review</span>
             </div>
         </section>

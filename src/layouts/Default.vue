@@ -6,7 +6,7 @@
         </div>
         <Header :headerTransparent="$route.meta.onlyBtn || $route.meta.headerTransparent" :onlyBtn="$route && $route.meta.onlyBtn" :buttonAndTitle="$route && $route.meta.buttonAndTitle" :buttonAndCart="$route && $route.meta.buttonAndCart" :class="[$style.header, $route.meta.noFixed ? $style.no_fixed : '']" @click-menu-button="toggleMenuButton" @click-image="handleClickImage" @click-cart="handleClickCart" :avatar="currentUser ? currentUser.avatar : ''" :title="$route.meta.titleOfHeader ? $route.meta.titleOfHeader : ''" :numberOfCart="numberOfCart ? numberOfCart : 0"/>
         <slot></slot>
-        <Navigation v-if="$route && !$route.meta.noNavigation" :class="$style.navigation"/>
+        <Navigation v-if="$route && !$route.meta.noNavigation" :class="$style.navigation" :number-of-cart="numberOfCart ? numberOfCart : 0"/>
     </div>
 </template>
 
@@ -38,10 +38,7 @@
             toggleMenuButton () {
                 if (this.$route.meta.backHome) {
                     this.statusOfMenu = false;
-                    this.$router.push({
-                        name: 'home',
-                        params: {}
-                    });
+                    this.$router.back();
                 } else {
                     this.statusOfMenu = !this.statusOfMenu;
                 }

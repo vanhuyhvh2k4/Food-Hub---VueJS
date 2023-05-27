@@ -59,7 +59,7 @@
                     <FoodItem @click-like="handleClickLikeFood" @click-item="handleClickFoodItem" short-food
                         :id="item.id" :shopName="item.shopName" :title="item.name" :image="item.image"
                         :desc="item.description" :numOfRatings="item.price" :place="item.place"
-                        :isLike="item.liked === 0 ? false : true" />
+                        :isLike="item.liked === 0 ? false : true" :time="item.numOrders >= 1000 ? parseFloat(item.numOrders / 1000).toFixed(1) + 'k' : item.numOrders" />
                 </li>
             </ul>
         </section>

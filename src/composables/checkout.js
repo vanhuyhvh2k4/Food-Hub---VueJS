@@ -1,4 +1,5 @@
 
+import store from '@/Vuex/store';
 import axiosJWT from '@/utils/refreshToken';
 
 export default {
@@ -34,6 +35,7 @@ export default {
                 .then(response => {
                     if (response.data.data.code === 'checkout/order.success') {
                         this.isLoading = false;
+                        this.getNumberOfCart();
                         this.$router.push({
                             name: 'myOrders',
                             params: {}
@@ -41,6 +43,18 @@ export default {
                     }
                 })
                 .catch(err => console.log(err))
+        },
+        async getNumberOfCart () {
+            try {
+                const response = await axiosJWT.get('http://localhost:3000/v1/api/checkout/number');
+
+                if (response.data.data.code === 'checkout/getNumber.success') {
+                    store.commit('setNumberOfCart', response.data.data.num);
+                }
+            } catch (error) {
+                console.log(error);
+            }
+
         }
     },
     mounted() {

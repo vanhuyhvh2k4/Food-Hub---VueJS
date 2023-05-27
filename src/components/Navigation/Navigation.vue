@@ -9,7 +9,7 @@
             <fa icon="location-dot" />
         </section>
        <router-link :to="routesConfig.cart">
-            <section :class="$route.path === routesConfig.cart ? $style.active : ''">
+            <section :data-cart-number="numberOfCart" :class="[$style.cart, $route.path === routesConfig.cart ? $style.active : '']">
                 <fa icon="bag-shopping" />
             </section>
        </router-link>
@@ -30,11 +30,20 @@
     import routesConfig from '@/config/routes';
     export default {
         name: 'Navigation',
+        props: {
+            numberOfCart: {
+                type: Number,
+                default: ''
+            }
+        },
         components: {},
         data() {
             return {
                 routesConfig
             }
+        },
+        computed: {
+            
         },
     }
 </script>

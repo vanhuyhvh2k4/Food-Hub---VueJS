@@ -11,7 +11,7 @@ export default {
             listFood: [],
             isLoading: false,
             length: null,
-            error404
+            error404,
         }
     },
     methods: {
@@ -50,7 +50,7 @@ export default {
             this.urlFormat = value.replaceAll(' ', '-').trim();
 
             this.getFood(this.urlFormat);
-        }
+        },
     },
     mounted() {
         this.getFood(this.urlFormat);

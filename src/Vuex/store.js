@@ -31,15 +31,22 @@ const store = createStore({
   plugins: [
     (store) => {
       // Load state from local storage on app start
-      const currentUser = localStorage.getItem('currentUser')
+      const currentUser = localStorage.getItem('currentUser');
+      const numberOfCart = localStorage.getItem('numberOfCart');
       if (currentUser) {
         store.commit('setCurrentUser', JSON.parse(currentUser))
+      }
+      if (numberOfCart) {
+        store.commit('setNumberOfCart', JSON.parse(numberOfCart))
       }
 
       // Save state to local storage on state change
       store.subscribe((mutation, state) => {
         if (mutation.type === 'setCurrentUser') {
           localStorage.setItem('currentUser', JSON.stringify(state.currentUser))
+        }
+        if (mutation.type === 'setNumberOfCart') {
+          localStorage.setItem('numberOfCart', JSON.stringify(state.numberOfCart))
         }
       })
     }

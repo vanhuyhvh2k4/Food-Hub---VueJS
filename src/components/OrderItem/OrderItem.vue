@@ -4,7 +4,7 @@
             <div>
                 <img :src="image" alt="">
                 <article>
-                    <small>{{ quantity }} Items</small>
+                    <small> <span v-if="time">{{ time }} | </span>{{ quantity }} Items</small>
                     <h3>{{ foodName }}</h3>
                 </article>
             </div>
@@ -24,7 +24,8 @@
             </article>
         </section>
         <section :class="$style.group">
-            <Button :isDisabled="isDisabled" @click="handleCancelClick" name="Cancel"/>
+            <Button v-if="!time" :isDisabled="isDisabled" @click="handleCancelClick" name="Cancel"/>
+            <Button v-if="time && status === 'finished'" @click="handleCancelClick" name="Rating"/>
             <Button @click="handleDetailClick" name="Detail order" primary/>
         </section>
     </div>
@@ -69,7 +70,11 @@ export default {
         isDisabled: {
             type: Boolean,
             default: false
-        }
+        },
+        time: {
+            type: String,
+            default: ''
+        },
     },
     methods: {
         handleCancelClick () {

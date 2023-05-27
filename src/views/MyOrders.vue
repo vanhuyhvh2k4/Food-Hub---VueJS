@@ -1,15 +1,23 @@
 <template>
     <main :class="$style.wrapper">
-        <DoubleButton :titles="['Upcomming', 'History']" />
-        <ul :class="$style.list" v-if="listOrder.length">
+        <DoubleButton @click-left="handleClickLeft" @click-right="handleClickRight" :titles="['Upcomming', 'History']" />
+        <ul :class="$style.list" v-if="click === 'left' && listOrder.length">
             <li v-for="item in listOrder" :key="item.id">
-                <OrderItem @click-cancel="handleClickCancel" :isDisabled="item.status !== 'waiting confirm'"
+                <OrderItem @click-detail="handleClickDetail" @click-cancel="handleClickCancel" :isDisabled="item.status !== 'waiting confirm'"
                     :id="item.id" :image="item.image" :quantity="item ? parseInt(item.quantity) : ''"
                     :price="item ? parseFloat(item.price) : ''" :shopName="item.shopName" :foodName="item.name"
                     :status="item.status" :isTick="item.isTick === 0 ? false : true" />
             </li>
         </ul>
-        <NotFound v-if="!listOrder.length" :image="nowOrder" title="You do not buy any food" small="Let buy something"/>
+        <ul :class="$style.list" v-if="click === 'right' && listHistory.length">
+            <li v-for="item in listHistory" :key="item.id">
+                <OrderItem @click-cancel="handleClickCancel" :isDisabled="item.status !== 'waiting confirm'" :time="item.time"
+                    :id="item.id" :image="item.image" :quantity="item ? parseInt(item.quantity) : ''"
+                    :price="item ? parseFloat(item.price) : ''" :shopName="item.shopName" :foodName="item.name"
+                    :status="item.status" :isTick="item.isTick === 0 ? false : true" />
+            </li>
+        </ul>
+        <NotFound v-if="(!listOrder.length && click === 'left') || (!listHistory.length && click === 'right')" :image="nowOrder" title="You do not buy any food" small="Let buy something"/>
     </main>
 </template>
 

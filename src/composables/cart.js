@@ -1,6 +1,7 @@
 
 import axiosJWT from '@/utils/refreshToken';
 import cart from '@/assets/images/cart.png';
+import store from '@/Vuex/store';
 
 export default {
     data() {
@@ -42,6 +43,7 @@ export default {
             axiosJWT.get('http://localhost:3000/v1/api/checkout/number')
                 .then(response => {
                     this.numberOfCart = response.data.data.num;
+                    store.commit('setNumberOfCart', response.data.data.num);
                 })
                 .catch(err => console.log(err))
         }

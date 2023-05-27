@@ -1,13 +1,24 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Cookies from 'js-cookie';
 import routesConfig from '@/config/routes.js';
+import axiosJWT from '@/utils/refreshToken';
 
 const requiredAuth = (to, from ,next) => {
   const accessToken = Cookies.get("accessToken");
   if (!accessToken) {
     next({ name: 'auth', params: {}})
   } else {
-    next();
+    axiosJWT.post('http://localhost:3000/v1/api/auth')
+    .then(res => {
+      if (res.data.data.code === 'auth/verifyToken.success') {
+        next();
+      } else {
+        next({ name: 'auth', params: {}});
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    })
   }
 }
 
@@ -60,6 +71,19 @@ const routes = [
       noFixed: true,
       backHome: true,
       titleOfHeader: 'My Orders'
+    }
+  },
+  {
+    path: routesConfig.orderDetail,
+    name: 'orderDetail',
+    component: () => import(/* webpackChunkName: "orderDetail" */ '../views/OrderDetail.vue'),
+    beforeEnter: requiredAuth,
+    meta: {
+      noNavigation: true,
+      buttonAndTitle: true,
+      backHome: true,
+      noFixed: true,
+      titleOfHeader: 'Order Detail'
     }
   },
   {
@@ -130,6 +154,19 @@ const routes = [
       backHome: true,
       noFixed: true,
       headerTransparent: true
+    }
+  },
+  {
+    path: routesConfig.review,
+    name: 'review',
+    component: () => import(/* webpackChunkName: "review" */ '../views/Review.vue'),
+    beforeEnter: requiredAuth,
+    meta: {
+      noNavigation: true,
+      buttonAndTitle: true,
+      backHome: true,
+      noFixed: true,
+      titleOfHeader: 'Reviews'
     }
   },
   {
