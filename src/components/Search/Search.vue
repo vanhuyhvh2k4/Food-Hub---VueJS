@@ -61,7 +61,7 @@ export default {
         display: flex;
         align-items: center;
         height: 51px;
-        border: 1px solid #EFEFEF;
+        border: 1px solid #ddd;
         border-radius: 10px;
         padding-left: 18px;
         background-color: #FCFCFD;

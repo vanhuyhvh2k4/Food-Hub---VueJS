@@ -1,6 +1,7 @@
 
 import axiosJWT from '@/utils/refreshToken';
 import nowOrder from '@/assets/images/order-now.png';
+import store from '@/Vuex/store.js';
 
 export default {
     data() {
@@ -8,12 +9,16 @@ export default {
             listOrder: [],
             listHistory: [],
             nowOrder,
-            click: 'left'
+            click: 'left',
         }
     },
     methods: {
-        getListOrder () {
-            axiosJWT.get('http://localhost:3000/v1/api/checkout/order')
+        getListOrder (option) {
+            axiosJWT.get('http://localhost:3000/v1/api/checkout/order', {
+                params: {
+                    option: option
+                }
+            })
             .then((response) => {
                 this.listOrder = response.data.data.list;
             })
@@ -22,8 +27,12 @@ export default {
                 console.log(err);
             })
         },
-        getListHistory () {
-            axiosJWT.get('http://localhost:3000/v1/api/checkout/order/history')
+        getListHistory (option) {
+            axiosJWT.get('http://localhost:3000/v1/api/checkout/order/history', {
+                params: {
+                    option: option
+                }
+            })
             .then(response => {
                 this.listHistory = response.data.data.list;
             })
@@ -51,12 +60,56 @@ export default {
                 .catch(err => console.log(err))
             }
         },
+        handleClickReOrder (shopName, foodName) {
+            this.$router.push(`/@${shopName.replaceAll(" ", "-")}/${foodName.replaceAll(" ", "-")}`)
+        },
+        handleClickRating (orderId, status) {
+            if (status === 'finished') {
+                store.commit('setOrderId', orderId);
+                this.$router.push({name: 'rating', params: {}})
+            }
+        },
         handleClickLeft () {
             this.click = 'left';
+            this.getListOrder();
+            this.$refs.group_button.resetCurrent();
         },
         handleClickRight () {
+            this.$refs.group_button.resetCurrent();
             this.click = 'right';
             this.getListHistory();
+        },
+        handleClickFilter (currentIndex) {
+            if (this.click === 'right') {
+
+                switch (currentIndex) {
+                    case 1:
+                        this.getListHistory();        
+                        break;
+                    case 2:
+                        this.getListHistory("finished");
+                        break;
+                    case 3:
+                        this.getListHistory("canceled");        
+                        break;
+                }
+            } else {
+
+                switch (currentIndex) {
+                    case 1:
+                        this.getListOrder();        
+                        break;
+                    case 2:
+                        this.getListOrder("waiting confirmation");        
+                        break;
+                    case 3:
+                        this.getListOrder("preparing");         
+                        break;
+                    case 4:
+                        this.getListOrder("on the way");         
+                        break;
+                }
+            }
         }
     },
     mounted() {

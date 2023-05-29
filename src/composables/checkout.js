@@ -22,7 +22,11 @@ export default {
                 .then(response => {
                     this.billInfo = response.data.data.bill;
                 })
-                .catch(error => console.log(error))
+                .catch(error => {
+                    this.$router.push({name: 'cart', params: {}})
+                    this.billInfo = null;
+                    console.log(error)
+                })
         },
         handleClickCheckout() {
             this.isLoading = true;

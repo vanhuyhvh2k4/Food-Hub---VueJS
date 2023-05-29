@@ -19,6 +19,7 @@ const routesConfig = {
     myOrders: '/my-orders',
     orderDetail: '/my-orders/detail/:orderId',
     review: '/:shopName/:foodName/review',
+    rating: '/my-orders/rating'
 }
 
 export default routesConfig;

@@ -19,13 +19,13 @@
                 </p>
             </article>
             <article>
-                <span>Now</span>
-                <h3>{{ status }}</h3>
+                <span>Status</span>
+                <h3 :class="[status === 'waiting confirm' && $style.confirm, status === 'preparing' && $style.preparing, status === 'on the way' && $style.onway, status === 'canceled' && $style.cancel, status === 'finished' && $style.finished]">{{ status }}</h3>
             </article>
         </section>
         <section :class="$style.group">
             <Button v-if="!time" :isDisabled="isDisabled" @click="handleCancelClick" name="Cancel"/>
-            <Button v-if="time && status === 'finished'" @click="handleCancelClick" name="Rating"/>
+            <Button :outline="isRated" v-if="time && status === 'finished'" @click="!isRated ? handleRatingClick() : handleReOrderClick()" :name="isRated ? 'Re-Order' : 'Rating'"/>
             <Button @click="handleDetailClick" name="Detail order" primary/>
         </section>
     </div>
@@ -39,6 +39,7 @@ export default {
     components: { Button },
     props: {
         id: Number,
+        isRated: Boolean,
         quantity: {
             type: Number,
             default: ''
@@ -80,9 +81,15 @@ export default {
         handleCancelClick () {
             this.$emit('click-cancel', this.id, this.status);
         },
-        handleDetailClick () {
-            this.$emit('click-detail', this.id);
+        handleDetailClick (status) {
+            this.$emit('click-detail', this.id, status);
         },
+        handleRatingClick () {
+            this.$emit('click-rating', this.id, this.status);
+        },
+        handleReOrderClick () {
+            this.$emit('click-reorder', this.shopName, this.foodName);
+        }
     },
 }
 </script>

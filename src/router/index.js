@@ -157,6 +157,19 @@ const routes = [
     }
   },
   {
+    path: routesConfig.rating,
+    name: 'rating',
+    component: () => import(/* webpackChunkName: "rating" */ '../views/Rating.vue'),
+    beforeEnter: requiredAuth,
+    meta: {
+      noNavigation: true,
+      buttonAndTitle: true,
+      backHome: true,
+      noFixed: true,
+      titleOfHeader: 'Rating Food'
+    }
+  },
+  {
     path: routesConfig.review,
     name: 'review',
     component: () => import(/* webpackChunkName: "review" */ '../views/Review.vue'),

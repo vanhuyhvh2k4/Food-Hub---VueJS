@@ -4,30 +4,24 @@ const store = createStore({
   state: {
     currentUser: null,
     numberOfCart: null,
+    orderId: null,
   },
   mutations: {
     setCurrentUser(state, currentUser) {
-      state.currentUser = currentUser
+      state.currentUser = currentUser;
     },
     setNumberOfCart(state, numberOfCart) {
-      state.numberOfCart = numberOfCart
+      state.numberOfCart = numberOfCart;
+    },
+    setOrderId(state, orderId) {
+      state.orderId = orderId;
     }
   },
-//   actions: {
-//     async getUser({ commit }, accessToken) {
-//       try {
-//         const response = await axiosJWT.get('http://localhost:3000/v1/api/home/getUser', {
-//           headers: {
-//             token: `Bearer ${accessToken}`
-//           }
-//         })
-//         const currentUser = response.data.data.currentUser
-//         commit('setCurrentUser', currentUser)
-//       } catch (error) {
-//         console.log(error)
-//       }
-//     }
-//   },
+  getters: {
+    getOrderId(state) {
+      return state.orderId;
+    }
+  },
   plugins: [
     (store) => {
       // Load state from local storage on app start

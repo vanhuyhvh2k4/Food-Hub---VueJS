@@ -1,0 +1,31 @@
+.wrapper {
+    
+    &  > ul {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        flex-wrap: wrap;
+        gap: 12px;
+        width: 100%;
+        
+        & > li {
+            height: 100%;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            padding: 4px 12px;
+            border-radius: 4px;
+            display: grid;
+            place-items: center;
+    
+            & > h4 {
+                font-weight: 400;
+    
+            }
+    
+            &.active {
+                background-color: var(--primary-color);
+                color: var(--light-color);
+            }
+        }
+    }       
+}
