@@ -31,9 +31,17 @@
         </div>
         <div :class="$style.food_list">
             <li v-for="item in foodList" :key="item.id">
-                <FoodItem @click-item="handleClickFoodItem" :class="$style.food_item" :title="item.name"
-                    :desc="item.description" :num-of-ratings="item.price" :is-like="item.liked === 0 ? false : true"
-                    :image="item.image" shortFood noPlace />
+                <FoodItem 
+                    @click-item="handleClickFoodItem" 
+                    shortFood 
+                    noPlace 
+                    :class="$style.food_item" 
+                    :title="item.name"
+                    :desc="item.description" 
+                    :num-of-ratings="item.price" 
+                    :is-like="item.liked === 0 ? false : true"
+                    :image="item.image" 
+                />
             </li>
         </div>
     </main>

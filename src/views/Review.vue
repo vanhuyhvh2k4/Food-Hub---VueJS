@@ -28,7 +28,12 @@
             </li>
         </ul>
         <Loader v-if="isLoading"/>
-        <NotFound v-if="!listReviews.length" :image="comment" title="Don't have anyone comment" small="Let the first person comment about this food"/>
+        <NotFound 
+            v-if="!listReviews.length" 
+            :image="comment" 
+            title="Don't have anyone comment" 
+            small="Let the first person comment about this food"
+        />
     </main>
 </template>
 

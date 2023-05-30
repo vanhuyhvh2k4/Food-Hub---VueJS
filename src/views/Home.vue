@@ -30,8 +30,13 @@
         <section :class="$style.food_types">
             <ul>
                 <li v-for="(item) in foodTypes" :key="item.id">
-                    <FoodType :id="item.id" :name="item.name" :imageUrl="item.imageUrl"
-                        :active="item.id === this.id ? true : false" @click-item="handleClickFoodType" />
+                    <FoodType 
+                        @click-item="handleClickFoodType" 
+                        :id="item.id" 
+                        :name="item.name" 
+                        :imageUrl="item.imageUrl"
+                        :active="item.id === this.id ? true : false" 
+                    />
                 </li>
             </ul>
         </section>
@@ -45,10 +50,19 @@
             </figure>
             <ul :class="$style.restaurants_list">
                 <li v-for="item in shops" :key="item.id">
-                    <FoodItem @click-item="handleClickItem" @click-like="handleClickLikeShop"
-                        :isLike="item.liked === 0 ? false : true" :id="item.id" :title="item.name" :image="item.image"
-                        :time="item.timeShipping" :shipping="item.shipFee === 0 ? 'Free delivery' : '$' + item.shipFee"
-                        :is-tick="item.isTick === 0 ? false : true" star="4.5" />
+                    <FoodItem 
+                        @click-item="handleClickItem" 
+                        @click-like="handleClickLikeShop"
+                        :isLike="item.liked === 0 ? false : true" 
+                        :id="item.id" 
+                        :title="item.name" 
+                        :image="item.image"
+                        :shipping="item.shipFee === 0 ? 'Free' : '$' + item.shipFee"
+                        :is-tick="item.isTick === 0 ? false : true" 
+                        :star="item.avgRating ? item.avgRating : '0.0'"
+                        :numRating="item.num_reviews"
+                        :place="item.place"
+                    />
                 </li>
             </ul>
         </section>
@@ -56,10 +70,20 @@
             <h2>Popular Foods</h2>
             <ul :class="$style.foods_list">
                 <li v-for="item in foods" :key="item.id">
-                    <FoodItem @click-like="handleClickLikeFood" @click-item="handleClickFoodItem" short-food
-                        :id="item.id" :shopName="item.shopName" :title="item.name" :image="item.image"
-                        :desc="item.description" :numOfRatings="item.price" :place="item.place"
-                        :isLike="item.liked === 0 ? false : true" :time="item.numOrders >= 1000 ? parseFloat(item.numOrders / 1000).toFixed(1) + 'k' : item.numOrders" />
+                    <FoodItem 
+                        @click-like="handleClickLikeFood" 
+                        @click-item="handleClickFoodItem" 
+                        short-food
+                        :id="item.id" 
+                        :shopName="item.shopName" 
+                        :title="item.name" 
+                        :image="item.image"
+                        :desc="item.description" 
+                        :numRating="item.price" 
+                        :place="item.place"
+                        :isLike="item.liked === 0 ? false : true" 
+                        :sold="item.numOrders" 
+                    />
                 </li>
             </ul>
         </section>

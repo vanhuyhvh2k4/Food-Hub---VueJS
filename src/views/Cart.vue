@@ -12,9 +12,17 @@
         </header>
         <div v-if="listCart.length">
             <li v-for="item in listCart" :key="item.id">
-                <CartItem @click-info="handleClickInfo" @click-close="handleClickClose"
-                    @click-checkout="handleClickCheckout" :id="item.id" :shopName="item.shopName" :image="item.image"
-                    :name="item.name" :quantity="item.quantity" :price="item.price" />
+                <CartItem 
+                    @click-info="handleClickInfo" 
+                    @click-close="handleClickClose"
+                    @click-checkout="handleClickCheckout" 
+                    :id="item.id" 
+                    :shopName="item.shopName" 
+                    :image="item.image"
+                    :name="item.name" 
+                    :quantity="item.quantity" 
+                    :price="item.price" 
+                />
             </li>
         </div>
         <NotFound v-if="!listCart.length" :image="cart" title="Not found any food" small="Let buy something"/>

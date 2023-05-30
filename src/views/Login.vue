@@ -2,10 +2,22 @@
   <main :class="$style.wrapper">
     <h1 :class="$style.title">Login</h1>
     <form :class="$style.form" @submit.prevent="submitForm">
-      <Input title="E-mail" type="email" isRequired placeholder="Your email" autocomplete="email"
-        @input-enter="handleEmail" />
-      <Input title="Password" type="password" isRequired placeholder="Your password" autocomplete="current-password"
-        @input-enter="handlePassword" />
+      <Input 
+        @input-enter="handleEmail" 
+        title="E-mail" 
+        type="email" 
+        isRequired 
+        placeholder="Your email" 
+        autocomplete="email"
+      />
+      <Input 
+        @input-enter="handlePassword" 
+        title="Password" 
+        type="password" 
+        isRequired 
+        placeholder="Your password" 
+        autocomplete="current-password"
+      />
       <router-link :class="$style.link" :to="routesConfig.forgot">Forgot password?</router-link>
       <Button type="submit" :class="$style.button" name="Sign In" />
     </form>

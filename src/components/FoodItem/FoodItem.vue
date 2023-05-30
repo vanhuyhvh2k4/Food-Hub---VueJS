@@ -2,7 +2,12 @@
     <div :class="[$style.wrapper, shortFood ? $style.wrapper_short_food : null]" @click="handleClick">
         <section :class="[$style.header, shortFood ? $style.header_short_food : null]">
             <img :src="image" alt="food">
-            <Star :rate="star" :number="numOfRatings" :class-name="$style.star" :price="!!shortFood"/>
+            <Star 
+                :rate="star" 
+                :number="numRating" 
+                :class-name="$style.star" 
+                :price="shortFood"
+            />
             <div :class="$style.like" @click="hanldeClickLike">
                 <fa icon="heart"/>
                 <span v-if="isLike" :key="isLike"></span>
@@ -16,11 +21,11 @@
             <div v-if="!shortFood" :class="$style.details">
                 <article>
                     <SVGIcon icon="driver" width="1.2rem" height="1.4rem"/>
-                    <h3>{{ shipping }}</h3>
+                    <h3>Ship Fee: {{ shipping }}</h3>
                 </article>
                 <article>
                     <SVGIcon icon="clock" width="1.2rem" height="1.4rem"/>
-                    <h3>{{ time }}</h3>
+                    <h3>{{ place }}</h3>
                 </article>
             </div>
             <div v-if="!shortFood" :class="$style.tags">
@@ -32,7 +37,7 @@
             <article v-if="shortFood && !noPlace" :class="$style.place">
                 <span>{{ place }}</span>
                 <div>
-                    <h3>{{ time >= 1000  ? parseFloat(time/1000).toFixed(1) + 'k' : parseInt(time) }}</h3>
+                    <h3>{{ sold >= 1000  ? parseFloat(sold/1000).toFixed(1) + 'k' : parseInt(sold) }}</h3>
                     <h3>Sold</h3>
                 </div>
             </article>
@@ -72,7 +77,7 @@
                 type: String,
                 default: '4.5'
             },
-            numOfRatings: {
+            numRating: {
                 type: Number,
                 default: 25
             },
@@ -86,13 +91,13 @@
             },
             shipping: {
                 type: String,
-                default: "Free delivery",
+                default: "Free",
             },
             place: {
                 type: String,
                 default: 'Da Nang'
             },
-            time: {
+            sold: {
                 type: Number,
                 default: 0
             },

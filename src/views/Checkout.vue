@@ -1,6 +1,13 @@
 <template>
     <main :class="$style.wrapper" v-if="billInfo !== null">
-        <CartItem :class="$style.cart" noButton :name="billInfo.name" :quantity="billInfo ? parseInt(billInfo.quantity) : ''" :price="billInfo ? parseFloat(billInfo.price) : ''" :image="billInfo.image"/>
+        <CartItem 
+            :class="$style.cart" 
+            noButton 
+            :name="billInfo.name" 
+            :quantity="billInfo ? parseInt(billInfo.quantity) : ''" 
+            :price="billInfo ? parseFloat(billInfo.price) : ''" 
+            :image="billInfo.image"
+        />
         <ul :class="$style.bill">
             <li>
                 <article>

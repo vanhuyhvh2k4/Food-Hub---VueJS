@@ -2,11 +2,10 @@ import axiosJWT from '@/utils/refreshToken';
 
 export default {
     data() {
-        const orderId = window.location.pathname.split('my-orders/detail/')[1];
         return {
             billInfo: {},
             isLoading: false,
-            orderId
+            orderId: this.$store.getters.getOrderId,
         }
     },
     methods: {
@@ -15,7 +14,10 @@ export default {
                 .then(response => {
                     this.billInfo = response.data.data.bill;
                 })
-                .catch(error => console.log(error))
+                .catch(error => {
+                    this.$router.push({name: "myOrders", params: {}})
+                    console.log(error)
+                })
         }
     },
     mounted() {

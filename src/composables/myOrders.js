@@ -42,11 +42,10 @@ export default {
             })
         },
         handleClickDetail (orderId) {
+            store.commit('setOrderId', orderId)
             this.$router.push({
                 name: 'orderDetail',
-                params: {
-                    orderId
-                }
+                params: {}
             })
         },
         handleClickCancel (orderId, status) {

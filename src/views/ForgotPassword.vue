@@ -2,8 +2,15 @@
     <main :class="$style.wrapper">
         <h1 v-if="!isSuccess">Forgot page</h1>
         <form v-if="!isSuccess" @submit.prevent="handleSubmitForm">
-            <Input @input-enter="handleInputEmail" title="Email" placeholder="Enter your email" isRequired type="email"
-                :text="isFailed ? `The email is invalid. Try again !` : ``" :isFailed="isFailed" />
+            <Input 
+                @input-enter="handleInputEmail" 
+                title="Email" 
+                placeholder="Enter your email" 
+                isRequired 
+                type="email"
+                :text="isFailed ? `The email is invalid. Try again !` : ``" 
+                :isFailed="isFailed" 
+            />
             <Button primary onlyTitle name="Send email" type="submit" :class="$style.button" />
         </form>
         <div :class="$style.message" v-if="isSuccess">

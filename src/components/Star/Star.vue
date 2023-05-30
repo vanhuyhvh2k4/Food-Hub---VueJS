@@ -24,7 +24,7 @@ export default {
         },
         rate: {
             type: String,
-            default: '5.0',
+            default: '4.5',
         },
         number: {
             type: Number,

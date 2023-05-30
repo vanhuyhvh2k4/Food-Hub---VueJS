@@ -20,7 +20,7 @@
                     await axiosJWT.patch(`http://localhost:3000/v1/api/shop/like/${id}`, {
                         statusLike: isLike
                     })
-                    this.getShop(foodTypes[this.id - 1].name);
+                    this.getShop();
                 } catch (error) {
                     console.log(error);
                 }
@@ -38,7 +38,7 @@
             handleClickFoodType (id, name) {
                 this.id = id;
 
-                this.getShop(name)
+                this.getShop()
 
                 this.getFood(name);
             },
@@ -85,12 +85,8 @@
                 })
                 .catch(err => console.log(err))
             },
-            getShop (name) {
-                axiosJWT.get('http://localhost:3000/v1/api/home/shop', {
-                    params: {
-                        foodType: name
-                    }
-                })
+            getShop () {
+                axiosJWT.get('http://localhost:3000/v1/api/home/shop')
                 .then(response => {
                     this.shops = response.data.data.shopList;
                 })
@@ -135,6 +131,6 @@
         mounted() {
             this.getUser();
             this.getFood(foodTypes[0].name);
-            this.getShop(foodTypes[0].name);
+            this.getShop();
         },
     }

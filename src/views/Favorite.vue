@@ -4,17 +4,36 @@
             @click-right="handleClickRight" />
         <div v-if="click === 'left' && foods.length" :key="click" :class="$style.food_list">
             <li v-for="item in foods" :key="item.id">
-                <FoodItem @click-like="handleClickLikeFood" @click-item="handleClickFood" :class="$style.food_item"
-                    :id="item.id" :shopName="item.shopName" :title="item.name" :desc="item.description"
-                    :numOfRatings="item.price" :image="item.image" isLike shortFood noPlace />
+                <FoodItem 
+                    @click-like="handleClickLikeFood" 
+                    @click-item="handleClickFood" 
+                    :class="$style.food_item"
+                    :id="item.id" 
+                    :shopName="item.shopName" 
+                    :title="item.name" 
+                    :desc="item.description"
+                    :numRating="item.price" 
+                    :image="item.image" isLike 
+                    shortFood 
+                    noPlace 
+                />
             </li>
         </div>
         <div v-if="click === 'right' && shops.length" :key="click" :class="$style.restaurant_list">
             <li v-for="item in shops" :key="item.id">
-                <FoodItem @click-like="handleClickLikeShop" @click-item="handleClickShop"
-                    :class="[$style.food_item, $style.restaurant_item]" :id="item.id" :title="item.name"
-                    :image="item.image" :isTick="item.isTick === 1 ? true : false" isLike
-                    :shipping="item.shipFee === 0 ? 'Free delivery' : '$' + item.shipFee"/>
+                <FoodItem 
+                    @click-like="handleClickLikeShop" 
+                    @click-item="handleClickShop"
+                    :class="[$style.food_item, $style.restaurant_item]" 
+                    :id="item.id" 
+                    :title="item.name"
+                    :image="item.image" 
+                    :isTick="item.isTick === 1 ? true : false" isLike
+                    :shipping="item.shipFee === 0 ? 'Free delivery' : '$' + item.shipFee"
+                    :star="item.avgRating ? item.avgRating : '0.0'"
+                    :numRating="item.num_reviews >= 1000 ? parseFloat(item.num_reviews / 1000).toFixed(1) + 'k' : item.num_reviews"
+                    :place="item.place"
+                />
             </li>
         </div>
 

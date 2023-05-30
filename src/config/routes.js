@@ -17,7 +17,7 @@ const routesConfig = {
     searchResult: '/search',
     checkout: '/checkout',
     myOrders: '/my-orders',
-    orderDetail: '/my-orders/detail/:orderId',
+    orderDetail: '/my-orders/detail',
     review: '/:shopName/:foodName/review',
     rating: '/my-orders/rating'
 }
