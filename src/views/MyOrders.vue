@@ -33,7 +33,8 @@
             <li v-for="item in listHistory" :key="item.id">
                 <OrderItem 
                     @click-rating="handleClickRating" 
-                    @click-reorder="handleClickReOrder" 
+                    @click-reorder="handleClickReOrder"
+                    @click-detail="handleClickDetail" 
                     :isRated="item.isRated === 1 ? true : false" 
                     :time="item.time"
                     :id="item.id" 

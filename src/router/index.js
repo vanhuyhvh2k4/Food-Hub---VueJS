@@ -236,6 +236,7 @@ const routes = [
     path: routesConfig.logout,
     name: 'logout',
     component: () => import(/* webpackChunkName: "logout" */ '../views/Logout.vue'),
+    beforeEnter: requiredAuth,
     meta: {
       layout: 'empty',
     },

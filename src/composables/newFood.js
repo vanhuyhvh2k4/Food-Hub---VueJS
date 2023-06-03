@@ -12,6 +12,7 @@ export default {
             desc: null,
             price: null,
             isLoading: false,
+            isShowPopup: null,
         }
     },
     methods: {
@@ -46,15 +47,18 @@ export default {
 
                 if (response.data.code === 'food/newFood.success') {
                     this.isLoading = false;
-                    this.$router.push({
-                        name: 'newFood',
-                        params: {}
-                    })
+                    this.isShowPopup = 'success';
                 }
             } catch (error) {
                 this.isLoading = false;
-                console.log(error);
+                this.isShowPopup = 'failed';
             }
+        },
+        handleCLickPopup () {
+            this.$router.push({
+                name: 'home',
+                params: {}
+            })
         }
     },
 }

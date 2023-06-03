@@ -99,7 +99,7 @@ export default {
                         this.getListOrder();        
                         break;
                     case 2:
-                        this.getListOrder("waiting confirmation");        
+                        this.getListOrder("waiting confirm");        
                         break;
                     case 3:
                         this.getListOrder("preparing");         

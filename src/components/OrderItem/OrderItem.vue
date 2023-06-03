@@ -24,8 +24,18 @@
             </article>
         </section>
         <section :class="$style.group">
-            <Button v-if="!time" :isDisabled="isDisabled" @click="handleCancelClick" name="Cancel"/>
-            <Button :outline="isRated" v-if="time && status === 'finished'" @click="!isRated ? handleRatingClick() : handleReOrderClick()" :name="isRated ? 'Re-Order' : 'Rating'"/>
+            <Button 
+                v-if="!time" 
+                :isDisabled="isDisabled" 
+                @click="handleCancelClick" 
+                name="Cancel"
+            />
+            <Button 
+                v-if="time && status === 'finished'" 
+                :outline="isRated" 
+                @click="!isRated ? handleRatingClick() : handleReOrderClick()" 
+                :name="isRated ? 'Re-Order' : 'Rating'"
+            />
             <Button @click="handleDetailClick" name="Detail order" primary/>
         </section>
     </div>

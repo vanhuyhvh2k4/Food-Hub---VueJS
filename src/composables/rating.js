@@ -5,16 +5,41 @@ store
 
 export default {
     data() {
+        let emoj = [
+            {
+                title: "Very Bad",
+                message: "Very bad, not worth to use or buy."
+            },
+            {
+                title: "Bad",
+                message: "Not good, there are points to improve."
+            },
+            {
+                title: "Medium",
+                message: "Average, not bad but not very good either."
+            },
+            {
+                title: "Good",
+                message: "Good, worth using or buying."
+            },
+            {
+                title: "Exellent",
+                message: "Exceeded expectations and worth to use or buy."
+            },
+        ];
         return {
             current: 1,
             orderId: store.getters.getOrderId,
             comment: null,
             isLoading: false,
+            emoj,
+            rating: emoj[0]
         }
     },
     methods: {
         handleClickStar (index) {
             this.current = index + 1;
+            this.rating = this.emoj[index];
         },
         handleSubmitForm () {
             this.isLoading = true;

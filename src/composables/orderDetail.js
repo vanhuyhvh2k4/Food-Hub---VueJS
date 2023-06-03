@@ -4,7 +4,6 @@ export default {
     data() {
         return {
             billInfo: {},
-            isLoading: false,
             orderId: this.$store.getters.getOrderId,
         }
     },
@@ -18,6 +17,14 @@ export default {
                     this.$router.push({name: "myOrders", params: {}})
                     console.log(error)
                 })
+        },
+        handleClickShop () {
+            this.$router.push({
+                name: "shop",
+                params: {
+                    shopName: `@${this.billInfo.shopName.replaceAll(" ", "-").trim()}`,
+                }
+            })
         }
     },
     mounted() {
