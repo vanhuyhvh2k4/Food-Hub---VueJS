@@ -8,6 +8,21 @@
     import store from '@/Vuex/store';
 
     export default {
+        data() {
+            return {
+                id: 1,
+                like: false,
+                foodTypes,
+                isFocus: false,
+                searchResults: [],
+                noResult: false,
+                accessToken: Cookies.get('accessToken'),
+                shops: [],
+                foods: [],
+                defaultAvatar: defaultAvatar,
+                numberOfCart: null,
+            }
+        },
         methods: { 
             handleClickItem (name) {
                 this.$router.push(`/@${name.replaceAll(' ', '-')}`)
@@ -112,25 +127,20 @@
             },
             handleInputEnter (value) {
                 this.$router.push(`/search?q=${value.trim().replaceAll(' ', '-')}`)
-            }
-        },
-        data() {
-            return {
-                id: 1,
-                like: false,
-                foodTypes,
-                isFocus: false,
-                searchResults: [],
-                noResult: false,
-                accessToken: Cookies.get('accessToken'),
-                shops: [],
-                foods: [],
-                defaultAvatar: defaultAvatar
+            },
+            getNumberOfCart() {
+                axiosJWT.get('http://localhost:3000/v1/api/checkout/number')
+                    .then(response => {
+                        this.numberOfCart = response.data.data.num;
+                        store.commit('setNumberOfCart', response.data.data.num);
+                    })
+                    .catch(err => console.log(err))
             }
         },
         mounted() {
             this.getUser();
             this.getFood(foodTypes[0].name);
             this.getShop();
+            this.getNumberOfCart();
         },
     }

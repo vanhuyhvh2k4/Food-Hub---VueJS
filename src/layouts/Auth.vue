@@ -22,15 +22,16 @@
             </section>
             <section :class="$style.button__group">
                 <div :class="$style.left">
-                    <Button name="FACEBOOK" :class="$style.button">
+                    <Button @click-btn="handleSignInFacebook" name="FACEBOOK" :class="$style.button">
                         <facebook />
                     </Button>
-                    <Button name="GOOGLE" :class="$style.button">
+                    <Button @click-btn="handleSignInGoogle" name="GOOGLE" :class="$style.button">
                         <google />
                     </Button>
                 </div>
             </section>
         </footer>
+        <Loader v-if="isLoading"/>
     </div>
 </template>
 
@@ -41,6 +42,14 @@
     import Button from '@/components/Button/Button.vue';
     import {facebook, google} from '@/assets/icons/index.js';
     import routesConfig from '@/config/routes';
+    import {GoogleAuthProvider, FacebookAuthProvider, getAuth, signInWithPopup} from 'firebase/auth';
+    import axios from 'axios';
+    import Cookies from 'js-cookie';
+    import Loader from '@/components/Loader/Loader.vue';
+
+    const googleProvider = new GoogleAuthProvider();
+    const facebookProvider = new FacebookAuthProvider();
+    const auth = getAuth();
 
     export default {
         setup() {
@@ -50,13 +59,55 @@
             }
         },
         components: {
-            Button,
-            facebook,
-            google
-        },
+    Button,
+    facebook,
+    google,
+    Loader
+},
         data() {
             return {
-                routesConfig
+                routesConfig,
+                user: {},
+                isLoading: false,
+            }
+        },
+        methods: {
+            handleSignInGoogle () {
+                this.popup(auth, googleProvider);
+            },
+            handleSignInFacebook () {
+                this.popup(auth, facebookProvider);
+            },
+            popup (authParams, providerParams) {
+                signInWithPopup(authParams, providerParams)
+                    .then((result) => {
+                        this.user = {
+                            fullName: result.user.displayName,
+                            email: result.user.email,
+                            avatar: result.user.photoURL
+                        }
+                        this.sendInfoSignIn(this.user);
+                    }).catch((error) => {
+                        console.log(error);
+                    });
+            },
+            sendInfoSignIn (payload) {
+                this.isLoading = true;
+                axios.post('http://localhost:3000/v1/api/auth/social', {
+                    email: payload.email,
+                    fullName: payload.fullName,
+                    avatar: payload.avatar
+                })
+                    .then(res => {
+                        Cookies.set('accessToken', res.data.data.accessToken);
+                        sessionStorage.setItem('refreshToken', res.data.data.refreshToken);
+                        this.isLoading = false;
+                        this.$router.push(this.routesConfig.home);
+                    })
+                    .catch(err => {
+                        this.isLoading = false;
+                        console.log(err);
+                    })
             }
         },
     }

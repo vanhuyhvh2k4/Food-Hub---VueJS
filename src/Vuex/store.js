@@ -15,6 +15,16 @@ const store = createStore({
     },
     setOrderId(state, orderId) {
       state.orderId = orderId;
+    },
+    clearData(state) {
+      state.currentUser = null;
+      state.numberOfCart = null;
+      state.orderId = null;
+    }
+  },
+  actions: {
+    logout({commit}) {
+      commit('clearData');
     }
   },
   getters: {

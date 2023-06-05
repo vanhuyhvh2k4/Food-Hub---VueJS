@@ -17,6 +17,7 @@
                 Cookies.remove('accessToken');
                 sessionStorage.removeItem('refreshToken');
                 localStorage.removeItem('currentUser');
+                this.$store.dispatch('logout');
                 this.$router.push({
                     name: 'auth',
                     params: ''

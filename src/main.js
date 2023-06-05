@@ -1,4 +1,6 @@
 import { createApp } from 'vue';
+import { initializeApp } from "firebase/app";
+import firebaseConfig from './config/firebase.config.js';
 import App from './App.vue';
 import router from './router';
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
@@ -11,10 +13,15 @@ import store from '@/Vuex/store.js';
 import './assets/styles/global.css';
 import {registerComponent} from './config/import.js';
 
+//initialized firebase
+initializeApp(firebaseConfig);
+
 const app = createApp(App);
 
+//vuex stores
 app.use(store);
 
+//fontawesome
 library.add(fas, fab, far)
 
 app.component('fa', FontAwesomeIcon)

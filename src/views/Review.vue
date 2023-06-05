@@ -40,7 +40,7 @@
 <script>
 import Loader from '@/components/Loader/Loader.vue';
 import NotFound from '@/components/NotFound/NotFound.vue';
-import review from '@/composables/review';
+import review from '@/composables/review.js';
 
 export default {
     name: "Review",

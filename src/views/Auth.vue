@@ -17,18 +17,22 @@
           </section>
           <section :class="$style.button__group">
             <div :class="$style.left">
-              <Button name="FACEBOOK" :class="$style.button">
-                <facebook/> 
-              </Button>
-              <Button name="GOOGLE" :class="$style.button">
-                <google/> 
-              </Button>
+              <router-link :to="routesConfig.signup">
+                <Button name="FACEBOOK" :class="$style.button">
+                  <facebook/> 
+                </Button>
+              </router-link>
+              <router-link :to="routesConfig.signup">
+                <Button name="GOOGLE" :class="$style.button">
+                  <google/> 
+                </Button>
+              </router-link>
             </div>
-            <router-link to="/signup"><Button name="Start with email or phone" :class="[$style.button_outline, $style.button]"/></router-link>
+            <router-link :to="routesConfig.signup"><Button name="Start with email or phone" :class="[$style.button_outline, $style.button]"/></router-link>
           </section>
           <section :class="$style.navigation">
             <span>Already have an account?</span>
-            <router-link to="/login" :class="$style.link">Sign In</router-link>
+            <router-link :to="routesConfig.login" :class="$style.link">Sign In</router-link>
           </section>
         </footer>
       </main>
@@ -39,14 +43,20 @@
 <script>
   import Button from '@/components/Button/Button.vue';
   import {facebook, google} from '@/assets/icons/index.js';
+  import routesConfig from '@/config/routes.js';
 
   export default {
     name: 'Auth',
     components: {
       Button,
       facebook,
-      google
-    }
+      google,
+    },
+    data() {
+      return {
+        routesConfig
+      }
+    },
   };
 </script>
 
