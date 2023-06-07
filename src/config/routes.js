@@ -19,7 +19,8 @@ const routesConfig = {
     myOrders: '/my-orders',
     orderDetail: '/my-orders/detail',
     review: '/:shopName/:foodName/review',
-    rating: '/my-orders/rating'
+    rating: '/my-orders/rating',
+    allShop: '/all-shop'
 }
 
 export default routesConfig;

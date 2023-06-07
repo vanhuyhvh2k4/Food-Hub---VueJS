@@ -82,11 +82,15 @@
     display: flex;
     gap: 20px;
     justify-content: space-between;
+
+    & > a {
+      flex: 1;
+    }
   }
   
   .button {
     height: 54px;
-    flex: 1;
+    width: 100%;
     padding: 13px 12px;
     &.button_outline {
       width: 100%;

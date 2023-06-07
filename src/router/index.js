@@ -113,6 +113,19 @@ const routes = [
     }
   },
   {
+    path: routesConfig.allShop,
+    name: 'allShop',
+    component: () => import(/* webpackChunkName: "allShop" */ '../views/AllShop.vue'),
+    // beforeEnter: requiredAuth,
+    meta: {
+      noNavigation: true,
+      buttonAndTitle: true,
+      noFixed: true,
+      backHome: true,
+      titleOfHeader: 'All Shops'
+    }
+  },
+  {
     path: routesConfig.cart,
     name: 'cart',
     component: () => import(/* webpackChunkName: "cart" */ '../views/Cart.vue'),

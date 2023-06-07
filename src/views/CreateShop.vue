@@ -35,12 +35,12 @@
     export default {
         name: "CreateShop",
         components: {
-    Input,
-    Button,
-    Loader,
-    Overlay,
-    Popup
-},
+            Input,
+            Button,
+            Loader,
+            Overlay,
+            Popup
+        },
         mixins: [createShop],
     }
 </script>
